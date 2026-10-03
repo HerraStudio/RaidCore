@@ -1,6 +1,10 @@
 # RaidCore 1.0.0
 
+[GitHub 仓库](https://github.com/HerraStudio/RaidCore) · [提交问题](https://github.com/HerraStudio/RaidCore/issues)
+
 把三个现有模组整合为一个 Minecraft 1.21.1 NeoForge 项目、一个 `raidcore` 模组入口和一个 JAR。
+
+后续开发集中在 RaidCore。原 [DragInventory](https://github.com/HerraStudio/DragInventory)、[TacticalActions](https://github.com/HerraStudio/TacticalActions)、[tactical-inventory](https://github.com/HerraStudio/tactical-inventory) 仓库作为历史归档保留。
 
 | 原项目 | 纳入版本 | 功能 |
 |---|---|---|

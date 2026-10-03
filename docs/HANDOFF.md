@@ -5,6 +5,8 @@
 ## 当前项目
 
 - 根目录：`E:/Codex/RaidCore`，版本 1.0.0，Mod ID `raidcore`。
+- GitHub：`https://github.com/HerraStudio/RaidCore`，公开仓库，默认分支 `main`；后续维护统一在此进行。
+- 原 `HerraStudio/DragInventory`、`HerraStudio/TacticalActions`、`HerraStudio/tactical-inventory` 作为历史归档保留，入口说明链接到 RaidCore。
 - 仅整合用户选择的三个模组：Drag Inventory 2.6.1、Tactical Actions 1.1.0、Tactical Inventory 1.0.20。
 - 一个 Gradle 构建、一个 `@Mod`、一个正式 JAR；188 个原 Java 文件和 1 个统一入口。
 - 源码来源、每个导入文件 hash 与兼容策略见 `MERGE.md` / `MERGE_SOURCES.json`。
