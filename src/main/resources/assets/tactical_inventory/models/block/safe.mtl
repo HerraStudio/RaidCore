@@ -1,0 +1,5 @@
+newmtl safe
+Ka 0 0 0
+Kd 1 1 1
+d 1
+map_Kd #safe_color

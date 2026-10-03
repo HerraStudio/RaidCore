@@ -1,0 +1,10 @@
+{
+  "key.categories.tacticalactions": "Tactical Actions",
+  "key.tacticalactions.lean_left": "Lean left",
+  "key.tacticalactions.lean_right": "Lean right",
+  "key.tacticalactions.prone": "Prone",
+  "tacticalactions.action.lean_left": "Leaning left",
+  "tacticalactions.action.lean_right": "Leaning right",
+  "tacticalactions.action.prone": "Prone",
+  "tacticalactions.action.standing": "Standing"
+}

@@ -1,0 +1,8 @@
+Tactical Inventory 1.0.18 / NeoForge 21.1.251 / LDLib2 2.2.40 / Java 21
+66 JUnit tests: passed
+Native LDLib2 editor and inventory screenshots visually inspected
+GWO tests use authored unprotected definitions and public APIs; no protected assets included
+Draft rules remain local; live publication is server-authoritative
+[16:18:16] [Render thread/INFO] [ProfileSmoke/]: PROFILE_SYNC_PERMISSION_PASS: real GUI clicks save all five tiers, GWO variants isolated, ammo intact, persistent NBT and non-admin rejected
+[16:18:20] [Render thread/INFO] [ProfileSmoke/]: PROFILE_RESIZE_RESET_PASS: whole footprints, pocket migration, recovery retains names/counts, live loot repacking, invalid/stale rejection and default reset
+[16:18:20] [Render thread/INFO] [ProfileSmoke/]: PROFILE_NATIVE_SMOKE_PASS: administrator GUI, five rarity colors, live preview, command/button, server sync and persistence

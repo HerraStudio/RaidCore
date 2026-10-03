@@ -1,0 +1,14 @@
+BAG_VIDEO_SERVER_PASS: native GWO multi-item replacement with displaced auto-rotation, atomic no-fit/half rejection, fixed/grid bidirectional permissions, loaded capacity protection, component-identical merge, loot/bag and same-loot replacement, reveal preservation, physical slot limit and hidden rejection, standard 99-arrow deposit cap to 64 with 35-source remainder, count/ammo/component preservation
+BAG_CAPACITY_STYLE_PASS: live occupied-cell headers, continuous backpack grid boundaries, visible merged-item seams, last-cell hits, full-stack drag into backpack and back, rotated item area, custom 4x3 capacity, recovery exclusion, unequipped 0/0
+BAG_DRAG_PREVIEW_PASS: independent free icon and snapped 1x3/5x2/rotated2x5 region, green valid, red no space/type mismatch, half stack without floating count, outside grid icon, no server mutations
+BAG_DRAG_OFFSET_PASS: source overlap at press, lower-right complete-item root, live multi-cell mouse progression, smooth single-cell progression, equipment source size, R anchor, scrolled source, gray mask retains icon/count, half-stack, cancel/rejected/outside release restore, accepted drop mask clearing, no data/revision changes
+BAG_WHOLE_ITEM_ANCHOR_PASS: all 10 subcells of native 5x2 GWO gun, 20 immediate network moves to identical roots, component/ammo preservation, negative-root and full-rectangle overlap red, root target-ID requery, 2x5 rotation and return, second-click confirmation, fixture restoration
+BAG_VIDEO_UI_PASS: actual LDLib mouse/packet 1x3 auto-to-3x1 and restore with glyph screenshots, explicit R preference retained across automatic fallback, immediate release and second-click confirm agree with preview orientation/root, native 5x2 GWO four-item replacement with armor auto-rotation and count/component preservation, different pocket swap, gray source mask and full fixture restoration
+TACTICAL_INVENTORY_SMOKE_PASS: separate five-pocket section, hovered pocket without tooltip, filled 1920x1080 military glass preview, slot filters, overflow migration, real GWO component preservation, grid rotation/collision, split, stale packet rejection, persistence roundtrip, death drops, real LDLib screen mouse/network transfer
+CREATIVE_INVENTORY_COMMAND_PASS
+LOOT_SERVER_CHECKS_PASS
+LOOT_WORLD_CHECKS_PASS: safe/chest/trapped chest/barrel/double chest, access locks, obstruction, open/close, persistence and break drops
+LOOT_MOUSE_NETWORK_PASS
+BAG_LOOT_DRAG_OFFSET_PASS: revealed native loot icon first-frame overlap, click-relative offset, smooth mouse follow, gray source mask retains icon/count, cancel restores unmasked source, no loot mutations
+BAG_WHOLE_ITEM_LOOT_ANCHOR_PASS: native revealed 5x2 GWO gun grabbed from lower-right subcell, immediate safe-to-backpack transfer, matching 5x2 backpack-to-safe preview/release root, same-safe root relocation, 2x5 rotation, real network/server ammo and component preservation, fixture restoration
+LOOT_VISIBILITY_PASS

@@ -1,0 +1,49 @@
+plugins { id 'java-library'; id 'net.neoforged.moddev' version '2.0.147' }
+version = '1.0.20'
+group = 'dev.tactical'
+base.archivesName = 'tactical-inventory-1.21.1-neoforge'
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.withSourcesJar()
+repositories { mavenCentral(); maven { url = 'https://maven.firstdark.dev/snapshots' } }
+neoForge {
+    version = '21.1.251'
+    runs { client {
+        client()
+        if (providers.gradleProperty('bagSmoke').isPresent()) {
+            gameDirectory = file('run-ui-smoke')
+        }
+        if (providers.gradleProperty('raidSmoke').isPresent()) {
+            gameDirectory = file('run-raid-smoke')
+        }
+        if (providers.gradleProperty('safeSmoke').isPresent()) {
+            gameDirectory = file('run-safe-smoke')
+        }
+        if (providers.gradleProperty('crackSmoke').isPresent()) {
+            gameDirectory = file('run-crack-smoke')
+        }
+        if (providers.gradleProperty('profileSmoke').isPresent()) {
+            gameDirectory = file('run-profile-smoke')
+        }
+        if (providers.gradleProperty('goldSmoke').isPresent()) {
+            gameDirectory = file('run-gold-smoke')
+        }
+    } }
+    mods { tactical_inventory { sourceSet(sourceSets.main) } }
+}
+dependencies {
+    implementation files('libs/gwo.jar')
+    implementation 'com.lowdragmc.ldlib2:ldlib2-neoforge-1.21.1:2.2.40:all'
+    implementation('com.lowdragmc.photon:photon-neoforge-1.21.1:2.2.7:all') { transitive = false }
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+test { useJUnitPlatform() }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(Jar).configureEach { from('LICENSE'); from('ASSET_LICENSES.md') }
+if (providers.gradleProperty('bagSmoke').isPresent()) { sourceSets.main.java.srcDir 'src/smoke/java' }
+if (providers.gradleProperty('raidSmoke').isPresent()) { sourceSets.main.java.srcDir 'src/raidSmoke/java' }
+if (providers.gradleProperty('safeSmoke').isPresent()) { sourceSets.main.java.srcDir 'src/safeSmoke/java' }
+if (providers.gradleProperty('crackSmoke').isPresent()) { sourceSets.main.java.srcDir 'src/crackSmoke/java' }
+if (providers.gradleProperty('profileSmoke').isPresent()) { sourceSets.main.java.srcDir 'src/profileSmoke/java' }
+if (providers.gradleProperty('goldSmoke').isPresent()) { sourceSets.main.java.srcDir 'src/goldSmoke/java' }

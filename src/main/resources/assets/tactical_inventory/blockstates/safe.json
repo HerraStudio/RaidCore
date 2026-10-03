@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,open=false": {
+      "model": "tactical_inventory:block/safe"
+    },
+    "facing=north,open=true": {
+      "model": "tactical_inventory:block/safe"
+    },
+    "facing=east,open=false": {
+      "model": "tactical_inventory:block/safe",
+      "y": 90
+    },
+    "facing=east,open=true": {
+      "model": "tactical_inventory:block/safe",
+      "y": 90
+    },
+    "facing=south,open=false": {
+      "model": "tactical_inventory:block/safe",
+      "y": 180
+    },
+    "facing=south,open=true": {
+      "model": "tactical_inventory:block/safe",
+      "y": 180
+    },
+    "facing=west,open=false": {
+      "model": "tactical_inventory:block/safe",
+      "y": 270
+    },
+    "facing=west,open=true": {
+      "model": "tactical_inventory:block/safe",
+      "y": 270
+    }
+  }
+}

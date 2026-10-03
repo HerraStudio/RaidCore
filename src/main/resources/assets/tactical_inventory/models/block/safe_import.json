@@ -1,0 +1,44 @@
+{
+  "source": {
+    "author": "avhatar (https://sketchfab.com/avhatar)",
+    "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+    "source": "https://sketchfab.com/3d-models/simple-safe-2e308cb3fe1d4676beb43e75fdd27e8e",
+    "title": "Simple Safe"
+  },
+  "source_sha256": "3bff820a8786fde9f6489327f64c753c1e2516e35d2de8bf33402759c9180112",
+  "mesh_parts": 4,
+  "vertices": 5060,
+  "triangles": 5461,
+  "bounds": {
+    "min": [
+      -0.1313636809092784,
+      0.02,
+      -0.45999999999999985
+    ],
+    "max": [
+      1.1313636809092784,
+      1.3934414781033073,
+      1.46
+    ]
+  },
+  "closed_bounds": {
+    "min": [
+      -0.1313636809092784,
+      0.02,
+      0.23227658963707826
+    ],
+    "max": [
+      1.1313636809092784,
+      1.3934414781033073,
+      1.46
+    ]
+  },
+  "door_hinge": [
+    0.04189102617222462,
+    0.7067205906711757,
+    0.3314831911864904
+  ],
+  "open_angle_degrees": 60,
+  "base_color_sha256": "73f2600f3302ada12418f8694b08a03944292413a6d3cf21a5dd63aa390680d6",
+  "changes": "GLB geometry converted to OBJ at twice the initial fit. Door, handle and lock reposed closed and split around the original hinge for a 60-degree opening animation. Original base-color PNG retained; Minecraft provides lighting."
+}

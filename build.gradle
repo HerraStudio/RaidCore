@@ -1,0 +1,135 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.147'
+}
+
+version = providers.gradleProperty('mod_version').get()
+group = 'dev.herrastudio.raidcore'
+base.archivesName = 'raidcore-1.21.1-neoforge'
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.withSourcesJar()
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.firstdark.dev/snapshots' }
+    maven { name = 'RedlanceMinecraft'; url = uri('https://repo.redlance.org/public') }
+}
+
+def smokeEnabled = providers.gradleProperty('raidCoreSmoke').isPresent()
+sourceSets {
+    integration {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+
+neoForge {
+    version = providers.gradleProperty('neo_version').get()
+    runs {
+        client {
+            client()
+            gameDirectory = file(smokeEnabled ? 'run-client-smoke' : 'run')
+            if (smokeEnabled) {
+                sourceSet = sourceSets.integration
+                systemProperty 'raidcore.smoke', 'true'
+                systemProperty 'raidcore.smoke.directory', file('run-client-smoke').canonicalPath
+            }
+        }
+        server {
+            server()
+            gameDirectory = file(smokeEnabled ? 'run-server-smoke' : 'run-server')
+            programArgument '--nogui'
+            if (smokeEnabled) {
+                sourceSet = sourceSets.integration
+                systemProperty 'raidcore.smoke', 'true'
+                systemProperty 'raidcore.smoke.directory', file('run-server-smoke').canonicalPath
+            }
+        }
+    }
+    mods {
+        raidcore {
+            sourceSet(sourceSets.main)
+            if (smokeEnabled) sourceSet(sourceSets.integration)
+        }
+    }
+}
+
+dependencies {
+    implementation files('libs/gwo.jar')
+    implementation 'com.lowdragmc.ldlib2:ldlib2-neoforge-1.21.1:2.2.40:all'
+    implementation('com.lowdragmc.photon:photon-neoforge-1.21.1:2.2.7:all') { transitive = false }
+    implementation('com.zigythebird.playeranim:PlayerAnimationLibNeo:1.1.6+mc.1.21.1') { transitive = false }
+
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'com.google.code.gson:gson:2.10.1'
+    testImplementation 'org.joml:joml:1.10.5'
+    testImplementation('com.zigythebird:mochafloats:4.1.0') { transitive = false }
+    testImplementation 'it.unimi.dsi:fastutil:8.5.12'
+    testRuntimeOnly 'org.slf4j:slf4j-api:2.0.9'
+    testRuntimeOnly 'org.javassist:javassist:3.30.2-GA'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test { useJUnitPlatform() }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(Jar).configureEach {
+    includeEmptyDirs = false
+    from('LICENSE', 'ASSET_LICENSES.md', 'THIRD_PARTY_NOTICES.md', 'TEMPLATE_LICENSE.txt')
+    from('licenses') { into 'licenses' }
+}
+processResources {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/neoforge.mods.toml') {
+        filter { line -> line.replace('@VERSION@', project.version.toString()) }
+    }
+}
+
+// The native harness has its own source set and can never contaminate a release JAR.
+tasks.register('verifyReleaseJar') {
+    dependsOn tasks.named('jar')
+    inputs.file tasks.named('jar').flatMap { it.archiveFile }
+    doLast {
+        def file = tasks.named('jar').get().archiveFile.get().asFile
+        def zip = new java.util.zip.ZipFile(file)
+        try {
+            def names = zip.entries().collect { it.name }.toSet()
+            def descriptor = zip.getInputStream(zip.getEntry('META-INF/neoforge.mods.toml')).getText('UTF-8')
+            if (descriptor.count('[[mods]]') != 1 || !descriptor.contains('modId="raidcore"') ||
+                    !descriptor.contains('version="' + project.version + '"') || descriptor.contains('@VERSION@')) {
+                throw new GradleException('RaidCore must have exactly one correctly versioned loader entry.')
+            }
+            def required = [
+                'dev/herrastudio/raidcore/RaidCore.class', 'dev/tactical/Tactical.class',
+                'dev/draginventory/DragInventory.class', 'dev/herrastudio/tacticalactions/TacticalActions.class',
+                'assets/tactical_inventory/models/loot/gold_bar.glb',
+                'assets/tactical_inventory/textures/item/gold_bar_color_n.png',
+                'assets/tactical_inventory/textures/item/gold_bar_color_s.png',
+                'assets/tactical_inventory/fx/evacuation_smoke.fx',
+                'data/tactical_inventory/loot_table/chests/safe_decrypted.json',
+                'assets/tacticalactions/player_animations/tactical_prone.json',
+                'assets/draginventory/textures/gui/player_marker.png',
+                'LICENSE', 'ASSET_LICENSES.md', 'THIRD_PARTY_NOTICES.md', 'TEMPLATE_LICENSE.txt'
+            ]
+            required.each { path ->
+                if (!names.contains(path)) throw new GradleException('Missing merged release resource: ' + path)
+            }
+            ['draginventory.mixins.json', 'tacticalactions.mixins.json', 'tactical_inventory.mixins.json'].each { path ->
+                def config = new groovy.json.JsonSlurper().parseText(zip.getInputStream(zip.getEntry(path)).getText('UTF-8'))
+                ((config.mixins ?: []) + (config.client ?: []) + (config.server ?: [])).each { name ->
+                    def classPath = (config.package + '.' + name).replace('.', '/') + '.class'
+                    if (!names.contains(classPath)) throw new GradleException('Missing merged mixin: ' + classPath)
+                }
+            }
+            def forbidden = names.findAll { path ->
+                def topLevelName = path.tokenize('/').last().tokenize('$').first()
+                path.endsWith('.jar') || path.contains('/integration/') || path.endsWith('Test.class') ||
+                        (path.endsWith('.class') && (topLevelName.endsWith('Smoke') || topLevelName.endsWith('Smoke.class'))) ||
+                        path.startsWith('com/sgr792/') || path.startsWith('com/lowdragmc/') || path.startsWith('com/zigythebird/')
+            }
+            if (!forbidden.isEmpty()) throw new GradleException('Unwanted release contents: ' + forbidden)
+            logger.lifecycle('RaidCore release JAR verified: one mod, all three feature sets, no test or third-party binaries.')
+        } finally { zip.close() }
+    }
+}
+tasks.named('check') { dependsOn tasks.named('verifyReleaseJar') }

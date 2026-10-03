@@ -1,0 +1,2378 @@
+{
+  "project": "RaidCore",
+  "scope": "Only the three explicitly selected mods",
+  "sources": [
+    {
+      "module": "hud",
+      "name": "Drag Inventory",
+      "version": "2.6.1",
+      "path": "E:\\Codex\\RaidCore\\.audit\\upstream\\DragInventory",
+      "commit": "48382c334a72eb6d5a62826b2187b62962474f68",
+      "working_tree": "tag v2.6.1"
+    },
+    {
+      "module": "actions",
+      "name": "Tactical Actions",
+      "version": "1.1.0",
+      "path": "E:\\Codex\\2026-09-25\\ba\\TacticalActions",
+      "commit": "e7c57f897677f1b3fd867293cbac3429ac94f8da",
+      "working_tree": "complete local working tree including uncommitted files"
+    },
+    {
+      "module": "inventory",
+      "name": "Tactical Inventory",
+      "version": "1.0.20",
+      "path": "E:\\Codex\\2026-09-21\\zh\\work\\tactical-inventory",
+      "commit": "b72f7724ec99bf3cc2f10d116f15579bf3736d6a",
+      "working_tree": "complete local working tree including uncommitted files"
+    }
+  ],
+  "files": [
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/ApexStyle.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/ApexStyle.java",
+      "sha256": "c97083997c4e87b1555d11311cac088f4c782fa9eb3cab18b9c27eef2953ceec"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/BattlefieldStyle.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/BattlefieldStyle.java",
+      "sha256": "c3332f307944646a3adbdc9742e2363444693e8a9dfe8f82e27343c5fd0e7d53"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassApi.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassApi.java",
+      "sha256": "4a8fe7fab8f2dc2ce742e02d8169436b806a23b8e8534977ec0cea6c499cad9c"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassClientEvents.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassClientEvents.java",
+      "sha256": "5be90958330cb1950ad7a3723b4db8698838e0b9fce09b3d1c5a8eeae4db1bfa"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassCommands.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassCommands.java",
+      "sha256": "46660f471d74c00417ea239c7cba77187602197e1a4b5a63c0eb4a6b5e528bd9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassConfig.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassConfig.java",
+      "sha256": "132cb1fa1944eb968a1a3ab37ef0e1b18c457b7dd892b806b2cd017b14e2118f"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassConfigEvents.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassConfigEvents.java",
+      "sha256": "27ec98fddb8525a54905436b1e56a01890c22de0d8af8e85b12c91f438ad5911"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassHeading.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassHeading.java",
+      "sha256": "93521aa4c189634592a395754ad1a23466c8c23aa401571d4e09a83a16abddd9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassHub.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassHub.java",
+      "sha256": "51565dce03ad7275066fa228fb1448ce79aca5be877ac49175476e13d96f7cf9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassHud.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassHud.java",
+      "sha256": "5bd5d027157572ab41ff6922d758fccbefa9b6e35a1d93b277b73c6d2f660cd0"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassHudRegistration.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassHudRegistration.java",
+      "sha256": "97cbc83f63e89214ae69fbad60095c7fb1577ec022f0b4993540e1974547914e"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassKeyBindings.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassKeyBindings.java",
+      "sha256": "3cfbd316a4c23fb0d468fc1c5cd3c1d2d2b6d56f2a23cf9a89dfd00c56ae4719"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassMark.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassMark.java",
+      "sha256": "3c5d873f7f71bfd12cf83e8e1b2ce1eacce5796d86e8b5821afa9431f0c9faa1"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassMarkerProvider.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassMarkerProvider.java",
+      "sha256": "fccf16f56db4db2af22635f3c01eb8d5efde20edddfd0ce9bdcc1b00cafd0dc9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassPaint.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassPaint.java",
+      "sha256": "6ddf7ff565d7a53cbeb19f352226451663cd0fd2b95e8d8e8c7e55c5f955a259"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassPalette.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassPalette.java",
+      "sha256": "c615a7f526d202cbdc508cd2de16180f57603ce004780c408baaccb767ba5e3c"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassSettingsScreen.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassSettingsScreen.java",
+      "sha256": "f2cfbdaf7d901d8abb50a456dfd67a6f04613b7c08d06298f4190b1dca0d61a7"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassSteps.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassSteps.java",
+      "sha256": "7fbc43200b2e565660dad028ea89afeb0d49e5516473b2d99abe9732bf3fec3c"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassStyle.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassStyle.java",
+      "sha256": "979c22e21fb1132c6672bd72744619dbd1d72cc98af45fada84e4949517ed57e"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassStyleContext.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassStyleContext.java",
+      "sha256": "c66c6394d2ba62a2a6526d72626a4b5c3d3df590a335a1685b3b081e2c027fc9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/CompassWidget.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/CompassWidget.java",
+      "sha256": "ae31a2ee4f75b4b083ce8cc16e609853a235322b2c35511be8f0f52e97b13451"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/DeltaStyle.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/DeltaStyle.java",
+      "sha256": "562d760bbd8dc7a178aa2aad16eea6c56c07ebe40bf2192222c9bd60f363f2cf"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/PubgStyle.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/PubgStyle.java",
+      "sha256": "3b0262195bb4b81cf01222050104fb90bda6821c4d7e495be8fa45afe7f87917"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/compass/WarzoneStyle.java",
+      "destination": "src/main/java/dev/draginventory/client/compass/WarzoneStyle.java",
+      "sha256": "20235bad7c9bc9de393cb6c06b2ef22c4158234c4f015cf6a171e5d0ecacbb8d"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/CompassMarkerBridge.java",
+      "destination": "src/main/java/dev/draginventory/client/CompassMarkerBridge.java",
+      "sha256": "d961d6e1665d22aca0d5ece47bad903c938fe30aae13da1a5a9fc29800ec8524"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/FastSwitchActionScope.java",
+      "destination": "src/main/java/dev/draginventory/client/FastSwitchActionScope.java",
+      "sha256": "31026ee54518cb97034748d2929e595d7dff3b0ef07d4846c567535acd82f858"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/FastSwitchTiming.java",
+      "destination": "src/main/java/dev/draginventory/client/FastSwitchTiming.java",
+      "sha256": "4fda44d74ca446d7582ef723f22c87c7db6ab886d351eb174f1d9709f51969f9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/GwoControlHud.java",
+      "destination": "src/main/java/dev/draginventory/client/GwoControlHud.java",
+      "sha256": "13d59a40fe68714397a29b4f9f15685ffd06d4ee3de42043fbc55ad236225f28"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/GwoHudBridge.java",
+      "destination": "src/main/java/dev/draginventory/client/GwoHudBridge.java",
+      "sha256": "79d9535994fcec678db2d71759cc54191fedd6a4ddea394f79e3abee310f1d06"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/GwoSwitchTimingBridge.java",
+      "destination": "src/main/java/dev/draginventory/client/GwoSwitchTimingBridge.java",
+      "sha256": "6a0e0e61ad4347acb9c73105e61a8dade42a02d84a054774b5270f8305c7fc6b"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/HudKeyIcons.java",
+      "destination": "src/main/java/dev/draginventory/client/HudKeyIcons.java",
+      "sha256": "458d5c1d9625f6510a28ebe5e2855ecacacca925c2e8c19759a91bd99cc84b6e"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/MainWeaponHudAnimation.java",
+      "destination": "src/main/java/dev/draginventory/client/MainWeaponHudAnimation.java",
+      "sha256": "87a98333c1682a6d309edcc82ca377d4697802f5c147be58f1517f4a53b39056"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapClientEvents.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapClientEvents.java",
+      "sha256": "8695d5bb0953956fe84435a732c4a2c04342e32f453874fc5bb8d482a3dc5745"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapHudRegistration.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapHudRegistration.java",
+      "sha256": "d6ab0a215ed5c7b70d5a289833d1a7dff80e47641616ca6b60a32edc49d1403d"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapKeyBindings.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapKeyBindings.java",
+      "sha256": "868668375e53872d0ab3e0b351ab08bc8e79c1ed2b005a35e23c1e18045aeb0c"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapLayerResolver.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapLayerResolver.java",
+      "sha256": "3114c7573ced4e7ee45c58ae1e95cddc7484566a0583b3c89f4bdea0e81003b7"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapPalette.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapPalette.java",
+      "sha256": "001594b970ad09515dae3576a70a98c5960c3f7bed75a224af53fdd5a0a0d5ae"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapSampler.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapSampler.java",
+      "sha256": "3be8bbf3da996e4a0732e6b293ff49d617085abdf9480ced1eb3903431e1d315"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapScreen.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapScreen.java",
+      "sha256": "c03013d6a7ddbbdbd3035ce00a65d61962436b5f9ca79df1bd9e0c6a6dec546b"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapSession.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapSession.java",
+      "sha256": "539ccec731589ad92fed4fe4432c3480a697562738603b2bc87985c71e213339"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapTiles.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapTiles.java",
+      "sha256": "3ff5a7c9ada742195c49e36d3ecbeb3b5e7fd3e67341b11950630d6a51164eb3"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapUI.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapUI.java",
+      "sha256": "7a21fe5c27e5598f7ccbaac799db86a982dfd62498ba4b8340988898de1c2446"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMapView.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMapView.java",
+      "sha256": "02daf6fd1b0e8a34436218df85e09ea2854e8c97151c71d81b9ef785e0974438"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/FactoryMinimapHud.java",
+      "destination": "src/main/java/dev/draginventory/client/map/FactoryMinimapHud.java",
+      "sha256": "7c19515b3cc8e3c3cf5c64358e5abf40d018dbf81ac9a2000c8cb5e3537aea24"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapClientEvents.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapClientEvents.java",
+      "sha256": "c1839a201e10dd8502e9bdd7c26e0c2c873efc06108b9ab5b04c33ced4438eec"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapCommands.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapCommands.java",
+      "sha256": "2e15a084858f71a1dc47d2535956f1c53f7fd7434d0b6f58772ae5697e8df869"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapConfig.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapConfig.java",
+      "sha256": "52f881d8ab5e4339cf250aad817310c27ee1267173f58590986b841bc8eac8c9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapConfigEvents.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapConfigEvents.java",
+      "sha256": "126f832b21db14de455fe257aef85820f2b4b78d0bb33586143b8eac27190384"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapCoordinateTransform.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapCoordinateTransform.java",
+      "sha256": "9dafbead62de12f7ac1d619a343b0d15845de8aeba84f0213a82b008b36f9121"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapMatchTimer.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapMatchTimer.java",
+      "sha256": "acc67ec34e615e6ce50506a7f355be057390339a662ace2617e5d4402328a3ac"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapPoiProvider.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapPoiProvider.java",
+      "sha256": "750603d8c48e9dcfed635e28e6e1cdfca0dfba4b1b667809c35ea12819dda7a9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapSemantics.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapSemantics.java",
+      "sha256": "413cd0557f14eda06b14f15b0e12c0b844337b0a83a35f8d07dd2055f924b38a"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/MapSettingsScreen.java",
+      "destination": "src/main/java/dev/draginventory/client/map/MapSettingsScreen.java",
+      "sha256": "c0a08b623af87fab560b63df7f00dd62f486f795f9c22a8b56398ccb90fd15a8"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/PlayerMarkerFX.java",
+      "destination": "src/main/java/dev/draginventory/client/map/PlayerMarkerFX.java",
+      "sha256": "8b30b33b26cfaa657dec84303c16aca2b39ca2887898d14aed718d95a2e75a87"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/map/TacticalMapApi.java",
+      "destination": "src/main/java/dev/draginventory/client/map/TacticalMapApi.java",
+      "sha256": "fa2a1553f71c405a9978c390bc37bf1a81673d3012f7b02e2f7ea9726ba6365b"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/ReferenceHotbar.java",
+      "destination": "src/main/java/dev/draginventory/client/ReferenceHotbar.java",
+      "sha256": "2e1e566e7dfec33b50c7c852927fda32d58bba5e246fc78482d63deafd74b5cd"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/StatusBar.java",
+      "destination": "src/main/java/dev/draginventory/client/StatusBar.java",
+      "sha256": "3f0d22c24fcb7add8f30b6774decb77e3a4bf832aa7bff772e1e4dba13b86f64"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/TacticalClickGesture.java",
+      "destination": "src/main/java/dev/draginventory/client/TacticalClickGesture.java",
+      "sha256": "48b3af8bde428405c28f978d6417002151f5e39caa500f929ed0f9f053075c81"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/TacticalItemIcon.java",
+      "destination": "src/main/java/dev/draginventory/client/TacticalItemIcon.java",
+      "sha256": "54925aee56cd713774e74a1c8c593842b726c6a27ba862f181245ae2c4ad44d3"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/TacticalMarker.java",
+      "destination": "src/main/java/dev/draginventory/client/TacticalMarker.java",
+      "sha256": "71485445896cba90a33fbcbee3426c6c40e65108efe2f2946f644c0643c4a17b"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/TacticalMarkerHud.java",
+      "destination": "src/main/java/dev/draginventory/client/TacticalMarkerHud.java",
+      "sha256": "f8a1c8ff7111def1035c5cc83722548253d49fecb8022e601f13dcf93129081e"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/TacticalMarkerListener.java",
+      "destination": "src/main/java/dev/draginventory/client/TacticalMarkerListener.java",
+      "sha256": "e8cc70b6ca8b1b0d4315d01d6e382b4a26974cfd75d1d1112229fb7fe131e8c5"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/TacticalMarkerLogic.java",
+      "destination": "src/main/java/dev/draginventory/client/TacticalMarkerLogic.java",
+      "sha256": "4b2aabd8be468098c59a6e34bff349b953aece3f7042b97624ae74530babc755"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/TacticalMarkerManager.java",
+      "destination": "src/main/java/dev/draginventory/client/TacticalMarkerManager.java",
+      "sha256": "17b1426f55f2ca5aec7b0c8aaee26905b7d82d5448096561de77f2f09681be64"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/WeaponHud.java",
+      "destination": "src/main/java/dev/draginventory/client/WeaponHud.java",
+      "sha256": "61647045e740f4fbc3ac21da7e34563799429d71de903bef4b9f69f4d0572006"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/WeaponHudDynamics.java",
+      "destination": "src/main/java/dev/draginventory/client/WeaponHudDynamics.java",
+      "sha256": "3d4f1fc4f47012c0958c5d3028dcbca955a65ffedbcbdf3900b318d3eaa03f73"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/WeaponHudMotion.java",
+      "destination": "src/main/java/dev/draginventory/client/WeaponHudMotion.java",
+      "sha256": "f9acc73f687bba40b0111aaab19f396db1fdf3ebf8defeafb66125f1414849d9"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/WeaponScroll.java",
+      "destination": "src/main/java/dev/draginventory/client/WeaponScroll.java",
+      "sha256": "dc66974a11955114435b5b41b50433ba5f2f31974fec9c728ad0857fc83adfa4"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/WeaponSlotIcons.java",
+      "destination": "src/main/java/dev/draginventory/client/WeaponSlotIcons.java",
+      "sha256": "a5b6990cf22a3d8ae44fd943fd0f34a1fff6c1db755d3661569d2ed5b4d15131"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/WeaponSwitchAnimation.java",
+      "destination": "src/main/java/dev/draginventory/client/WeaponSwitchAnimation.java",
+      "sha256": "15849c31fa01e197dc205841f74519729b91163edde1024e8534b9230acbac2e"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/CubicBezier.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/CubicBezier.java",
+      "sha256": "99591eb90e03e8a70fcd3c2808c9f544cfe891a8f01a94e13659e3a55913a746"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/HotbarWheelRenderer.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/HotbarWheelRenderer.java",
+      "sha256": "ad0a7d7a4aac347c42de76e50c8403932b9e3db1af57980f385e2a7bac41157f"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/HotbarWheelScreen.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/HotbarWheelScreen.java",
+      "sha256": "9a30d7e5d7d8cb1c17a4ed2b77e842cbce739a0806882fd14c845120337cd4ba"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/WheelAnimation.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/WheelAnimation.java",
+      "sha256": "04afa35caa157b6768548bd619530ddcbff8a31aad1243def9013e363d544d9e"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/WheelClient.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/WheelClient.java",
+      "sha256": "008c71e241ac89c374c3fd0495f63f23b0cf74521c4e8dcac70be97279ffe6df"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/WheelDirection.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/WheelDirection.java",
+      "sha256": "7baf2bdee43428fb03e9f84a0d85c49cfaf110d9158968a7013671d45abebc71"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/WheelGeometry.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/WheelGeometry.java",
+      "sha256": "911f2e28d07884b1585538e92f7aea00fecc2451b84eaccc9fb2a4406580c89b"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/WheelHoldGesture.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/WheelHoldGesture.java",
+      "sha256": "2e0f27e97c73c49a413104944e06f5d6a511fd73f689fa071f76b75c4069580e"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/client/wheel/WheelKeyBindings.java",
+      "destination": "src/main/java/dev/draginventory/client/wheel/WheelKeyBindings.java",
+      "sha256": "ff654999e6902f182a868c73ba4d81672a3402e31919cda51eb3763796bc043e"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/DragInventory.java",
+      "destination": "src/main/java/dev/draginventory/DragInventory.java",
+      "sha256": "d5528c3dce143fc45a85449c230439c08f7cd7db9a59afb8394ee319888c5025"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/FastSwitchConfig.java",
+      "destination": "src/main/java/dev/draginventory/FastSwitchConfig.java",
+      "sha256": "71b659907c9173937d6327368552da6233dce111944c931cb3ea3a417d50e501"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/Gesture.java",
+      "destination": "src/main/java/dev/draginventory/Gesture.java",
+      "sha256": "8870466e38291bf8c8a40459d99dc15c652b7a7947396e73fc835324a024e085"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/AbstractContainerScreenMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/AbstractContainerScreenMixin.java",
+      "sha256": "e94b80694e8fac446f6f454f923a283c2c46301ed9186dc8be8f2eadec017ada"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/CarriedItemSync.java",
+      "destination": "src/main/java/dev/draginventory/mixin/CarriedItemSync.java",
+      "sha256": "76224f4c993e737796848157690f33f651fad662b54042ed8410a946c583ecbd"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/GwoControlHudMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/GwoControlHudMixin.java",
+      "sha256": "5be94087848318a663224d8749cc9f1bcf89c516133ec45f012defb10e49205c"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/GwoDeferredSelectionMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/GwoDeferredSelectionMixin.java",
+      "sha256": "a4fca283cd745578f9b1fdf1eb390ef580c2cb24fc0ea6b11a5c245918ef6772"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/GwoHudShotMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/GwoHudShotMixin.java",
+      "sha256": "68088aa3a903e630f872c028b007c0f6bfdc2e7303a8bbe1050615ed6dca40cc"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/GwoMainHudAnimationMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/GwoMainHudAnimationMixin.java",
+      "sha256": "168fbe58b862b04872df54c2cb5d0a409268c562fe0b9b94ae37cd3f7697e1bf"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/GwoSwitchActionTimingScopeMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/GwoSwitchActionTimingScopeMixin.java",
+      "sha256": "3c9789563212d1b640af0e1b97bdb89bfa1b5029e7153db3fedb5fc64f7c7183"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/GwoSwitchHandoffTimingScopeMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/GwoSwitchHandoffTimingScopeMixin.java",
+      "sha256": "4f58684a431828422a58ef597764f1a7124b4692f2f0baadbb7fa33fe0bfe40c"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/GwoSwitchPlaybackMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/GwoSwitchPlaybackMixin.java",
+      "sha256": "0d799d01543f9b05700cd6f0ff66ffd6e357fcf89299db738d8ceca3ed81ecbc"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/GwoSwitchTimingMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/GwoSwitchTimingMixin.java",
+      "sha256": "ce57b406e5d12722931ca6d85bbf4322db964d06f4d0ce0969973f4d096dc34b"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/LivingEntityStaminaMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/LivingEntityStaminaMixin.java",
+      "sha256": "7bfdf5bc1fa0d0c5ad164ebc3961f6fcb3dbc1a37fc881cf66677b0215dd5ddd"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/PlayerStaminaMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/PlayerStaminaMixin.java",
+      "sha256": "b35fa446815040fce19d095cb97b32692c1eee60cb17255605aa7af3bc6d77e7"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/WeaponKeysMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/WeaponKeysMixin.java",
+      "sha256": "2802533909420f2d80aec2e2765778e35f41a8d0b88c24cbe7447885515c1e06"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/mixin/WeaponScrollMixin.java",
+      "destination": "src/main/java/dev/draginventory/mixin/WeaponScrollMixin.java",
+      "sha256": "c46d13dcc72e72aed7d1ccdc0b88b374118b5c54a378a4075db59d76f6cb8087"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/PlayerHealth.java",
+      "destination": "src/main/java/dev/draginventory/PlayerHealth.java",
+      "sha256": "760b3036f16da990ccfb9aff5ef9852892d582c4734eadfa33b0417de90d1544"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/PlayerStamina.java",
+      "destination": "src/main/java/dev/draginventory/PlayerStamina.java",
+      "sha256": "2b15d6ccd382f103cf271de291746c302acf9360036adca3152bbc969eb121b2"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/StaminaState.java",
+      "destination": "src/main/java/dev/draginventory/StaminaState.java",
+      "sha256": "e49741b09343daddbaf2ffe57fe0eedf9ac8407a267ee950c2dc56e384041bcf"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/java/dev/draginventory/WeaponSlots.java",
+      "destination": "src/main/java/dev/draginventory/WeaponSlots.java",
+      "sha256": "3c2ba25d282a191106139ae95b2278d13630ab065ac1522e3354b042f749c62a"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/resources/assets/draginventory/lang/en_us.json",
+      "destination": "src/main/resources/assets/draginventory/lang/en_us.json",
+      "sha256": "4a08bf5fd65bbd7ab9e4dc44c4720ca5c44045c94d30bcb92d768843ba8e8a48"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/resources/assets/draginventory/lang/zh_cn.json",
+      "destination": "src/main/resources/assets/draginventory/lang/zh_cn.json",
+      "sha256": "d9954700f2c01e4261c95b95f5198bc43e511358c92ab44e63a3c34482bd8f05"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/resources/assets/draginventory/textures/gui/player_marker.png",
+      "destination": "src/main/resources/assets/draginventory/textures/gui/player_marker.png",
+      "sha256": "6150db46596bb17f865506212a548dab59d753cd00e912726199fcea5c3cfbf5"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/resources/assets/draginventory/textures/gui/player_marker.png.mcmeta",
+      "destination": "src/main/resources/assets/draginventory/textures/gui/player_marker.png.mcmeta",
+      "sha256": "6e630170fafe1a018838f02249539bfe48feddb2261f1154411f6c4eea206d5c"
+    },
+    {
+      "module": "hud",
+      "source": "src/main/resources/draginventory.mixins.json",
+      "destination": "src/main/resources/draginventory.mixins.json",
+      "sha256": "a1c86063ea08158b232d15140e3d7f83b40edeadcc34e4bc0fb6e498484ff1a5"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/FastSwitchActionScopeTest.java",
+      "destination": "src/test/java/dev/draginventory/client/FastSwitchActionScopeTest.java",
+      "sha256": "fdfee870256851a3a62ef03b964a3402d9b3537c80bb3ff9562bfcc888c1ace2"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/FastSwitchTimingTest.java",
+      "destination": "src/test/java/dev/draginventory/client/FastSwitchTimingTest.java",
+      "sha256": "a440415edeadd913179cc9150a5988c4f7a5392692ea4577198d415de1efbce2"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/map/FactoryMapPaletteTest.java",
+      "destination": "src/test/java/dev/draginventory/client/map/FactoryMapPaletteTest.java",
+      "sha256": "6563f9bfdc9f09f1fd4a324ea8d00f908893eaa42973c400a053a01aa5e9cc27"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/map/MapCoordinateTransformTest.java",
+      "destination": "src/test/java/dev/draginventory/client/map/MapCoordinateTransformTest.java",
+      "sha256": "19ec1a2986b7d6d0e86c2c5d3bfa2eef30a28686cf095c2d4192a38cc1445f55"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/map/MapMatchTimerTest.java",
+      "destination": "src/test/java/dev/draginventory/client/map/MapMatchTimerTest.java",
+      "sha256": "5a9e4ebdfd638b3c2866a26643d512dab44958136cb038da6a34aebf4d829991"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/map/PlayerMarkerFXTest.java",
+      "destination": "src/test/java/dev/draginventory/client/map/PlayerMarkerFXTest.java",
+      "sha256": "e937630aaa003b0fc62cf1050d55e937ce63b9dffa268b1052dd4fa5d3a8a625"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/map/PlayerMarkerIconAssetTest.java",
+      "destination": "src/test/java/dev/draginventory/client/map/PlayerMarkerIconAssetTest.java",
+      "sha256": "4641a902ca4ffeef33e9c11913375ddf3541f66cbd994ba7c246ae3f8fc57b75"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/TacticalMarkerTest.java",
+      "destination": "src/test/java/dev/draginventory/client/TacticalMarkerTest.java",
+      "sha256": "99f6d8818817aebddaa2efda9716c5c16b135b93660ddae1d6445c70db8b0723"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/wheel/CubicBezierTest.java",
+      "destination": "src/test/java/dev/draginventory/client/wheel/CubicBezierTest.java",
+      "sha256": "f53a56af67828b96f06b28b996109ec1c3aa7b868f0e348b26d9a0f53cba16ef"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/wheel/WheelAnimationTest.java",
+      "destination": "src/test/java/dev/draginventory/client/wheel/WheelAnimationTest.java",
+      "sha256": "cdcba3b179a95754d477403bdaf27c12c99f82682b9f2d6d4a5e38274a3bf29d"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/wheel/WheelDirectionTest.java",
+      "destination": "src/test/java/dev/draginventory/client/wheel/WheelDirectionTest.java",
+      "sha256": "060ff27f7aca937492840835fffdb5ab24759cb451858bb9a01f8642ff6d3ceb"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/wheel/WheelGeometryTest.java",
+      "destination": "src/test/java/dev/draginventory/client/wheel/WheelGeometryTest.java",
+      "sha256": "2f6cd5f67a2c47c6fec4369cbd12b3b38ff90b4981ef550d046e0f1799fba05f"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/client/wheel/WheelHoldGestureTest.java",
+      "destination": "src/test/java/dev/draginventory/client/wheel/WheelHoldGestureTest.java",
+      "sha256": "ced7cbed402b095568d6541123fc4d4587c8e0aa4e3bd4be85d848e22873af98"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/GestureTest.java",
+      "destination": "src/test/java/dev/draginventory/GestureTest.java",
+      "sha256": "e58e8f372765be08069b912e8d422fabe109f4f540bb2cd80cb87eab1568ca85"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/StaminaStateTest.java",
+      "destination": "src/test/java/dev/draginventory/StaminaStateTest.java",
+      "sha256": "64c460bde8edcc981b59ae247e2269cf3cb5e8d556edd3a85232b25ffe5a96a3"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/WeaponHudMotionTest.java",
+      "destination": "src/test/java/dev/draginventory/WeaponHudMotionTest.java",
+      "sha256": "6b38cbcfcf1af7bc1049915b01fb2f3b79273262485524bd2f7329b61ac4442b"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/WeaponSlotsTest.java",
+      "destination": "src/test/java/dev/draginventory/WeaponSlotsTest.java",
+      "sha256": "3c1432f8add3ec9bdf2a56ee9eae74d1fcd5c7d7dd6e48134ae3c80bec08ad3d"
+    },
+    {
+      "module": "hud",
+      "source": "src/test/java/dev/draginventory/WeaponSwitchAnimationTest.java",
+      "destination": "src/test/java/dev/draginventory/WeaponSwitchAnimationTest.java",
+      "sha256": "9419ae399e08101007eb0b1d05cfabc0916eeee35fb2f05acc7a51ce30eb6450"
+    },
+    {
+      "module": "hud",
+      "source": "src/hotbarSmoke/java/dev/draginventory/HotbarSmoke.java",
+      "destination": "verification/hud/src/hotbarSmoke/java/dev/draginventory/HotbarSmoke.java",
+      "sha256": "5c7b500855dd48ceda017be1845b1381fc8391c8f4c0d9ba17f775e126541a6e"
+    },
+    {
+      "module": "hud",
+      "source": "src/mapSmoke/java/dev/draginventory/client/map/FactoryMapSmoke.java",
+      "destination": "verification/hud/src/mapSmoke/java/dev/draginventory/client/map/FactoryMapSmoke.java",
+      "sha256": "bbc2b27c9824a1f57236b2418474a1e633cdcaebaf9d1e1b1a72dc72ed7ecead"
+    },
+    {
+      "module": "hud",
+      "source": "src/markerSmoke/java/dev/draginventory/client/TacticalMarkerSmoke.java",
+      "destination": "verification/hud/src/markerSmoke/java/dev/draginventory/client/TacticalMarkerSmoke.java",
+      "sha256": "725255b8d7226f9633f8901a932937202f8c9d5a0f75ef8705103d9acf6e469e"
+    },
+    {
+      "module": "hud",
+      "source": "src/smoke/java/dev/draginventory/StartupSmoke.java",
+      "destination": "verification/hud/src/smoke/java/dev/draginventory/StartupSmoke.java",
+      "sha256": "0a76a3d29581addc8bf77136c1c18b6b105702e79a401d51b5b2ace64b75d840"
+    },
+    {
+      "module": "hud",
+      "source": "src/switchSmoke/java/dev/draginventory/client/GwoFastSwitchSmoke.java",
+      "destination": "verification/hud/src/switchSmoke/java/dev/draginventory/client/GwoFastSwitchSmoke.java",
+      "sha256": "0ef531e5b8874a2a96cbce2ea7e71d5f8dd3a1e5e65886cda483988c75b9db65"
+    },
+    {
+      "module": "hud",
+      "source": "src/weaponSmoke/java/dev/draginventory/HudMotionSmoke.java",
+      "destination": "verification/hud/src/weaponSmoke/java/dev/draginventory/HudMotionSmoke.java",
+      "sha256": "6ce1d3b8c9c8c459b8408695fb4332cf3c7bef2085ccc6f5a11719e2133f6a57"
+    },
+    {
+      "module": "hud",
+      "source": "src/weaponSmoke/java/dev/draginventory/WeaponSmoke.java",
+      "destination": "verification/hud/src/weaponSmoke/java/dev/draginventory/WeaponSmoke.java",
+      "sha256": "fb316d6ec22c65e9f078303b45d6e71c4724e0735ecd169441b0f5c33e0b8b0f"
+    },
+    {
+      "module": "hud",
+      "source": "src/wheelSmoke/java/dev/draginventory/client/wheel/WheelSmoke.java",
+      "destination": "verification/hud/src/wheelSmoke/java/dev/draginventory/client/wheel/WheelSmoke.java",
+      "sha256": "38ce6b5c19fd6f22342033cd88d115300828d1244433749d38f3371a0cd4dc32"
+    },
+    {
+      "module": "hud",
+      "source": "docs/alt-hotbar-wheel.md",
+      "destination": "docs/legacy/hud/docs/alt-hotbar-wheel.md",
+      "sha256": "f0a698fc492aaa57d6840b2cf061a1419505224c31be9dfb27d6e0a98596e2e7"
+    },
+    {
+      "module": "hud",
+      "source": "docs/compass-hud.md",
+      "destination": "docs/legacy/hud/docs/compass-hud.md",
+      "sha256": "975475a2b1bf2f1f3f6ca4abcb0223b7338290578f08ddb8dcea71bc58b0edb8"
+    },
+    {
+      "module": "hud",
+      "source": "docs/factory-tactical-map.md",
+      "destination": "docs/legacy/hud/docs/factory-tactical-map.md",
+      "sha256": "a3658d6175ab087acbd526ba0819441477b80896f5b11b2d962a3a9883511396"
+    },
+    {
+      "module": "hud",
+      "source": "docs/gwo-fast-switch.md",
+      "destination": "docs/legacy/hud/docs/gwo-fast-switch.md",
+      "sha256": "daa78b84e0ac43a43da4db0b69f881917ee25fc93f1beb845bd94967808d6113"
+    },
+    {
+      "module": "hud",
+      "source": "docs/reference/album-info.json",
+      "destination": "docs/legacy/hud/docs/reference/album-info.json",
+      "sha256": "43136a29899f0f688d3e49ca5c0ab71c6eb092fc70f5cdf4c8548631bfccd328"
+    },
+    {
+      "module": "hud",
+      "source": "docs/reference/apex-compass.png",
+      "destination": "docs/legacy/hud/docs/reference/apex-compass.png",
+      "sha256": "09cca2dfe34b884104aa7d48f1526ccc512f78dea56347aa83104eb27791b6b3"
+    },
+    {
+      "module": "hud",
+      "source": "docs/reference/delta-compass.png",
+      "destination": "docs/legacy/hud/docs/reference/delta-compass.png",
+      "sha256": "7728b7fab1c0450086b48d954b15c4a32030ee6230a355ecd52d027935453d86"
+    },
+    {
+      "module": "hud",
+      "source": "docs/reference/menu-ui-reference.png",
+      "destination": "docs/legacy/hud/docs/reference/menu-ui-reference.png",
+      "sha256": "fa09736ff24a9d283efc7aa29f272d4bdc6e5925fb0cb287860bf7d2e4179f68"
+    },
+    {
+      "module": "hud",
+      "source": "docs/reference/pubg-compass.png",
+      "destination": "docs/legacy/hud/docs/reference/pubg-compass.png",
+      "sha256": "99a0f4dbfd34f0a39b6cb10fa01a4bfbefc002be5c281d7123e7ebbc3bbd4ada"
+    },
+    {
+      "module": "hud",
+      "source": "wiki/Home.md",
+      "destination": "docs/legacy/hud/wiki/Home.md",
+      "sha256": "b23b4531bf5bcdb539dec5606d9e8cb953aa668f827f938eeca1b00cfd1628a9"
+    },
+    {
+      "module": "hud",
+      "source": "wiki/战术地图.md",
+      "destination": "docs/legacy/hud/wiki/战术地图.md",
+      "sha256": "35eb4fe563f95b7c0a9daf3b4fcfbcc3b54aa9cd95659f2cd8137ff992dc8289"
+    },
+    {
+      "module": "hud",
+      "source": "wiki/战术地图API.md",
+      "destination": "docs/legacy/hud/wiki/战术地图API.md",
+      "sha256": "80ca2ecae09d2640cd5f053f11fc71499ac65e172e34fff65fcc17e8ec76d5a9"
+    },
+    {
+      "module": "hud",
+      "source": "wiki/方位条HUD.md",
+      "destination": "docs/legacy/hud/wiki/方位条HUD.md",
+      "sha256": "752d6a8117809c830f8a1ca544cbc4067aeb925edcf69055b5793d03c7699208"
+    },
+    {
+      "module": "hud",
+      "source": "README.md",
+      "destination": "docs/legacy/hud/README.md",
+      "sha256": "07602e1f675ce9ef9f4ebd0c42eb3cbc858476c0b552ecb1058c1dfb377727cc"
+    },
+    {
+      "module": "hud",
+      "source": "build.gradle",
+      "destination": "docs/legacy/hud/build.gradle",
+      "sha256": "e72b2382b0d6a0caa22bb1d6eb2f02f45a411a5d9888281951ad90466d20e1ed"
+    },
+    {
+      "module": "hud",
+      "source": "settings.gradle",
+      "destination": "docs/legacy/hud/settings.gradle",
+      "sha256": "fe5410a4f8375ad1d0ceb4d3739cf1c3ddb67ee303a98511e6dd379a29377e54"
+    },
+    {
+      "module": "hud",
+      "source": "gradle.properties",
+      "destination": "docs/legacy/hud/gradle.properties",
+      "sha256": "35a462b950b7ec0bd6ac98c7fcf850965707d3feaac89c126d169475bc3f39b9"
+    },
+    {
+      "module": "hud",
+      "source": "LICENSE",
+      "destination": "licenses/hud-MIT.txt",
+      "sha256": "d776ff748c1daf6f8c2950d5a80361a670b9dae691de275f5a089dcf0118bce8"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/AutomaticPeek.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/AutomaticPeek.java",
+      "sha256": "212a03ecb3361d2a38172dc29a1559a4b09c5bf66d148be8ce817ac98115c276"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/GroundedCrouch.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/GroundedCrouch.java",
+      "sha256": "9d46878062acae27e0cdb92f7e596dc8ff19858d7272651919e892c64d86a3bc"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/GwoPeekSupport.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/GwoPeekSupport.java",
+      "sha256": "b8c2c0c2965022d501af245090ca0c5b2674924ef93cd4289208c4ab57022969"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/mixin/GroundedCrouchMixin.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/mixin/GroundedCrouchMixin.java",
+      "sha256": "442dcb42f2b626f8715a49bd15b82937a67a537b501d56681812ac9179675a03"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/mixin/GwoPeekArmsMixin.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/mixin/GwoPeekArmsMixin.java",
+      "sha256": "7a7051e776f8a109c41a08c153edeb816ad9950820d7424d30b6a27580d8a2f7"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/mixin/GwoPeekRenderMixin.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/mixin/GwoPeekRenderMixin.java",
+      "sha256": "da6e1337083a4d89c962efd886cd07e9f60287172dda83049af37e820977c7c3"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/mixin/PeekEyePositionMixin.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/mixin/PeekEyePositionMixin.java",
+      "sha256": "24dd54be6cf1cc59c507693f12f65f89844dfb3e217a77ed172bc6fbba3daa97"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/mixin/TacticalCameraMixin.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/mixin/TacticalCameraMixin.java",
+      "sha256": "30bfc21e685c7487862069f82c963ba8bcb9eddf79e44c32356f410f72f47f19"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/mixin/TacticalProneMixin.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/mixin/TacticalProneMixin.java",
+      "sha256": "772ea1f1305c896a0d98495920eff6d552f925f95fcae8eb66c8cf7354497990"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/PeekClientConfig.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/PeekClientConfig.java",
+      "sha256": "149bb69e71e84ac62e5e654f4276a24349ffb44ae0ee1dfb05a018087d0f4894"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/PeekGeometry.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/PeekGeometry.java",
+      "sha256": "9ee8e4a31097069ea127733c90a2acbee2b2a60c63d34491776b588e4e138a80"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/PeekNetwork.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/PeekNetwork.java",
+      "sha256": "171e731a64a57a32e28c4145ffe3ef2bbedceb1453c682fd93e6c6cd37a0c91a"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/PeekPoseMath.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/PeekPoseMath.java",
+      "sha256": "d7ba922bcc4a64f2b94576f9fb43195ad37e0a0c24cfe1dfff13a65a6d4f2339"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/PeekServer.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/PeekServer.java",
+      "sha256": "c7ef3d6f71c3b0c1f5c9023076dc05978c3980598cde66f2018d06daf669ca90"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/PeekStates.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/PeekStates.java",
+      "sha256": "6ab4ed2cc578174fea6b6ba466748943d47e05fcf6db7500c64f01967896b99c"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/PeekTransition.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/PeekTransition.java",
+      "sha256": "cfd17c425d1ea702f5fe7edba204d1854692f88944f661e7dad2a26abe16d54d"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/TacticalActions.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/TacticalActions.java",
+      "sha256": "04b34995ce9ac344e0c81b8a131e90563dba2ff4c720098d43e18d80f11516e8"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/TacticalActionsClient.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/TacticalActionsClient.java",
+      "sha256": "b854efbf54973bd95f25247e11b55ab753e4287bacca48be60d6194c94025488"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/TacticalActionsClientSetup.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/TacticalActionsClientSetup.java",
+      "sha256": "50d4378fa77510ff845564fb0e5ba6dae837f3146a4f37e2998ab3a8d702dd34"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/TacticalActionsKeyMappings.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/TacticalActionsKeyMappings.java",
+      "sha256": "9d2be6c16ec713711c05e06e856e7cc0f6b8c7b6daadf91106c61a6b64d83f09"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/TacticalActionState.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/TacticalActionState.java",
+      "sha256": "d544c6d8c50c1bd948a02d31ca11fe42b9b4780abb3c1f31ec222edaff83e600"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/java/dev/herrastudio/tacticalactions/TacticalPeekAnimation.java",
+      "destination": "src/main/java/dev/herrastudio/tacticalactions/TacticalPeekAnimation.java",
+      "sha256": "194efdc5ee85b3534b89a39e2700f4a35c16ff75fd69977a104a477a55bf943b"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/resources/assets/tacticalactions/lang/en_us.json",
+      "destination": "src/main/resources/assets/tacticalactions/lang/en_us.json",
+      "sha256": "5b2aa0748c78f3f598bcded1c934e645ac15fb75e2ac0ddcd519e3198a4f0efb"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/resources/assets/tacticalactions/lang/zh_cn.json",
+      "destination": "src/main/resources/assets/tacticalactions/lang/zh_cn.json",
+      "sha256": "d52e0886048b9e9ca534bf778d1220f658260e5cbb937a54823b605056cf015c"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/resources/assets/tacticalactions/player_animations/tactical_prone.json",
+      "destination": "src/main/resources/assets/tacticalactions/player_animations/tactical_prone.json",
+      "sha256": "7eb7f92dc139a040aa75dfc57878351480d419a881d7549ec225320bb5b9e13c"
+    },
+    {
+      "module": "actions",
+      "source": "src/main/resources/tacticalactions.mixins.json",
+      "destination": "src/main/resources/tacticalactions.mixins.json",
+      "sha256": "b8b271557a8743d23c75ad843b7e363f89e23d29ff2b9812b19796e3f63df9bb"
+    },
+    {
+      "module": "actions",
+      "source": "src/test/java/dev/herrastudio/tacticalactions/ActionStateTest.java",
+      "destination": "src/test/java/dev/herrastudio/tacticalactions/ActionStateTest.java",
+      "sha256": "5da20a60d346e135e345567099c70014dfc97f3a86e16da314798cfc4bca68e9"
+    },
+    {
+      "module": "actions",
+      "source": "src/test/java/dev/herrastudio/tacticalactions/GroundedCrouchTest.java",
+      "destination": "src/test/java/dev/herrastudio/tacticalactions/GroundedCrouchTest.java",
+      "sha256": "46f77eb5141218c2b5603929e7646c17f414808a3fef2303290702242294de98"
+    },
+    {
+      "module": "actions",
+      "source": "src/test/java/dev/herrastudio/tacticalactions/PeekPoseMathTest.java",
+      "destination": "src/test/java/dev/herrastudio/tacticalactions/PeekPoseMathTest.java",
+      "sha256": "4a1c45803aea06945beadbffc2d05428f1102f324257b40de0c9e52fdce68809"
+    },
+    {
+      "module": "actions",
+      "source": "src/test/java/dev/herrastudio/tacticalactions/PeekTransitionTest.java",
+      "destination": "src/test/java/dev/herrastudio/tacticalactions/PeekTransitionTest.java",
+      "sha256": "3463114482ae006beb6d770861c4112a657c2c4195e86a0293b7197f08715781"
+    },
+    {
+      "module": "actions",
+      "source": "src/test/java/dev/herrastudio/tacticalactions/TacticalAnimationResourcesTest.java",
+      "destination": "src/test/java/dev/herrastudio/tacticalactions/TacticalAnimationResourcesTest.java",
+      "sha256": "f652817bf9474588b32980f78e2d520d0fae8e1f7915a28bde3cee4abac218c1"
+    },
+    {
+      "module": "actions",
+      "source": "src/peekTest/java/dev/herrastudio/tacticalactions/peektest/PeekSmoke.java",
+      "destination": "verification/actions/src/peekTest/java/dev/herrastudio/tacticalactions/peektest/PeekSmoke.java",
+      "sha256": "454fbfd05ddad8bc6db156d354ac2c59a1af7f69eb8e7b68f31157b2f4fd0dad"
+    },
+    {
+      "module": "actions",
+      "source": "src/visualTest/java/dev/herrastudio/tacticalactions/visualtest/GroundedCrouchGameTest.java",
+      "destination": "verification/actions/src/visualTest/java/dev/herrastudio/tacticalactions/visualtest/GroundedCrouchGameTest.java",
+      "sha256": "508e7564d6f17cd8f11f4aeb59dd7c4cf01a8e9c3638c38be5ca683e3e18ba84"
+    },
+    {
+      "module": "actions",
+      "source": "src/visualTest/java/dev/herrastudio/tacticalactions/visualtest/GwoAttackVisualTest.java",
+      "destination": "verification/actions/src/visualTest/java/dev/herrastudio/tacticalactions/visualtest/GwoAttackVisualTest.java",
+      "sha256": "6679b16a7696782177e2c7a846dc9343f6a7dc6cd483f8fd418c160a86b1df14"
+    },
+    {
+      "module": "actions",
+      "source": "src/visualTest/java/dev/herrastudio/tacticalactions/visualtest/TacticalActionsVisualTest.java",
+      "destination": "verification/actions/src/visualTest/java/dev/herrastudio/tacticalactions/visualtest/TacticalActionsVisualTest.java",
+      "sha256": "afa41cc8cae08029c323c6896409fde6cef971f901869fc03408b4d7f413fa3e"
+    },
+    {
+      "module": "actions",
+      "source": "src/visualTest/README.md",
+      "destination": "verification/actions/src/visualTest/README.md",
+      "sha256": "ecc9130ba4958d25b2d48a1e52cbc85914b9d5cc9543cd4c367cac827d9190c7"
+    },
+    {
+      "module": "actions",
+      "source": "README.md",
+      "destination": "docs/legacy/actions/README.md",
+      "sha256": "0abc17d7dac67e829f3ed01384e37c4c2d770fc38855826ed28c976ad882f4cc"
+    },
+    {
+      "module": "actions",
+      "source": "CHANGELOG.md",
+      "destination": "docs/legacy/actions/CHANGELOG.md",
+      "sha256": "08fc2cd9ec34acc449eeea97537d6b16d964d13796a99651bedf8af0264eb0ff"
+    },
+    {
+      "module": "actions",
+      "source": "build.gradle",
+      "destination": "docs/legacy/actions/build.gradle",
+      "sha256": "33812887ea63f83ca46c0d01f4eca0221e8275de5f9e954488e6b89a00477e5f"
+    },
+    {
+      "module": "actions",
+      "source": "settings.gradle",
+      "destination": "docs/legacy/actions/settings.gradle",
+      "sha256": "5a232803ff95b26d3ebce9dee5e976042afdf424dc8520ce3ab84e3a6d94e3ab"
+    },
+    {
+      "module": "actions",
+      "source": "gradle.properties",
+      "destination": "docs/legacy/actions/gradle.properties",
+      "sha256": "299f8d3301e400da0a4bf8c2cbb7fe498ea2e4066ea1fd074b9639ccd605822f"
+    },
+    {
+      "module": "actions",
+      "source": "LICENSE",
+      "destination": "licenses/actions-MIT.txt",
+      "sha256": "d776ff748c1daf6f8c2950d5a80361a670b9dae691de275f5a089dcf0118bce8"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/BagMenu.java",
+      "destination": "src/main/java/dev/tactical/BagMenu.java",
+      "sha256": "cec3d661d24e4e9d69b4670b92c489fabe6bd8148a58bc22a9c2cb3de7f302b6"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/BagPlacement.java",
+      "destination": "src/main/java/dev/tactical/BagPlacement.java",
+      "sha256": "82d65d3a84289b43c375794d628de0a2bbc7f94924975b5bdab4ece8800f643d"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/BagState.java",
+      "destination": "src/main/java/dev/tactical/BagState.java",
+      "sha256": "613ca7badb9634dfcac7b459466d302152792f742d3ab78a8ad91fabad615a2f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/BagLayout.java",
+      "destination": "src/main/java/dev/tactical/client/BagLayout.java",
+      "sha256": "985f757055e3770706ed3d6acac7a6b4158c1c0dad0b67e507939366436e9aba"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/BagPlayerPreview.java",
+      "destination": "src/main/java/dev/tactical/client/BagPlayerPreview.java",
+      "sha256": "d76e86a64925234ca4aaaedc13b1e3a5319c1f85e3e04d9f6d3374fca819d2ae"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/BagScreen.java",
+      "destination": "src/main/java/dev/tactical/client/BagScreen.java",
+      "sha256": "9ca9cbc7ab1882a664f2d6e0b50f47108cee30d8ff493ec237c444d12a3449ef"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/ClientEvents.java",
+      "destination": "src/main/java/dev/tactical/client/ClientEvents.java",
+      "sha256": "1c5c47ef7f65841cb13bc9992e82b24f1e23644ccdf28ce8462a033db44acbf0"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/LootInspectClient.java",
+      "destination": "src/main/java/dev/tactical/client/LootInspectClient.java",
+      "sha256": "4c2b12acadb217489173bbded6584df82a4000e456bae6918538cb3d81ed068f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/LootItemRenderer.java",
+      "destination": "src/main/java/dev/tactical/client/LootItemRenderer.java",
+      "sha256": "14a33cb428bf9f8b5a69f883659a711d371fa3a3af6240db2ed4c8152e9f7261"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/LootView.java",
+      "destination": "src/main/java/dev/tactical/client/LootView.java",
+      "sha256": "62c0afd8ed1e458c4e74edee170dceedca0f5f1c4975d633ebf345cc3363dbf4"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/SafeRenderer.java",
+      "destination": "src/main/java/dev/tactical/client/SafeRenderer.java",
+      "sha256": "ef18e17dc5d9ea7ec0e715fb3f1aef8d6ce8861c0e9ee45d65cc7a9025acddb8"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/client/WholeItemDrag.java",
+      "destination": "src/main/java/dev/tactical/client/WholeItemDrag.java",
+      "sha256": "e0f5fbd520d9ca05bd9208d2e17b63f64ee87ea79edb5b310240262bbe705701"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/crack/client/CrackClient.java",
+      "destination": "src/main/java/dev/tactical/crack/client/CrackClient.java",
+      "sha256": "dc14936d10fe516237778f088128076e7f2b61578b6eee21ed24abbc30813573"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/crack/client/CrackScreen.java",
+      "destination": "src/main/java/dev/tactical/crack/client/CrackScreen.java",
+      "sha256": "e0da856c9e8e0433c0deafd82b165292e2cd3630370bfc606c64fe83a0b9c8d7"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/crack/CrackEvents.java",
+      "destination": "src/main/java/dev/tactical/crack/CrackEvents.java",
+      "sha256": "d527749f5b3d6b4dcc9b298d7e8c27938684aad582d6fbbee4c9f8fb6a83fb49"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/crack/CrackPackets.java",
+      "destination": "src/main/java/dev/tactical/crack/CrackPackets.java",
+      "sha256": "9123b523ec254a07b3186ca8ea327a94d25bdfa4cc45ccbdc5c86daad44113e6"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/crack/CrackRules.java",
+      "destination": "src/main/java/dev/tactical/crack/CrackRules.java",
+      "sha256": "08c2aafd56e26ad52bb2eab551cb25190767decfcc0cb46a4e61eb720a927631"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/crack/CrackService.java",
+      "destination": "src/main/java/dev/tactical/crack/CrackService.java",
+      "sha256": "73e3de3b7df6f532aae8927b014573f710001fb35bbea811f29f4046c9d54924"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/Events.java",
+      "destination": "src/main/java/dev/tactical/Events.java",
+      "sha256": "3e35f77555c2f692d2ab6a2b14e24d559ea472ef1184683c5e84feff298e648c"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/Grid.java",
+      "destination": "src/main/java/dev/tactical/Grid.java",
+      "sha256": "4e447d3e22356e57ef11e0323d4f8e970e12c75a6201976d316ef0687f19c20b"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/loot/InspectableLootItem.java",
+      "destination": "src/main/java/dev/tactical/loot/InspectableLootItem.java",
+      "sha256": "a7a2839322797a421fcdb882802b5265408d1daca8d5ecd5a32fb7e214413c82"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/loot/LootContainers.java",
+      "destination": "src/main/java/dev/tactical/loot/LootContainers.java",
+      "sha256": "4bb452851a2af7e80ac265ba7801201d50da6a409ea1786734617f828351c6fb"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/loot/LootInspectMotion.java",
+      "destination": "src/main/java/dev/tactical/loot/LootInspectMotion.java",
+      "sha256": "e811d43134e67279df3c47db79f7bf7bec9546ee188396196ba99ff62e769446"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/loot/LootPacking.java",
+      "destination": "src/main/java/dev/tactical/loot/LootPacking.java",
+      "sha256": "4217b9193cf05a78f8656e630f2a517c6efdba3ba35574eae5b3df8661cbad31"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/loot/LootSession.java",
+      "destination": "src/main/java/dev/tactical/loot/LootSession.java",
+      "sha256": "fd0e958a8d776f89c45927a958188ed0a70ee348cb367d168fa11b0d0124156e"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/loot/SafeBlock.java",
+      "destination": "src/main/java/dev/tactical/loot/SafeBlock.java",
+      "sha256": "0f512f26fe5d4dd432d623b377f2d835690fe324745c36081a6bbb1a5d45d118"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/loot/SafeBlockEntity.java",
+      "destination": "src/main/java/dev/tactical/loot/SafeBlockEntity.java",
+      "sha256": "e8d997b0c5e31ffa155648a119f98f013db24458a54b20c3ae9b2b31a7ac6261"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/loot/SafeDoorMotion.java",
+      "destination": "src/main/java/dev/tactical/loot/SafeDoorMotion.java",
+      "sha256": "0dd3cf747f3d281be346d68ffe2f61e0e9ef2b7f6c4cf49b08c2fad5672476c9"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/CrackGwoLockMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/CrackGwoLockMixin.java",
+      "sha256": "f7fc7de086d3944e497f02f6412461ac8656f0095c009b226c9c5bec59aea759"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/CrackInputLockMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/CrackInputLockMixin.java",
+      "sha256": "7cec9164d30054ce3b95078fce5cf241582291a781467e1d1cf3680ef21f9458"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/DeathMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/DeathMixin.java",
+      "sha256": "8545ee0b7e6520198207a81b41489ba8750db650ef152062ff837cd654cbf335"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/InventoryMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/InventoryMixin.java",
+      "sha256": "b58178d661945c10009083b4c1a5a4e951bf3ec0b10005c2b5cc522b11151aef"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/LootContainerMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/LootContainerMixin.java",
+      "sha256": "50be108fd298f79e6ab9affa20968503c32b87b3fb3c557426f14cea5277cc43"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/LootOpenersMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/LootOpenersMixin.java",
+      "sha256": "c6ebc7e9030b11f71eeac1f6a433965e2b7740287f77e4971aa58586b571b94f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/MenuSwapMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/MenuSwapMixin.java",
+      "sha256": "ab72c6fcde90e2fabd30a303ef559b736a5ab083b5bd1b7deeaa00c844ab9a33"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/OffhandSwapMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/OffhandSwapMixin.java",
+      "sha256": "44212e51db08fd62b4dbbd37dd5e4ffd801aa89c427a9ebcd216ca70d0858c14"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/RaidDeathMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/RaidDeathMixin.java",
+      "sha256": "4e0b3eb71bf57d5962a87227d23de2dc96e1fb454bdd3c35749f429be7a9c174"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/RaidKillMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/RaidKillMixin.java",
+      "sha256": "31833b80085fdf5013a9b3194a070658528eed9401a729d978b20069d383cc48"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/mixin/SlotMixin.java",
+      "destination": "src/main/java/dev/tactical/mixin/SlotMixin.java",
+      "sha256": "91d949edeaa87bfe270c646d795897be8e4c54fc6dfce84542249a960a332b7d"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/Packets.java",
+      "destination": "src/main/java/dev/tactical/Packets.java",
+      "sha256": "28b0d61ce1c83f8de4a61e9b5341ee1ecc3265643c46c1bd5c96f5a767c58348"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/PlacementPlanner.java",
+      "destination": "src/main/java/dev/tactical/PlacementPlanner.java",
+      "sha256": "38c1f6beb06439dd529f268c0effbb676c1c4f13e815aae27127e25a8a4cafd5"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/client/ItemVisuals.java",
+      "destination": "src/main/java/dev/tactical/profile/client/ItemVisuals.java",
+      "sha256": "ca783d80727d947d75fce8f90224e1419a3d6f3d93c6435a8703e2c77daf8597"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/client/ProfileCatalog.java",
+      "destination": "src/main/java/dev/tactical/profile/client/ProfileCatalog.java",
+      "sha256": "35fa89e5a29121b865e4be3b1ce1a1881f77fe4e50cebb3f3bd6c20a4471a50b"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/client/ProfileClient.java",
+      "destination": "src/main/java/dev/tactical/profile/client/ProfileClient.java",
+      "sha256": "fe2797f2964eca277af88c885494558a4d2818f58bf3f0f8fc022183c01a8858"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/client/ProfileScreen.java",
+      "destination": "src/main/java/dev/tactical/profile/client/ProfileScreen.java",
+      "sha256": "36018aa8c8d2da3dbef56bc402fd1b5c93d352c55c36959ba017c26a34c194c0"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/ItemProfile.java",
+      "destination": "src/main/java/dev/tactical/profile/ItemProfile.java",
+      "sha256": "4bf454cdaeeae6dd72f5c205650cf394b65dfaf101027bb3a352068c78ab2c66"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/ItemProfiles.java",
+      "destination": "src/main/java/dev/tactical/profile/ItemProfiles.java",
+      "sha256": "3b3675da67e31c9ccf73f4bc02b8b096a3adcf16014f346823b2735e3dee4878"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/ProfilePackets.java",
+      "destination": "src/main/java/dev/tactical/profile/ProfilePackets.java",
+      "sha256": "e4895c520036c0c4de7194e20033651f8ac9f854bd384efcd187a46f292861e1"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/ProfileSavedData.java",
+      "destination": "src/main/java/dev/tactical/profile/ProfileSavedData.java",
+      "sha256": "492b9cfe4379dfec28d5e7d5721bc2264e3347247de61368ac7d591159cd77af"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/ProfileService.java",
+      "destination": "src/main/java/dev/tactical/profile/ProfileService.java",
+      "sha256": "d4991e75c48da65f761b4d5c87fb0d7ff1860153c4ce2b267a6805e73e4b603a"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/profile/Rarity.java",
+      "destination": "src/main/java/dev/tactical/profile/Rarity.java",
+      "sha256": "9b2d6b4b3ccb1bc9f4cca82d6d5ffa683da0ac4a85b931e058c58c79c5aa3aad"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/client/RaidClient.java",
+      "destination": "src/main/java/dev/tactical/raid/client/RaidClient.java",
+      "sha256": "95f544fea9829947af51b7123c3b8be7dbd30e66845c5f520a80713af6a335f8"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/client/RaidEffects.java",
+      "destination": "src/main/java/dev/tactical/raid/client/RaidEffects.java",
+      "sha256": "01d35fabc79d9b087537c173a4bd77c45086043aa3b357802ecb7ef0f88e9ed2"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/client/RaidHud.java",
+      "destination": "src/main/java/dev/tactical/raid/client/RaidHud.java",
+      "sha256": "3fe4abf1cbcfcee3a9abf0fc44c7e8a3e94303cb0926147d2a8cf9cd0952d4d9"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/client/RaidSettlementScreen.java",
+      "destination": "src/main/java/dev/tactical/raid/client/RaidSettlementScreen.java",
+      "sha256": "455e3e0621cfa57350042b4e221bae035ac925ed8895c80b53e52427cdbe1d03"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidBounds.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidBounds.java",
+      "sha256": "ed0ffa09139bd5f3ce37da793c44c2b269220a0df115632e8105a5fcb6e56cbd"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidCommands.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidCommands.java",
+      "sha256": "9b3a191f1b3254c054990df98a4532e5785bff98fdedeeab53aec776c1838194"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidConfig.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidConfig.java",
+      "sha256": "909aa0b7bc48898a8973d926ec767f0b26ff306c3aaa80f0bb42d9cdae8bb04a"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidDeath.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidDeath.java",
+      "sha256": "8e34d9e3045e717b7d79353205d809fa0b25b65c67b9693ca9cd038df5772550"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidEvents.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidEvents.java",
+      "sha256": "c3d7c2003a5f2ff5d349e3d2314116959695ba9c3fa3f133402095c6c7d4c46a"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidManager.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidManager.java",
+      "sha256": "70cd418b8b28c172d70b8c87345d2c95fed2f00d0dd07ec10f8cd2843fc2bafe"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidPackets.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidPackets.java",
+      "sha256": "259833d9f4e49483cb5ea08ae1c983c52e41b16d18920b66f41b99c663be9517"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidSavedData.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidSavedData.java",
+      "sha256": "e330d833dfccd91e3cc173422e11835db8ca837c75683da803a3932292eb66bf"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/raid/RaidSession.java",
+      "destination": "src/main/java/dev/tactical/raid/RaidSession.java",
+      "sha256": "3aa94a551654f35292349c67599cf2ba5d37923a7e84a73d309709e770096939"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/Rules.java",
+      "destination": "src/main/java/dev/tactical/Rules.java",
+      "sha256": "4ff9a8df6edb41c01bc3e6cb9f6fac22d49a274c272b589d0ea406869b9a975e"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/java/dev/tactical/Tactical.java",
+      "destination": "src/main/java/dev/tactical/Tactical.java",
+      "sha256": "23f76d5d9d3d4cc2ddf0936831956166fe133959ab7b02eaf6a21d27d94348a4"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/blockstates/safe.json",
+      "destination": "src/main/resources/assets/tactical_inventory/blockstates/safe.json",
+      "sha256": "e3ff2535d3cea5b8b171272dde34a3dc4355e4c1187db8dc8ad2188b4c13aee5"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/fx/evacuation_smoke.fx",
+      "destination": "src/main/resources/assets/tactical_inventory/fx/evacuation_smoke.fx",
+      "sha256": "f4b030776cb94c6a93c3ae8397af5c0cd9ce29a10edf2c5d0804077b3133b795"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/lang/en_us.json",
+      "destination": "src/main/resources/assets/tactical_inventory/lang/en_us.json",
+      "sha256": "11ffb68e611ca30526c07ab3eaa73822a93f778b979b2633774a90ed28aa618b"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/lang/zh_cn.json",
+      "destination": "src/main/resources/assets/tactical_inventory/lang/zh_cn.json",
+      "sha256": "7da467e456129a4e1200a006353c824d23270d23d0435ebdcdc559c47a52c488"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe.json",
+      "sha256": "d9ff15a4e0dd95cd82429092508dcad9109bf23d0d4c996aea329b76b42e873f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe.mtl",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe.mtl",
+      "sha256": "bd70d5470ba20661161f8314d72331842145dab84885d116946067ba9d42798d"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe.obj",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe.obj",
+      "sha256": "c8ccb0209a0440df27c3dd21ef7937f73b373d6dcf3f623c8ba98ae8b3185741"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe_body.obj",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe_body.obj",
+      "sha256": "61f6aa92b6038313f5a7b608c829652c052439ccd6cec5bda5fdd05f1101a8ae"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe_closed.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe_closed.json",
+      "sha256": "54ad4fcb737e9ae20de94aadcc82efcfaa7a0e12ccc3d60c10fb317fac8d8037"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe_credits.txt",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe_credits.txt",
+      "sha256": "b51e171692b4bd60c3bf3588d2178503aab499aaec6d07aa14968ab9aec8878f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe_door.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe_door.json",
+      "sha256": "7b44fa312bbcad4b7fcd141c251068b3654f18fb70d2b87d3167fefebfef7ab2"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe_door.obj",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe_door.obj",
+      "sha256": "2613acca8a3eec5e43a893222d553c5b15e8c7efca8fd779938ce8535b3aec75"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe_door_animation.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe_door_animation.json",
+      "sha256": "f20f27f7e5fff80202da010967a51623851f730a99a4b30fb72019176d56d2b7"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/block/safe_import.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/block/safe_import.json",
+      "sha256": "31381df03539ff60bd10a60f94452a53268574cef157641ada42c523c702eaeb"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/item/field_backpack.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/item/field_backpack.json",
+      "sha256": "9cb2ebffadf878d7818fc77fbbd52a0c4cee0f2487deab581d3f6bed11f12efe"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/item/gold_bar.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/item/gold_bar.json",
+      "sha256": "257403274468a569cc37d74ed9dcffaecd9567aab21a89d08e37b5f639b71552"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/item/headset.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/item/headset.json",
+      "sha256": "66e044d1a01bf08451ec121330c12b81cbe5bca7b1c6b3b87c57bfeb72730c6f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/item/safe.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/item/safe.json",
+      "sha256": "d16436478d5f0c6c0315c9866b82a285a29fa980cd04ba7aa4134c2387a1b55a"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/item/tactical_rig.json",
+      "destination": "src/main/resources/assets/tactical_inventory/models/item/tactical_rig.json",
+      "sha256": "65b2967948b331648d73ea804a80d54a65a79a15d8a9a4ac4015c0fd23640970"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/models/loot/gold_bar.glb",
+      "destination": "src/main/resources/assets/tactical_inventory/models/loot/gold_bar.glb",
+      "sha256": "9fd738af22c9ca4d868bea3d9d54ea891c942d235ee7745890326b95dadce379"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/block/safe_color.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/block/safe_color.png",
+      "sha256": "73f2600f3302ada12418f8694b08a03944292413a6d3cf21a5dd63aa390680d6"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/backpack.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/backpack.png",
+      "sha256": "5c588fc5de8add0c31609b7ae89b89ee3bc74b13d8e00a5ea71de909ba0bc997"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/helmet.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/helmet.png",
+      "sha256": "ec67b45ac00b6c762a335c910be5240ff773dcf219554b4743d315c2e82e2355"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/knife.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/knife.png",
+      "sha256": "648a484c6f39a27a60b0c3cf8edbdbe41dab18c194f123c98b83393725dc8dff"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/pistol.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/pistol.png",
+      "sha256": "a25444ef040f0895522e66ec45e158f8c62b1864dd0bfb3ae255c1f6fce3c472"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/pocket.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/pocket.png",
+      "sha256": "9e404afff7141e4da863064041d9e8299b835d2880a42596c31ab5a8d8287f7b"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/rifle.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/rifle.png",
+      "sha256": "b266e9730700a7f4422641703e038c7dd710cba60b141ff1d0b3cd95162191ec"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/rig.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/rig.png",
+      "sha256": "395f7fe37d68608c566757537d548c68a8759628c070f335e1ba42883846dc3d"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/search.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/search.png",
+      "sha256": "669e957682bb025be1153509e4dbc7de36de65a2bbc146dbc23bf21444b082f5"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/slot.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/slot.png",
+      "sha256": "06975a4bd96fc1146a423195aa80acc4362be0491284329f94aee0575396a6d8"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/slot.png.mcmeta",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/slot.png.mcmeta",
+      "sha256": "c241d42752e3e502306ea3b87d856cdde04d2ace93b6dc9a038d123cbebbf1f8"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/vest.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/gui/sprites/equipment/vest.png",
+      "sha256": "ef2e2c63bd32effea574811386bc379b38cd8c540b3644313097e0d4a843c197"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/field_backpack.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/field_backpack.png",
+      "sha256": "63d2c7d72e835417f0b200b9e5367b76542da07738b7a5e31b5d8b575f788825"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_color.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_color.png",
+      "sha256": "1b8a49555dad18bf685015571d8ccf850b078535d8a3afc1d0df3e9b95cb38b5"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_color_n.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_color_n.png",
+      "sha256": "e33bfec650814816d7564a09c06978ff326b14904cc5d7cd87f8eb2c83b6b6c6"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_color_s.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_color_s.png",
+      "sha256": "f2a5cf094edfba51def077101294e0df8a1623d95c3a2ffb1460eb19903d5c28"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_metallic.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_metallic.png",
+      "sha256": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_metallic_roughness.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_metallic_roughness.png",
+      "sha256": "07ff117d6ee15dc9b3a71f0ef521ab7f27f2cfb853553767f04f944cdafb483f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_normal.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_normal.png",
+      "sha256": "49f508dd28433f7c73b812c67ab9d2c106d8382f0fffc121ca4295a3dd9894cb"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_roughness.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_roughness.png",
+      "sha256": "fdc205cb81f0dcb9b9ffe7db333195b2356dc741ac4e790ec7c700484fc7f1ad"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_vanilla_color.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/gold_bar_vanilla_color.png",
+      "sha256": "c4bad120d7bf9a39ebf40fe822941ad9824d29fbdc89787be7ba116cf7d0102d"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/headset.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/headset.png",
+      "sha256": "87cfe58f3e8cdbd0f9813b7fa361892bff5f7a506191667b04c19c82ce8f196e"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/assets/tactical_inventory/textures/item/tactical_rig.png",
+      "destination": "src/main/resources/assets/tactical_inventory/textures/item/tactical_rig.png",
+      "sha256": "ffbdab76307389d193ebe367745b488e0cd2dd34d3e7df8646f7d504596dc62f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/data/tactical_inventory/loot_table/blocks/safe.json",
+      "destination": "src/main/resources/data/tactical_inventory/loot_table/blocks/safe.json",
+      "sha256": "8f2638eff90275df887e681cd23ff85b51af476e5bf7ec2871cf4a45b3401a9f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/data/tactical_inventory/loot_table/chests/safe_decrypted.json",
+      "destination": "src/main/resources/data/tactical_inventory/loot_table/chests/safe_decrypted.json",
+      "sha256": "b1c8cead1da2577fed1008948ba0ef9e0c9bafce3fdb247fcccaae0d2f22e464"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/data/tactical_inventory/recipe/field_backpack.json",
+      "destination": "src/main/resources/data/tactical_inventory/recipe/field_backpack.json",
+      "sha256": "659c112b5e4262adf5fede6e9c73988bd198b7f83c6b7eb7f909ff9bb2a5a304"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/data/tactical_inventory/recipe/headset.json",
+      "destination": "src/main/resources/data/tactical_inventory/recipe/headset.json",
+      "sha256": "9c1c925c86f027a487034597913d825ec49a34137f69b24c3277a31cc6f8511f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/data/tactical_inventory/recipe/tactical_rig.json",
+      "destination": "src/main/resources/data/tactical_inventory/recipe/tactical_rig.json",
+      "sha256": "2ac50ec69128114a9ae1df3b20c4d96d17eda955099b77c10fc7151187604a88"
+    },
+    {
+      "module": "inventory",
+      "source": "src/main/resources/tactical_inventory.mixins.json",
+      "destination": "src/main/resources/tactical_inventory.mixins.json",
+      "sha256": "ff33a81e971669f3d36e25e9fcd0346850f9a7303eaacb2523100dd677384553"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/client/BagLayoutTest.java",
+      "destination": "src/test/java/dev/tactical/client/BagLayoutTest.java",
+      "sha256": "44a60e0d4f9ec116f865c6da0ff95c18998f2271d70a272a3d24b1180a36402f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/client/WholeItemDragTest.java",
+      "destination": "src/test/java/dev/tactical/client/WholeItemDragTest.java",
+      "sha256": "6858b1f5f430d5ba6c6d544c3c39c169345f00aaf6a647697dca299592a98fba"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/GridTest.java",
+      "destination": "src/test/java/dev/tactical/GridTest.java",
+      "sha256": "228f072b23383e9cb8cf1a9936f165aaa58520205379d143b3473e0cd03fab7c"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/loot/LootPackingTest.java",
+      "destination": "src/test/java/dev/tactical/loot/LootPackingTest.java",
+      "sha256": "8dc7187cab5020b7acd55fe05ad3c65725f1c2f93132cc72974564342d9cc44d"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/PlacementPlannerTest.java",
+      "destination": "src/test/java/dev/tactical/PlacementPlannerTest.java",
+      "sha256": "67e30039fe2c6b625e180a667bca5ebfbe47fa2f369e9aab963d73dff78527c1"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/profile/ItemProfileTest.java",
+      "destination": "src/test/java/dev/tactical/profile/ItemProfileTest.java",
+      "sha256": "83efbe680e9dfe6ac74c06ac0c9dc7afac93efc329d60a1fd88113deeb5786bd"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/raid/CrackRulesTest.java",
+      "destination": "src/test/java/dev/tactical/raid/CrackRulesTest.java",
+      "sha256": "e8ac4c2d39e8f297bbd1991b32aecf34f7d63eb082ab602dd7259c0ac1fa4c81"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/raid/LootInspectMotionTest.java",
+      "destination": "src/test/java/dev/tactical/raid/LootInspectMotionTest.java",
+      "sha256": "e520d90b27f8803f5c948413a44ae22175493020032afc1302c5b7edf47013ef"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/raid/RaidSessionTest.java",
+      "destination": "src/test/java/dev/tactical/raid/RaidSessionTest.java",
+      "sha256": "3ada12ec891733b15b158ba686d966e2183fa8cea97f1c5dd98317ca7b080f6f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/test/java/dev/tactical/raid/SafeDoorMotionTest.java",
+      "destination": "src/test/java/dev/tactical/raid/SafeDoorMotionTest.java",
+      "sha256": "e9d2914d9801c41d23436c47778e171ad4718c287325d63731a016fec1d862bb"
+    },
+    {
+      "module": "inventory",
+      "source": "src/crackSmoke/java/dev/tactical/crack/CrackSmoke.java",
+      "destination": "verification/inventory/src/crackSmoke/java/dev/tactical/crack/CrackSmoke.java",
+      "sha256": "ac559182f0a3361ec97182c2a4ec78ce58520bb923120c99bfe921dac4df614f"
+    },
+    {
+      "module": "inventory",
+      "source": "src/goldSmoke/java/dev/tactical/GoldSmoke.java",
+      "destination": "verification/inventory/src/goldSmoke/java/dev/tactical/GoldSmoke.java",
+      "sha256": "fe2e7852c8e013ea3f69902c65bbf965f01aba808f97feb83f689ee121b4d9ef"
+    },
+    {
+      "module": "inventory",
+      "source": "src/profileSmoke/java/dev/tactical/profile/ProfileSmoke.java",
+      "destination": "verification/inventory/src/profileSmoke/java/dev/tactical/profile/ProfileSmoke.java",
+      "sha256": "6bd7d413c63d4144c6301c19ba63edfcfe6c5170c29ab33b8511f12873b8b153"
+    },
+    {
+      "module": "inventory",
+      "source": "src/raidSmoke/java/dev/tactical/raid/RaidSmoke.java",
+      "destination": "verification/inventory/src/raidSmoke/java/dev/tactical/raid/RaidSmoke.java",
+      "sha256": "b7f9494f0abae377becdbf079753cd19c95a3520cf2150345c1a04cb531db657"
+    },
+    {
+      "module": "inventory",
+      "source": "src/safeSmoke/java/dev/tactical/SafeModelSmoke.java",
+      "destination": "verification/inventory/src/safeSmoke/java/dev/tactical/SafeModelSmoke.java",
+      "sha256": "f0134becd7dfb226e1ba67db47b9a3ea5a573d7c1e27fbdd06281e47a9c070d1"
+    },
+    {
+      "module": "inventory",
+      "source": "src/smoke/java/dev/tactical/BagSmoke.java",
+      "destination": "verification/inventory/src/smoke/java/dev/tactical/BagSmoke.java",
+      "sha256": "54069e74dc15004fd2d78b2edd41375feed623e18b6d4e42c486133556a547e6"
+    },
+    {
+      "module": "inventory",
+      "source": "src/smoke/java/dev/tactical/LootChecks.java",
+      "destination": "verification/inventory/src/smoke/java/dev/tactical/LootChecks.java",
+      "sha256": "67c591119a42f212b9ea00907c3b39fddee509768610decb8954c491f8d1bbde"
+    },
+    {
+      "module": "inventory",
+      "source": "src/smoke/java/dev/tactical/LootWorldChecks.java",
+      "destination": "verification/inventory/src/smoke/java/dev/tactical/LootWorldChecks.java",
+      "sha256": "02a7b665eebb08c381be8107c1893e0889212e46f3298ed104c1b0096046e228"
+    },
+    {
+      "module": "inventory",
+      "source": "src/smoke/java/dev/tactical/VideoBehaviorChecks.java",
+      "destination": "verification/inventory/src/smoke/java/dev/tactical/VideoBehaviorChecks.java",
+      "sha256": "b8742cc1caa1812ebf935e27ea5d0ba86ff31c35844adcbbfe56751ce08b7aec"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/crack-runtime-validation.txt",
+      "destination": "docs/legacy/inventory/docs/crack-runtime-validation.txt",
+      "sha256": "cd6a6e8c0c515bcb5d7f1865e586f3c5f835aebb9569f6d86e61d073102a0469"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/gold-runtime-validation.txt",
+      "destination": "docs/legacy/inventory/docs/gold-runtime-validation.txt",
+      "sha256": "5b982516f33bb850adc8a91771e3e40e93af395f526c2419b87a7ff9a8fb9151"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/HANDOFF.md",
+      "destination": "docs/legacy/inventory/docs/HANDOFF.md",
+      "sha256": "d409901e01f80571fb76ad39574bde8b9dc3b0dd57024ada478fc08e2913bb2c"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/auto-horizontal.png",
+      "destination": "docs/legacy/inventory/docs/images/auto-horizontal.png",
+      "sha256": "4126c2d707303792d031ec577690f63bb755dafb56c1904fac3a986d08ed4385"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/gold-held.png",
+      "destination": "docs/legacy/inventory/docs/images/gold-held.png",
+      "sha256": "63c23521329c5eb8fd6c384a8488e15b198e330ffa6ab4643a71bf2ff826c111"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/gold-item-preview.png",
+      "destination": "docs/legacy/inventory/docs/images/gold-item-preview.png",
+      "sha256": "b11052ee8f1103ccfbc6aca596351b8e7b0126c61e75a1a8ede0f7df984ab17a"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/gold-shader-held.png",
+      "destination": "docs/legacy/inventory/docs/images/gold-shader-held.png",
+      "sha256": "e5fb26e7f7f95e4ed7bc2690ccbc567748ec4740fc8e7fe05de7aa2209e876ab"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/gold-shader-inspect.png",
+      "destination": "docs/legacy/inventory/docs/images/gold-shader-inspect.png",
+      "sha256": "bfd63db5f33b89e7b3bd4479af780e2c99dacf64387c6b6903c0071c61b69f90"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/item-profile-editor.png",
+      "destination": "docs/legacy/inventory/docs/images/item-profile-editor.png",
+      "sha256": "4de5d4f4f797280ad313dca5679ca41e057da5427752e4a01306b51d037016bc"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/item-profile-inventory.png",
+      "destination": "docs/legacy/inventory/docs/images/item-profile-inventory.png",
+      "sha256": "556f38667f9a840ef62be094f62fdd3c88acb9dd5b1deb294ee111a3259db8db"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/raid-countdown.png",
+      "destination": "docs/legacy/inventory/docs/images/raid-countdown.png",
+      "sha256": "26079cca7dfff4b28ee7e85e91f5f9fe940ed9e39069c568c06add929c6ef3b5"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/raid-settlement-death.png",
+      "destination": "docs/legacy/inventory/docs/images/raid-settlement-death.png",
+      "sha256": "8865f71f417d713c28fd791e436cedfcf8d53e8c53d4b3ff693081e29456d39e"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/raid-settlement-success.png",
+      "destination": "docs/legacy/inventory/docs/images/raid-settlement-success.png",
+      "sha256": "5c9120097a595b3871e101906d71da697768dab2e7de361d446da0b884b75a0a"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/replacement-complete.png",
+      "destination": "docs/legacy/inventory/docs/images/replacement-complete.png",
+      "sha256": "38fa48d4f1944fa1fe1d7b01cb4795c08fa759ec3c0af88f3ef39797948629eb"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-blender-closed.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-blender-closed.png",
+      "sha256": "cfc34bf548b630003508ae36c4000b9bc7fbdfb692679cc3493f4412144f28af"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-blender-open.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-blender-open.png",
+      "sha256": "cc872d100b44c7f860ad42054e9ef8b5939a9385fee7651012d80b7f38bd51f5"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-blender-opening.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-blender-opening.png",
+      "sha256": "472f472c3f4830e95e0a12457308e729739344227ec326cc52694fdf2002f478"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-crack-reward.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-crack-reward.png",
+      "sha256": "dab93c8aa922ccfd1831e3c004be009fd82c85afeef3553c4353fe49e3b2e2e6"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-crack.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-crack.png",
+      "sha256": "4d7272d2b1071f3fa129c578495dc5238a3339638bf69643cee97cfef3becdcb"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-item.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-item.png",
+      "sha256": "dfb22308243f69b2ee8d2a5193450f225fde2bd41a2da383a0ade8bd5a24727c"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-open-game.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-open-game.png",
+      "sha256": "deb28b9729e35573e36dd409a34bd91437ed5f1c249f597d0ae4b584066630e1"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-opening-game.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-opening-game.png",
+      "sha256": "6ba580159c6318a0e2547e77142bd3b8751a7f118e308b5c7d2131c6e0174164"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/images/safe-world.png",
+      "destination": "docs/legacy/inventory/docs/images/safe-world.png",
+      "sha256": "9aea09e6d9fe61dde389268de714550d6e8691538b3d6654b3c1197206873b7e"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/ITEM_PROFILES.md",
+      "destination": "docs/legacy/inventory/docs/ITEM_PROFILES.md",
+      "sha256": "97981d0d8f2e11cc41f3f0d5e6e5bfe8cea20d80963b99e574409c6fbcaf4efe"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/LOOT_MODELS.md",
+      "destination": "docs/legacy/inventory/docs/LOOT_MODELS.md",
+      "sha256": "f75ad55237898d9be135fb2b506a142ba1cc92212bde4cf40fc75f4e0f4ec90e"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/profile-runtime-validation.txt",
+      "destination": "docs/legacy/inventory/docs/profile-runtime-validation.txt",
+      "sha256": "81fc685d8fa4b11dc01205c34706c71fe40e2914cf6990a3678daef067301e22"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/raid-runtime-validation.txt",
+      "destination": "docs/legacy/inventory/docs/raid-runtime-validation.txt",
+      "sha256": "2f8df86219c05c91f733582f5bb61ab5646e116f1d9fb03dba8436a6ad0c1d7d"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/RAIDS.md",
+      "destination": "docs/legacy/inventory/docs/RAIDS.md",
+      "sha256": "e2587fd3cabbfc0d85d430bde0380b2ad4a8bdd94624ff2e20db28bc29d71ac8"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/runtime-validation.txt",
+      "destination": "docs/legacy/inventory/docs/runtime-validation.txt",
+      "sha256": "590d7132a83562368d6e2d64101bd5a3ce3372607e7828adceb08aa3cf8b2384"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/safe-runtime-validation.txt",
+      "destination": "docs/legacy/inventory/docs/safe-runtime-validation.txt",
+      "sha256": "720268792776e9b31628397c510436e34542d47ad8e7c3c12387fe1a97af4e63"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/SAFE_CRACK.md",
+      "destination": "docs/legacy/inventory/docs/SAFE_CRACK.md",
+      "sha256": "e6f0c6c03ef3163549ba8bd0066633f57ec275aa902fdcace1c1f253a5a2b1a6"
+    },
+    {
+      "module": "inventory",
+      "source": "docs/VALIDATION.md",
+      "destination": "docs/legacy/inventory/docs/VALIDATION.md",
+      "sha256": "783d5ed64e497126d52aca9a730f1e6d469cafbaa09a7530a062dbd096785610"
+    },
+    {
+      "module": "inventory",
+      "source": "README.md",
+      "destination": "docs/legacy/inventory/README.md",
+      "sha256": "49b8f9eb33b00e61b214ce12189c7d53a0263e72e6429bb281a30e6e5e2264d8"
+    },
+    {
+      "module": "inventory",
+      "source": "CHANGELOG.md",
+      "destination": "docs/legacy/inventory/CHANGELOG.md",
+      "sha256": "d465f0c9428cb55822b6e94fdf573bfc9effcc5da0bc291debc63652d74496bc"
+    },
+    {
+      "module": "inventory",
+      "source": "build.gradle",
+      "destination": "docs/legacy/inventory/build.gradle",
+      "sha256": "8ee21262b505f9e845e579eaeb2374229c56190e6044b72a54083f1c4b861ada"
+    },
+    {
+      "module": "inventory",
+      "source": "settings.gradle",
+      "destination": "docs/legacy/inventory/settings.gradle",
+      "sha256": "fe5410a4f8375ad1d0ceb4d3739cf1c3ddb67ee303a98511e6dd379a29377e54"
+    },
+    {
+      "module": "inventory",
+      "source": "gradle.properties",
+      "destination": "docs/legacy/inventory/gradle.properties",
+      "sha256": "4645e91b69dbc1e86a8ab29aa7021fa4a796f07786003ce1363858ecc95ba71f"
+    },
+    {
+      "module": "inventory",
+      "source": "LICENSE",
+      "destination": "licenses/inventory-MIT.txt",
+      "sha256": "6aabe0eb6417c5cc6fbd6a56ca532e5f1b29b7027c6bcc5c809fc48ae2d77ba5"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/gold_bar/animation_authoring.json",
+      "destination": "model-source/gold_bar/animation_authoring.json",
+      "sha256": "7259d85087ecd0e02d8584f8fa90895bad28af3b43564f1ca99ca8de0f3639bb"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/gold_bar/gold_bar_animated.glb",
+      "destination": "model-source/gold_bar/gold_bar_animated.glb",
+      "sha256": "a4b64e70bb71ff54bca5ee99ec0b7771e1333d1919f9d47573751912cda1002c"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/gold_bar/gold_bar_inspection.blend",
+      "destination": "model-source/gold_bar/gold_bar_inspection.blend",
+      "sha256": "2223763cba6c9544bd6c48c1eeda39515dfd815fa1fbf374ae2c44938a782d7e"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/gold_bar/gold_bar_inspection.blend1",
+      "destination": "model-source/gold_bar/gold_bar_inspection.blend1",
+      "sha256": "9d3c0663975a4c01522e008b1e94f55d138e9ad96142cb336b84eceef06b749f"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/gold_bar/gold_bar_source.glb",
+      "destination": "model-source/gold_bar/gold_bar_source.glb",
+      "sha256": "eb954324317dcffc48bcc5e36ae2cc0f7dc3ebd241f84f34be9bb318bab1703c"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/gold_bar/provenance.json",
+      "destination": "model-source/gold_bar/provenance.json",
+      "sha256": "ff12b556461b04c0bbc88f6954cffcaf078c98d4a73be30abd01e06183e291ca"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/gold_bar/README.md",
+      "destination": "model-source/gold_bar/README.md",
+      "sha256": "045ded2fd655114b0ad6ae070b17b754d1a315ca015ae3ab9afed25b97ac3cac"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/safe/README.md",
+      "destination": "model-source/safe/README.md",
+      "sha256": "7df54b6a84d6dcaf0be5ccbe14104d47f0aafc136aab9297028f2942e8a64c6a"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/safe/safe_opening.blend",
+      "destination": "model-source/safe/safe_opening.blend",
+      "sha256": "d15f5c97bde866db5aa44a4d12f67bc465e8baf0fe3c00f4046dd5d7671e6ac2"
+    },
+    {
+      "module": "inventory",
+      "source": "model-source/safe/safe_opening.glb",
+      "destination": "model-source/safe/safe_opening.glb",
+      "sha256": "c14d8a3bf0b2c1f855c745bf150c835302ee65d700dcf634f8022f48477b6a11"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/author_gold_blender.py",
+      "destination": "tools/author_gold_blender.py",
+      "sha256": "1fa679db238b0158382d67eac256cac08071c6c034c3505026a3118086ae556e"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/author_safe_blender.py",
+      "destination": "tools/author_safe_blender.py",
+      "sha256": "392232e28e72e90e1825bd0e03f5c7392a1d3f1e560cf478831e978ac06490ad"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/bake_gold_blender.py",
+      "destination": "tools/bake_gold_blender.py",
+      "sha256": "0404bc8d5adfa10a1ba482c15484a5e2f5e45d58754dcc3083278474262df2cb"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/blender_mcp_client.py",
+      "destination": "tools/blender_mcp_client.py",
+      "sha256": "78ef89eebd7e01b56cd2855d1c135c6e93ad2d7c330987b9e583451fcb39bfc1"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/GenerateSlotTextures.java",
+      "destination": "tools/GenerateSlotTextures.java",
+      "sha256": "6ec699ef54076671774edba7be5c8d91d917f9b914cd3c76db6d936168b2ed34"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/import_gold_bar.py",
+      "destination": "tools/import_gold_bar.py",
+      "sha256": "a4176c0a5d41f78117d3fa5ebc2455f6c8c39cae5f3ba5c09d8778dc6cb16c5f"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/import_safe_model.py",
+      "destination": "tools/import_safe_model.py",
+      "sha256": "0927df15a0f0833b102114fd82cc5f3a7183452923f5d149920ed01e04ba9c96"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/prepare_gold_pbr.py",
+      "destination": "tools/prepare_gold_pbr.py",
+      "sha256": "9fcdaad142b87ea789b96e7f90cca274f7f9429f19a7e540c1a99725d2d54b32"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/prepare_gold_runtime.py",
+      "destination": "tools/prepare_gold_runtime.py",
+      "sha256": "111499ff29669460f8d91f6f95a2190d83e0970487aa2bf3e809cec88669f377"
+    },
+    {
+      "module": "inventory",
+      "source": "tools/refine_gold_blender.py",
+      "destination": "tools/refine_gold_blender.py",
+      "sha256": "883a421db26bc1ec7d207493b8f24bbd0a8e710ec55fb6230a511e6b74dccd75"
+    },
+    {
+      "module": "inventory",
+      "source": "ASSET_LICENSES.md",
+      "destination": "ASSET_LICENSES.md",
+      "sha256": "01774ca863c7bf4633e8a0a8c0c376930300e21087adb7d5ed03f7941706fba2"
+    },
+    {
+      "module": "actions",
+      "source": "THIRD_PARTY_NOTICES.md",
+      "destination": "THIRD_PARTY_NOTICES.md",
+      "sha256": "f29a703b81afb64525c204a99c7d9a1bd394592b6af57c5f81a7b1d46bf3dad4"
+    },
+    {
+      "module": "hud",
+      "source": "TEMPLATE_LICENSE.txt",
+      "destination": "TEMPLATE_LICENSE.txt",
+      "sha256": "109b4750c5eba4e13bdff98cdfe1cee32e08ebb33fa04a18a853e0ee7cbd821f"
+    },
+    {
+      "module": "inventory",
+      "source": "gradlew",
+      "destination": "gradlew",
+      "sha256": "28d2c82e7f9cca986ee8da10ba939cf9260d682f73936b2b6d2545e35360ce7b"
+    },
+    {
+      "module": "inventory",
+      "source": "gradlew.bat",
+      "destination": "gradlew.bat",
+      "sha256": "1d297e00bd21de3ace22b4d7f2de1f9dfa858883d66bbf7c1ccbecccec8f4f3b"
+    },
+    {
+      "module": "inventory",
+      "source": "LICENSE",
+      "destination": "LICENSE",
+      "sha256": "6aabe0eb6417c5cc6fbd6a56ca532e5f1b29b7027c6bcc5c809fc48ae2d77ba5"
+    },
+    {
+      "module": "inventory",
+      "source": "gradle/wrapper/gradle-wrapper.jar",
+      "destination": "gradle/wrapper/gradle-wrapper.jar",
+      "sha256": "7d3a4ac4de1c32b59bc6a4eb8ecb8e612ccd0cf1ae1e99f66902da64df296172"
+    },
+    {
+      "module": "inventory",
+      "source": "gradle/wrapper/gradle-wrapper.properties",
+      "destination": "gradle/wrapper/gradle-wrapper.properties",
+      "sha256": "12477f32fffa5c8d0de945ce81005a4a7a19a55182d916644a0fcfe0fab946a6"
+    }
+  ]
+}

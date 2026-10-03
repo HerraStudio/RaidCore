@@ -1,0 +1,4 @@
+SAFE_MODEL_GEOMETRY_PASS: original 5461 triangles, authored PNG, all four orientations, actual item mesh, doubled world size and fitted shape, 27-slot persistence
+SAFE_MODEL_LOOT_UI_PASS: real modeled safe opens existing LDLib loot UI over new world model
+SAFE_DOOR_ANIMATION_PASS: default closed, actual interaction, Blender curve intermediate frames, delayed loot, stays open, save/reload and subsequent viewer
+SAFE_MODEL_SMOKE_PASS: original asset rendered in world/item, four facing states, persistence, loot UI, break drops

@@ -1,0 +1,9 @@
+RAID_ENTRY_PHOTON_PASS: command join, real spawn, authored looping green emitter, live particles and world transform
+RAID_COUNTDOWN_RESET_PASS: leave/reentry reset, 400 ticks, active ack rejected, persistence interruption
+RAID_EXTRACTION_SETTLEMENT_PASS: server completion, loot retained, lobby return, real screen reopen and network acknowledgement
+RAID_CANCELED_DEATH_PASS: revival cancellation keeps active session and equipment
+RAID_DEATH_RULE_PASS: keepInventory=false, GWO melee preserved incl components, stored axe recovered, other equipment and loot dropped
+RAID_DEATH_RULE_PASS: keepInventory=true, GWO melee preserved incl components, stored axe recovered, other equipment and loot dropped
+RAID_RELOG_RELOAD_PASS: interruption idempotency, lobby return, wrong token rejection, Photon reload and cleanup
+RAID_SPECTATOR_ABORT_PASS: becoming an observer terminates active participation safely
+RAID_SMOKE_PASS: extraction framework, real Photon/HUD/settlement, default20s, death melee-only retention under both game rules

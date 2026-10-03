@@ -1,0 +1,11 @@
+.gradle/
+build/
+.audit/
+run/
+run-*/
+releases/
+libs/*.jar
+**/__pycache__/
+*.blend1
+.idea/
+*.iml

@@ -1,0 +1,64 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.147'
+}
+version = '2.6.1'
+group = 'dev.draginventory'
+base.archivesName = 'drag-inventory-1.21.1-neoforge'
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.withSourcesJar()
+repositories {
+    mavenCentral()
+    maven { url = 'https://maven.firstdark.dev/snapshots' }
+}
+neoForge {
+    version = '21.1.251'
+    runs {
+        client {
+            client()
+            gameDirectory = file(providers.gradleProperty('weaponGameDir')
+                    .orElse(providers.gradleProperty('switchSmoke').isPresent() ? 'run-switch-smoke'
+                            : providers.gradleProperty('wheelSmoke').isPresent() ? 'run-wheel-smoke'
+                            : providers.gradleProperty('markerSmoke').isPresent() ? 'run-marker-smoke' : 'run').get())
+            systemProperty 'mixin.debug.export', 'true'
+        }
+    }
+    mods { draginventory { sourceSet(sourceSets.main) } }
+}
+dependencies {
+    implementation 'com.lowdragmc.ldlib2:ldlib2-neoforge-1.21.1:2.2.40:all'
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.joml:joml:1.10.5'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+test { useJUnitPlatform() }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(Jar).configureEach {
+    includeEmptyDirs = false
+    from('LICENSE')
+    from('TEMPLATE_LICENSE.txt')
+}
+
+// Optional isolated startup check; this class is absent from release builds.
+if (providers.gradleProperty('smokeTest').isPresent()) {
+    sourceSets.main.java.srcDir 'src/smoke/java'
+}
+if (providers.gradleProperty('hotbarSmoke').isPresent()) {
+    sourceSets.main.java.srcDir 'src/hotbarSmoke/java'
+}
+if (providers.gradleProperty('weaponSmoke').isPresent()) {
+    sourceSets.main.java.srcDir 'src/weaponSmoke/java'
+}
+if (providers.gradleProperty('markerSmoke').isPresent()) {
+    sourceSets.main.java.srcDir 'src/markerSmoke/java'
+}
+if (providers.gradleProperty('mapSmoke').isPresent()) {
+    sourceSets.main.java.srcDir 'src/mapSmoke/java'
+}
+if (providers.gradleProperty('wheelSmoke').isPresent()) {
+    sourceSets.main.java.srcDir 'src/wheelSmoke/java'
+}
+if (providers.gradleProperty('switchSmoke').isPresent()) {
+    sourceSets.main.java.srcDir 'src/switchSmoke/java'
+}

@@ -1,0 +1,15 @@
+RaidCore native integration — 2026-10-03 (Asia/Shanghai)
+
+CLIENT
+[11:52:02] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_BOOTSTRAP_PASS: one mod, legacy registries, all four configs, keys, three Mixin families, health/stamina, payloads and PAL factories
+[11:52:08] [Render thread/INFO] [GoldSmoke/]: GOLD_GWO_ANIMATION_PASS: real cache, Blender embedded draw/idle/inspect, actual GWO key + right-click, model matrix changes, held loot intact
+[11:52:11] [Render thread/INFO] [GoldSmoke/]: GOLD_RARITY_GUI_PASS: default gold quality, inventory + LDLib preview model, override/reset and multi-cell migration without count loss
+[11:52:11] [Render thread/INFO] [GoldSmoke/]: GOLD_RENDER_COUNTS: gpu=1241, fallback=0, hand_frames=383
+[11:52:13] [Render thread/INFO] [GoldSmoke/]: GOLD_LEFT_HAND_PASS: actual left-arm rendering and mirrored animation transforms without mirroring texture
+[11:52:13] [Render thread/INFO] [GoldSmoke/]: GOLD_NATIVE_SMOKE_PASS
+[11:52:16] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_PEEK_SYNC_PASS: actual key input, left/right/both, legacy payloads, fixed player position
+[11:52:17] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_MAP_PASS: original M binding opened and rendered the v2.6.1 map
+[11:52:17] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_CLIENT_SMOKE_PASS
+
+DEDICATED SERVER
+[11:46:59] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_SERVER_SMOKE_PASS: dedicated startup, one mod, legacy registries, 100 health, stamina, original inventory NBT/components and commands

@@ -1,0 +1,23 @@
+{
+  "title": "Fine Gold Bar",
+  "creator": "Incg5764 (@incg5764)",
+  "url": "https://sketchfab.com/3d-models/fine-gold-bar-0d1ff6b3e6d045cba78889caf7f5bc6e",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "download_sha256": "dc785b411520d1dcfe63787cf4613eeb9899ea276eb16b2b9ef4f4ab028fc8e6",
+  "source_mesh": "Object_0",
+  "vertices": 188,
+  "triangles": 228,
+  "dimensions_m": [
+    0.26,
+    0.05122563726725145,
+    0.12030873862413152
+  ],
+  "texture_sha256": {
+    "gold_bar_color.png": "1b8a49555dad18bf685015571d8ccf850b078535d8a3afc1d0df3e9b95cb38b5",
+    "gold_bar_metallic_roughness.png": "07ff117d6ee15dc9b3a71f0ef521ab7f27f2cfb853553767f04f944cdafb483f",
+    "gold_bar_normal.png": "49f508dd28433f7c73b812c67ab9d2c106d8382f0fffc121ca4295a3dd9894cb",
+    "gold_bar_roughness.png": "fdc205cb81f0dcb9b9ffe7db333195b2356dc741ac4e790ec7c700484fc7f1ad",
+    "gold_bar_metallic.png": "7368a2762f0210ba889788e2c23314e77fc184beecf5c6b5ffbe8279ed4f308a"
+  }
+}

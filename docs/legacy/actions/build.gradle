@@ -1,0 +1,81 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.147'
+}
+version = '1.1.0'
+group = 'dev.herrastudio.tacticalactions'
+base.archivesName = 'tactical-actions-1.21.1-neoforge'
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.withSourcesJar()
+def crouchTestEnabled = providers.gradleProperty('crouchTest').isPresent()
+def attackTestEnabled = providers.gradleProperty('attackTest').isPresent()
+def visualTestEnabled = providers.gradleProperty('visualTest').isPresent() || crouchTestEnabled || attackTestEnabled
+def peekTestEnabled = providers.gradleProperty('peekTest').isPresent()
+sourceSets {
+    visualTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+    peekTest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+repositories {
+    mavenCentral()
+    maven { name = 'RedlanceMinecraft'; url = uri('https://repo.redlance.org/public') }
+}
+neoForge {
+    version = '21.1.251'
+    runs {
+        client {
+            client()
+            gameDirectory = file(providers.gradleProperty('gameDir').orElse('run').get())
+            if (visualTestEnabled) {
+                // The harness is a development source set, never part of the published JAR.
+                sourceSet = sourceSets.visualTest
+                gameDirectory = file('run')
+                systemProperty 'tacticalactions.visualTest', (!crouchTestEnabled && !attackTestEnabled).toString()
+                systemProperty 'tacticalactions.crouchTest', crouchTestEnabled.toString()
+                systemProperty 'tacticalactions.attackTest', attackTestEnabled.toString()
+                systemProperty 'tacticalactions.visualTest.expectedGameDir', file('run').canonicalPath
+                programArguments.addAll('--quickPlaySingleplayer', 'New World', '--width', '1280', '--height', '720')
+            }
+            if (peekTestEnabled) {
+                sourceSet = sourceSets.peekTest
+                gameDirectory = file('run-peek-smoke')
+                systemProperty 'tacticalactions.peekTest', 'true'
+                systemProperty 'tacticalactions.peekTest.expectedGameDir', file('run-peek-smoke').canonicalPath
+                programArguments.addAll('--quickPlaySingleplayer', 'New World', '--width', '1280', '--height', '720')
+            }
+        }
+    }
+    mods {
+        tacticalactions {
+            sourceSet(sourceSets.main)
+            if (visualTestEnabled) sourceSet(sourceSets.visualTest)
+            if (peekTestEnabled) sourceSet(sourceSets.peekTest)
+        }
+    }
+}
+dependencies {
+    // NeoForge already supplies the Minecraft runtime libraries (Gson, Netty,
+    // FastUtil, SLF4J, etc.).  PAL Neo bundles its own implementation classes;
+    // do not pull its newer, incompatible versions into the NeoForge runtime.
+    implementation('com.zigythebird.playeranim:PlayerAnimationLibNeo:1.1.6+mc.1.21.1') {
+        transitive = false
+    }
+    testImplementation platform('org.junit:junit-bom:5.11.4')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // Test the real PAL animation parser with its lightweight runtime dependencies.
+    testImplementation 'com.google.code.gson:gson:2.10.1'
+    testImplementation 'org.joml:joml:1.10.5'
+    testImplementation('com.zigythebird:mochafloats:4.1.0') { transitive = false }
+    testImplementation 'it.unimi.dsi:fastutil:8.5.12'
+    testRuntimeOnly 'org.slf4j:slf4j-api:2.0.9'
+    testRuntimeOnly 'org.javassist:javassist:3.30.2-GA'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+test { useJUnitPlatform() }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(Jar).configureEach { includeEmptyDirs = false; from('LICENSE'); from('THIRD_PARTY_NOTICES.md') }

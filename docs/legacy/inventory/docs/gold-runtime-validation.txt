@@ -1,0 +1,24 @@
+Tactical Inventory 1.0.20 / GWO Beta1.0 Fix0.5 / NeoForge 21.1.251 / Java 21
+69 JUnit tests
+Blender Lab MCP 1.0.3 / Blender 5.2.2: authored idle/draw/inspect and independent wrist tracks
+Sundial-Lite / Iris 1.8.14-beta.1 / Sodium 0.8.12: actual PBR holder and GPU inspection verified
+Original GLTF maps + LabPBR sibling maps + Blender combined bake retained
+[18:30:38] [Render thread/INFO] [GoldSmoke/]: GOLD_IRIS_PBR_PASS: active shaderpack, real normal=SimpleTexture, real specular=SimpleTexture
+[18:30:42] [Render thread/INFO] [GoldSmoke/]: GOLD_GWO_ANIMATION_PASS: real cache, Blender embedded draw/idle/inspect, actual GWO key + right-click, model matrix changes, held loot intact
+[18:30:45] [Render thread/INFO] [GoldSmoke/]: GOLD_RARITY_GUI_PASS: default gold quality, inventory + LDLib preview model, override/reset and multi-cell migration without count loss
+[18:30:45] [Render thread/INFO] [GoldSmoke/]: GOLD_RENDER_COUNTS: gpu=2702, fallback=0, hand_frames=629
+[18:30:47] [Render thread/INFO] [GoldSmoke/]: GOLD_LEFT_HAND_PASS: actual left-arm rendering and mirrored animation transforms without mirroring texture
+[18:30:47] [Render thread/INFO] [GoldSmoke/]: GOLD_NATIVE_SMOKE_PASS
+No-shader run:
+[18:39:19] [Render thread/INFO] [GoldSmoke/]: GOLD_GWO_ANIMATION_PASS: real cache, Blender embedded draw/idle/inspect, actual GWO key + right-click, model matrix changes, held loot intact
+[18:39:22] [Render thread/INFO] [GoldSmoke/]: GOLD_RARITY_GUI_PASS: default gold quality, inventory + LDLib preview model, override/reset and multi-cell migration without count loss
+[18:39:22] [Render thread/INFO] [GoldSmoke/]: GOLD_RENDER_COUNTS: gpu=2317, fallback=0, hand_frames=735
+[18:39:24] [Render thread/INFO] [GoldSmoke/]: GOLD_LEFT_HAND_PASS: actual left-arm rendering and mirrored animation transforms without mirroring texture
+[18:39:24] [Render thread/INFO] [GoldSmoke/]: GOLD_NATIVE_SMOKE_PASS
+Final 1.0.20 Sundial run:
+[18:46:43] [Render thread/INFO] [GoldSmoke/]: GOLD_IRIS_PBR_PASS: active shaderpack, real normal=SimpleTexture, real specular=SimpleTexture
+[18:46:47] [Render thread/INFO] [GoldSmoke/]: GOLD_GWO_ANIMATION_PASS: real cache, Blender embedded draw/idle/inspect, actual GWO key + right-click, model matrix changes, held loot intact
+[18:46:50] [Render thread/INFO] [GoldSmoke/]: GOLD_RARITY_GUI_PASS: default gold quality, inventory + LDLib preview model, override/reset and multi-cell migration without count loss
+[18:46:50] [Render thread/INFO] [GoldSmoke/]: GOLD_RENDER_COUNTS: gpu=2614, fallback=0, hand_frames=615
+[18:46:53] [Render thread/INFO] [GoldSmoke/]: GOLD_LEFT_HAND_PASS: actual left-arm rendering and mirrored animation transforms without mirroring texture
+[18:46:53] [Render thread/INFO] [GoldSmoke/]: GOLD_NATIVE_SMOKE_PASS

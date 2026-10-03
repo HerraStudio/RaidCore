@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.herrastudio.tacticalactions.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PeekEyePositionMixin"
+  ],
+  "client": [
+    "TacticalCameraMixin",
+    "TacticalProneMixin",
+    "GroundedCrouchMixin",
+    "GwoPeekRenderMixin",
+    "GwoPeekArmsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "key.categories.tacticalactions": "战术动作",
+  "key.tacticalactions.lean_left": "左探头",
+  "key.tacticalactions.lean_right": "右探头",
+  "key.tacticalactions.prone": "趴下",
+  "tacticalactions.action.lean_left": "左探头",
+  "tacticalactions.action.lean_right": "右探头",
+  "tacticalactions.action.prone": "趴下",
+  "tacticalactions.action.standing": "站立"
+}

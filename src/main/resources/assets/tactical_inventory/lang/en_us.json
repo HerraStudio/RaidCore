@@ -1,0 +1,10 @@
+{
+  "block.tactical_inventory.safe": "Safe",
+  "container.tactical_inventory.safe": "Safe",
+  "item.tactical_inventory.field_backpack": "Field Backpack",
+  "item.tactical_inventory.tactical_rig": "Tactical Rig",
+  "item.tactical_inventory.headset": "Tactical Headset",
+  "item.tactical_inventory.gold_bar": "Fine Gold Bar",
+  "key.tactical_inventory.decrypt": "Decrypt safe",
+  "key.categories.tactical_inventory": "Tactical Inventory"
+}

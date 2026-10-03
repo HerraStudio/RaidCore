@@ -1,0 +1,5 @@
+CRACK_ACTION_GUARDS_PASS: actual movement, hotbar packet and GWO deferred-fire entry denied
+CRACK_FAILURE_CANCEL_PASS: real F/LDLib2, forged packet rejection, cancellation reset, three misses, no reward/lock leak
+CRACK_WIN_REWARD_PASS: three real clicks, annotation seed sync, shrinking arcs, box-only loot, original items retained, persistent one-shot reward and permanent open
+CRACK_DAMAGE_RANGE_PASS: actual damage jitters/interrupts, close/range changes release locks, no duplicate reward
+CRACK_NATIVE_SMOKE_PASS: full LDLib2 rhythm game, desc seed, real packets, failure/win/loot/state/interruptions

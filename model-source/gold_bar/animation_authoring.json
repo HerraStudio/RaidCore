@@ -1,0 +1,28 @@
+{
+  "authoring": "Blender Lab MCP",
+  "blender": "5.2.2 LTS",
+  "fps": 40,
+  "clips": {
+    "idle": 1.5,
+    "draw": 0.35,
+    "inspect": 2.6
+  },
+  "frames": {
+    "idle": [
+      1,
+      61
+    ],
+    "draw": [
+      1,
+      15
+    ],
+    "inspect": [
+      1,
+      105
+    ]
+  },
+  "preserved_original_objects": 3,
+  "mesh_vertices": 188,
+  "source": "Fine Gold Bar by Incg5764 / CC BY 4.0",
+  "hands": "Independent Blender-authored wrist tracks follow sampled grip positions; no rigid arm flipping"
+}

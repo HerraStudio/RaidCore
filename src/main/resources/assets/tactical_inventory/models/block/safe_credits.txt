@@ -1,0 +1,13 @@
+Simple Safe by avhatar
+https://sketchfab.com/3d-models/simple-safe-2e308cb3fe1d4676beb43e75fdd27e8e
+https://sketchfab.com/avhatar
+Creative Commons Attribution 4.0 International
+https://creativecommons.org/licenses/by/4.0/
+
+Adapted for Tactical Inventory: static GLB mesh/node transforms converted to OBJ,
+scaled twice the initial 0.96-block fit, front oriented north. Original PNG preserved.
+Minecraft provides standard lighting instead of the source GLB's PBR shading.
+
+In Blender 5.2.2, reposed the door closed and authored a 60-degree hinge-opening
+action for door, handle and lock, holding open. Exported closed mesh parts and
+the actual Blender curve for runtime playback.
