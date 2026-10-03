@@ -9,6 +9,7 @@
 - 原 `HerraStudio/DragInventory`、`HerraStudio/TacticalActions`、`HerraStudio/tactical-inventory` 作为历史归档保留，入口说明链接到 RaidCore。
 - 仅整合用户选择的三个模组：Drag Inventory 2.6.1、Tactical Actions 1.1.0、Tactical Inventory 1.0.20。
 - 一个 Gradle 构建、一个 `@Mod`、一个正式 JAR；188 个原 Java 文件和 1 个统一入口。
+- 生产源码、测试与资源按根目录 `ui/`、`inventory/`、`loot/`、`action/`、`player/`、`network/`、`api/`、`raid/` 组织；模块职责和路径索引见 `MODULES.md` / `module-layout.json`。
 - 源码来源、每个导入文件 hash 与兼容策略见 `MERGE.md` / `MERGE_SOURCES.json`。
 - 原三个本地项目工作区完整保留；Tactical Inventory 与 Tactical Actions 的未提交开发也已纳入。
 
@@ -21,6 +22,7 @@
 ## 开发约定
 
 - 全部功能事件订阅归属 `RaidCore.MOD_ID`。三个旧主类现在是 `register` 初始化模块，不可恢复独立 `@Mod`。
+- 各模块通过根 Gradle 的 main / test 源集一次编译。Java 包名保留，模块间可使用原类型直接引用；模组描述和 Mixin 配置在根 `src/main/resources`。
 - 保留 `tactical_inventory` / `draginventory` / `tacticalactions` 资源和存档命名空间；改名时必须单独设计迁移。
 - 保留原四份配置文件名与按键名称；`TacticalActions.MOD_ID` 仅是兼容资源命名空间。
 - `libs/gwo.jar` 是本地第三方依赖，不提交或打入源码交付包。其他依赖由 Gradle 获取。

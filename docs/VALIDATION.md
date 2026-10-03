@@ -21,6 +21,12 @@
 
 记录：[来源一致性](source-parity.json)、[测试摘要](validation-results.json)、[原生日志摘要](runtime-validation.txt)。
 
+## 功能模块目录重组
+
+源码、测试与资源已按根目录 ui / inventory / loot / action / player / network / api / raid 分目录，根 Gradle 仍统一编译。调整后 `clean build` 成功，272 项测试全部通过；189 个生产 Java 文件完整，59 个运行资源没有重复路径。
+
+调整前后 JAR 的 402 个文件内容全部逐字节一致，其中 335 个编译类相同；完整 JAR SHA256 均为 `4f1b70d55bd2e9947e24a40e58081cd38359441ddab139c62d848071d1c86c73`。下列客户端/服务端原生记录所验证的 JAR 与本次产物一致。[模块验证结果](module-validation.json)。
+
 ## 独立服务端
 
 `runServer -PraidCoreSmoke` 在 `run-server-smoke` 运行并自动正常停止，出现 `RAIDCORE_SERVER_SMOKE_PASS`。

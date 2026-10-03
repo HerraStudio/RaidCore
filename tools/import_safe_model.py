@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / "src/main/resources/assets/tactical_inventory"
+ASSETS = ROOT / "loot/src/main/resources/assets/tactical_inventory"
 IDENTITY = [[float(row == column) for column in range(4)] for row in range(4)]
 
 

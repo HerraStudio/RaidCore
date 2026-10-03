@@ -70,7 +70,7 @@ for name,index in primitive['attributes'].items():
 indices=accessor(values(primitive['indices']),doc['accessors'][primitive['indices']]['componentType'],'SCALAR',34963)
 target['meshes'][0]['primitives']=[{'attributes':attributes,'indices':indices,'material':0,'mode':4}]
 material=copy.deepcopy(doc['materials'][primitive['material']])
-texture_dir=args.project/'src/main/resources/assets/tactical_inventory/textures/item'
+texture_dir=args.project/'loot/src/main/resources/assets/tactical_inventory/textures/item'
 source_dir=args.project/'model-source/gold_bar'
 texture_dir.mkdir(parents=True,exist_ok=True); source_dir.mkdir(parents=True,exist_ok=True)
 map_files={}

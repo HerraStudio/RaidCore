@@ -16,7 +16,16 @@ repositories {
 }
 
 def smokeEnabled = providers.gradleProperty('raidCoreSmoke').isPresent()
+def featureModules = ['ui', 'inventory', 'loot', 'action', 'player', 'network', 'api', 'raid']
 sourceSets {
+    main {
+        java.setSrcDirs(['src/main/java'] + featureModules.collect { it + '/src/main/java' })
+        resources.setSrcDirs(['src/main/resources'] + featureModules.collect { it + '/src/main/resources' })
+    }
+    test {
+        java.setSrcDirs(['src/test/java'] + featureModules.collect { it + '/src/test/java' })
+        resources.setSrcDirs(['src/test/resources'] + featureModules.collect { it + '/src/test/resources' })
+    }
     integration {
         compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
         runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath

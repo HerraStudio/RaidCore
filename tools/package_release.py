@@ -69,6 +69,11 @@ summary = {"date": "2026-10-03", "timezone": "Asia/Shanghai", "version": VERSION
            "client_native_pass": True, "dedicated_server_native_pass": True,
            "source_parity": {key: value for key, value in parity.items() if key != "permitted_bootstrap_and_event_owner_edits"},
            "jar_sha256": sha256(jar), "sources_jar_sha256": sha256(source_jar)}
+module_validation = ROOT / 'docs/module-validation.json'
+if module_validation.is_file():
+    module_result = json.loads(module_validation.read_text(encoding='utf-8'))
+    assert module_result['passed'] and module_result['current_jar_sha256'] == sha256(jar)
+    summary['module_layout'] = module_result
 (ROOT / "docs/validation-results.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 evidence = ["RaidCore native integration — 2026-10-03 (Asia/Shanghai)"]
 for label, text in (("CLIENT", client_log), ("DEDICATED SERVER", server_log)):
@@ -91,6 +96,7 @@ root_files = {".gitignore", ".gitattributes", "build.gradle", "settings.gradle",
               "gradlew", "gradlew.bat", "LICENSE", "README.md", "CHANGELOG.md", "ASSET_LICENSES.md",
               "THIRD_PARTY_NOTICES.md", "TEMPLATE_LICENSE.txt"}
 root_dirs = {"gradle", "src", "docs", "model-source", "tools", "verification", "licenses", "libs"}
+root_dirs.update({"ui", "inventory", "loot", "action", "player", "network", "api", "raid"})
 project_zip = OUTPUT / f"RaidCore-{VERSION}-project.zip"
 included = []
 with zipfile.ZipFile(project_zip, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
@@ -112,6 +118,9 @@ with zipfile.ZipFile(project_zip) as archive:
     assert "RaidCore/libs/gwo.jar" not in archive.namelist()
     assert "RaidCore/model-source/gold_bar/gold_bar_inspection.blend" in archive.namelist()
     assert "RaidCore/src/main/java/dev/herrastudio/raidcore/RaidCore.java" in archive.namelist()
+    assert "RaidCore/inventory/src/main/java/dev/tactical/BagState.java" in archive.namelist()
+    assert "RaidCore/network/src/main/java/dev/tactical/Packets.java" in archive.namelist()
+    assert "RaidCore/loot/src/main/resources/assets/tactical_inventory/models/loot/gold_bar.glb" in archive.namelist()
 
 notice = f"""RaidCore {VERSION} — 2026-10-03
 

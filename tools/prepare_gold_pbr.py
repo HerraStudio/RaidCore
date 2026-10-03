@@ -2,7 +2,7 @@
 from pathlib import Path
 from PIL import Image
 
-textures=Path(__file__).resolve().parent.parent/'src/main/resources/assets/tactical_inventory/textures/item'
+textures=Path(__file__).resolve().parent.parent/'loot/src/main/resources/assets/tactical_inventory/textures/item'
 normal=Image.open(textures/'gold_bar_normal.png').convert('RGB')
 roughness=Image.open(textures/'gold_bar_roughness.png').convert('L')
 metallic=Image.open(textures/'gold_bar_metallic.png').convert('L')

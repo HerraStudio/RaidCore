@@ -40,7 +40,7 @@ for mesh in doc['meshes']:
 doc['asset']['extras']={'creator':'Incg5764','source':'Fine Gold Bar','license':'CC BY 4.0','animation_authoring':'Blender Lab MCP / HerraStudio'}
 while len(payload)%4: payload.append(0)
 text=json.dumps(doc,separators=(',',':')).encode('utf-8'); text+=b' '*((-len(text))%4)
-output=project/'src/main/resources/assets/tactical_inventory/models/loot/gold_bar.glb'
+output=project/'loot/src/main/resources/assets/tactical_inventory/models/loot/gold_bar.glb'
 output.parent.mkdir(parents=True,exist_ok=True)
 output.write_bytes(struct.pack('<4sII',b'glTF',2,12+8+len(text)+8+len(payload))+struct.pack('<II',len(text),0x4E4F534A)+text+struct.pack('<II',len(payload),0x004E4942)+payload)
 print(json.dumps({'model_bytes':output.stat().st_size,'nodes':[n.get('name') for n in doc['nodes']],

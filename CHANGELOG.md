@@ -2,6 +2,7 @@
 
 ## 1.0.0 — 2026-10-03
 
+- 源码、测试和资源按 ui / inventory / loot / action / player / network / api / raid 功能模块分目录，保留统一构建、Java 包名和单个 JAR。
 - 整合 Drag Inventory 2.6.1、Tactical Actions 1.1.0、Tactical Inventory 1.0.20。
 - 一个 Gradle 项目、一个 `raidcore` 模组入口、一个正式 JAR。
 - 统一所有事件订阅与依赖声明；移除三个独立入口，保留三套 Mixin。

@@ -12,7 +12,7 @@
 | Drag Inventory | 2.6.1，原仓库 v2.6.1 标签 | 拖拽、快捷栏与枪械 HUD、体力、100 基础生命值、口袋轮盘、标点、方位条、大地图与小地图、快速切枪 |
 | Tactical Actions | 1.1.0，完整本地工作区 | GD656 上半身探头、服务端射击眼位同步、趴下、地面蹲伏与跳跃规则 |
 
-三个原项目的代码包保留，RaidCore 使用统一入口调用各功能的注册方法。事件订阅统一归属 `raidcore`；旧项目的独立模组入口已移除。所有代码均重新编译。
+源码按 `ui/`、`inventory/`、`loot/`、`action/`、`player/`、`network/`、`api/`、`raid/` 功能目录组织，共享一个 Gradle 构建和一个 JAR。Java 包名保留，事件订阅统一归属 `raidcore`；统一入口调用各功能注册方法。[模块目录与职责](docs/MODULES.md)。
 
 ## 安装与升级
 
@@ -60,9 +60,14 @@
 ## 开发定位
 
 - `src/main/java/dev/herrastudio/raidcore/RaidCore.java`：唯一入口。
-- `src/main/java/dev/tactical/`：库存、搜刮、物品配置、搜打撤、保险箱与战利品。
-- `src/main/java/dev/draginventory/`：HUD、地图、体力、轮盘、拖拽与快速切枪。
-- `src/main/java/dev/herrastudio/tacticalactions/`：探头、趴下、蹲伏与射击眼位。
+- `ui/`：背包界面、HUD、地图、方位条、轮盘与渲染。
+- `inventory/`：库存、占格、放置规则与物品配置。
+- `loot/`：搜刮、保险箱、破译与战利品资产。
+- `action/`：探头、趴下、蹲伏、快速切枪与操作限制。
+- `player/`：生命值、体力与玩家附件。
+- `network/`：Payload 与同步桥接。
+- `api/`：对外联动门面、数据类型、监听器与提供者接口。
+- `raid/`：对局、撤离、结算、计时与特效。
 - `model-source/`：保险箱和金条的可编辑 Blender 工程及导出模型。
 - `tools/`：原有 Blender MCP 和素材转换工具。
 

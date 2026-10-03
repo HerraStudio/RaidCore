@@ -12,6 +12,8 @@
 
 ## 统一入口
 
+生产代码已按根目录功能模块重组，见 [模块说明](MODULES.md)。原项目来源和文件 hash 保留；`MERGE_SOURCES.json` 的目标路径已更新为当前模块目录，同时保留重组前目标路径。
+
 唯一 `@Mod` 为 `dev.herrastudio.raidcore.RaidCore`，Mod ID 为 `raidcore`。该入口调用三个模块的 `register` 方法，完成物品、方块、菜单、体力附件、配置和网络注册。所有自动事件订阅改为归属 `raidcore`，客户端订阅的侧别保持原样。
 
 三份 Mixin 配置在统一描述文件中各声明一次，原包名与 Mixin 顺序保持。正式 JAR 中只有一个 `META-INF/neoforge.mods.toml`，原三个模组的独立描述文件没有合并进入成品。

@@ -12,7 +12,7 @@ from mathutils import Euler, Matrix, Vector, Quaternion
 project=Path(PROJECT_ROOT)
 source=project/'model-source/gold_bar/gold_bar_source.glb'
 output=project/'model-source/gold_bar'
-assets=project/'src/main/resources/assets/tactical_inventory/models/loot'
+assets=project/'loot/src/main/resources/assets/tactical_inventory/models/loot'
 assets.mkdir(parents=True,exist_ok=True)
 original=list(bpy.context.scene.objects)
 for obj in original:

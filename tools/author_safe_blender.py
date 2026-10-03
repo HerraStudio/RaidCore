@@ -15,7 +15,7 @@ def checkpoint(text):
     progress_file.write_text(text, encoding="utf-8")
 checkpoint("connected")
 source = Path(MODEL_SOURCE)
-assets = project / "src/main/resources/assets/tactical_inventory/models/block"
+assets = project / "loot/src/main/resources/assets/tactical_inventory/models/block"
 output = project / "model-source/safe"
 assets.mkdir(parents=True, exist_ok=True)
 output.mkdir(parents=True, exist_ok=True)

@@ -24,7 +24,7 @@ for obj in bpy.context.selected_objects:obj.select_set(False)
 mesh.select_set(True);mesh.hide_render=False;bpy.context.view_layer.objects.active=mesh
 scene.render.bake.use_selected_to_active=False;scene.render.bake.margin=12
 bpy.ops.object.bake(type='COMBINED',use_clear=True)
-image.filepath_raw=str(project/'src/main/resources/assets/tactical_inventory/textures/item/gold_bar_vanilla_color.png')
+image.filepath_raw=str(project/'loot/src/main/resources/assets/tactical_inventory/textures/item/gold_bar_vanilla_color.png')
 image.file_format='PNG';image.save()
 nodes.remove(target)
 result={'status':'combined_material_baked','resolution':2048,'path':image.filepath_raw}
