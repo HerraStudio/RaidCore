@@ -30,7 +30,8 @@ public final class ProfileSavedData extends SavedData {
         tag.putInt("revision",revision); var list=new ListTag();
         profiles.values().stream().sorted(java.util.Comparator.comparing(p->p.key().encoded())).forEach(p->{
             var row=new CompoundTag(); row.putString("item",p.key().item()); row.putString("content",p.key().content());
-            row.putInt("width",p.width()); row.putInt("height",p.height()); row.putString("rarity",p.rarity().name()); list.add(row);
+            row.putInt("width",p.width()); row.putInt("height",p.height()); row.putString("rarity",p.rarity().name());
+            row.putBoolean("lootable",p.lootable()); row.putDouble("baseDropChance",p.baseDropChance()); list.add(row);
         });
         tag.put("profiles",list); return tag;
     }
@@ -40,7 +41,8 @@ public final class ProfileSavedData extends SavedData {
         var list=tag.getList("profiles",Tag.TAG_COMPOUND);
         for(int i=0;i<Math.min(ItemProfile.MAX_RULES,list.size());i++) try {
             var row=list.getCompound(i); var key=new ItemProfile.Key(row.getString("item"),row.getString("content"));
-            data.profiles.put(key,new ItemProfile(key,row.getInt("width"),row.getInt("height"),Rarity.parse(row.getString("rarity"))));
+            data.profiles.put(key,new ItemProfile(key,row.getInt("width"),row.getInt("height"),Rarity.parse(row.getString("rarity")),
+                    row.getBoolean("lootable"),row.getDouble("baseDropChance")));
         } catch(IllegalArgumentException ignored) { }
         return data;
     }

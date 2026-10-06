@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "modules": [
+    "ui",
+    "inventory",
+    "loot",
+    "action",
+    "player",
+    "network",
+    "api",
+    "raid"
+  ],
+  "main_java_files": 199,
+  "runtime_resource_files": 60,
+  "single_mod_entry": "src/main/java/dev/herrastudio/raidcore/RaidCore.java",
+  "duplicate_resource_paths": 0,
+  "java_package_paths_preserved": true,
+  "legacy_relocated_runtime_files_unchanged": 243,
+  "version": "1.0.2",
+  "current_jar_sha256": "cef30227879075090bd4cec676e307ef6cc0d7c2c5b3c5ca73a5bde39eeab823",
+  "legacy_jar": {
+    "baseline_sha256": "4f1b70d55bd2e9947e24a40e58081cd38359441ddab139c62d848071d1c86c73",
+    "unchanged_entries": 399,
+    "changed_entries": [
+      "LICENSE",
+      "META-INF/neoforge.mods.toml",
+      "dev/herrastudio/raidcore/RaidCore.class"
+    ],
+    "new_entries": [
+      "dev/herrastudio/raidcore/mixin/GwoBlockImpactMixin.class",
+      "dev/herrastudio/raidcore/mixin/GwoDecalMeshMixin.class",
+      "dev/herrastudio/raidcore/mixin/GwoDecalOrderMixin.class",
+      "dev/herrastudio/raidcore/mixin/GwoDecalSurfaceMixin.class",
+      "dev/herrastudio/raidcore/mixin/GwoDecalVerticesMixin.class",
+      "dev/herrastudio/raidcore/network/ImpactDecalNetwork$ProjectedImpact.class",
+      "dev/herrastudio/raidcore/network/ImpactDecalNetwork.class",
+      "dev/herrastudio/raidcore/ui/decal/GwoImpactMesh.class",
+      "dev/herrastudio/raidcore/ui/decal/GwoProjectedDecals$Context.class",
+      "dev/herrastudio/raidcore/ui/decal/GwoProjectedDecals.class",
+      "dev/herrastudio/raidcore/ui/decal/ImpactProjection$Mesh.class",
+      "dev/herrastudio/raidcore/ui/decal/ImpactProjection.class",
+      "dev/herrastudio/raidcore/ui/decal/ProjectedDecal.class",
+      "raidcore_gwo_decals.mixins.json"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "profiles": {
+    "vanilla-baseline": [
+      "vanilla-baseline-fancy-open: greenPixels=11536; depthFunc=515",
+      "vanilla-baseline-fancy-blocked: greenPixels=0; depthFunc=515",
+      "vanilla-baseline-fancy-foreground: greenPixels=59004; depthFunc=515",
+      "vanilla-baseline-fabulous-open: greenPixels=11229; depthFunc=515",
+      "vanilla-baseline-fabulous-blocked: greenPixels=0; depthFunc=515",
+      "vanilla-baseline-fabulous-foreground: greenPixels=58262; depthFunc=515",
+      "occlusionPassed=true; irisInstalled=false; shaders=false; reloadAndCleanup=true"
+    ],
+    "iris-off-baseline": [
+      "iris-off-baseline-fancy-open: greenPixels=11996; depthFunc=515",
+      "iris-off-baseline-fancy-blocked: greenPixels=0; depthFunc=515",
+      "iris-off-baseline-fancy-foreground: greenPixels=64017; depthFunc=515",
+      "iris-off-baseline-fabulous-open: greenPixels=12216; depthFunc=515",
+      "iris-off-baseline-fabulous-blocked: greenPixels=0; depthFunc=515",
+      "iris-off-baseline-fabulous-foreground: greenPixels=56785; depthFunc=515",
+      "occlusionPassed=true; irisInstalled=true; shaders=false; reloadAndCleanup=true"
+    ],
+    "translucent-baseline": [
+      "translucent-baseline-fancy-open: greenPixels=11534; depthFunc=515",
+      "translucent-baseline-fancy-blocked: greenPixels=8047; depthFunc=515",
+      "translucent-baseline-fancy-foreground: greenPixels=59281; depthFunc=515",
+      "translucent-baseline-fabulous-open: greenPixels=11297; depthFunc=515",
+      "translucent-baseline-fabulous-blocked: greenPixels=14059; depthFunc=515",
+      "translucent-baseline-fabulous-foreground: greenPixels=59777; depthFunc=515",
+      "occlusionPassed=false; irisInstalled=true; shaders=false; reloadAndCleanup=true"
+    ],
+    "translucent-fixed": [
+      "translucent-fixed-fancy-open: greenPixels=11319; depthFunc=515",
+      "translucent-fixed-fancy-blocked: greenPixels=0; depthFunc=515",
+      "translucent-fixed-fancy-foreground: greenPixels=59709; depthFunc=515",
+      "translucent-fixed-fabulous-open: greenPixels=7642; depthFunc=515",
+      "translucent-fixed-fabulous-blocked: greenPixels=0; depthFunc=515",
+      "translucent-fixed-fabulous-foreground: greenPixels=25216; depthFunc=515",
+      "occlusionPassed=true; irisInstalled=true; shaders=false; reloadAndCleanup=true"
+    ],
+    "shaders-fixed": [
+      "shaders-fixed-fancy-open: greenPixels=12291; depthFunc=515",
+      "shaders-fixed-fancy-blocked: greenPixels=0; depthFunc=515",
+      "shaders-fixed-fancy-foreground: greenPixels=56276; depthFunc=515",
+      "occlusionPassed=true; irisInstalled=true; shaders=true; reloadAndCleanup=true"
+    ]
+  },
+  "fixed_resource_sha256": "ee03c09ee20bbfd292d9e98cc4746a9259bdc4668e51782da0ee25d4666c3691",
+  "user_multiplayer_map_checked": false,
+  "native_effect_manager_identical_to_1_0_4": true,
+  "source_build": {
+    "passed": true,
+    "unit_tests": {
+      "tests": 313,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "release_fixture_exclusion_passed": true,
+    "version": "1.1.0 (current workspace)"
+  },
+  "hotfix": {
+    "baseline": "E:\\Codex\\RaidCore\\releases\\v1.0.4\\raidcore-1.21.1-neoforge-1.0.4.jar",
+    "baseline_sha256": "64acb77f4c11ed4a67a4ea94af131baa82ce38a89e0c6f9bd778a0940535a171",
+    "artifact": "E:\\Codex\\RaidCore\\releases\\evacuation-smoke-fix\\raidcore-1.21.1-neoforge-1.0.4-smoke-fix.jar",
+    "artifact_sha256": "181630f5b14c6f1025b420d65eebd4e11bae571d8577b6d1ceb53c97324e34e8",
+    "changed_entries": [
+      "assets/tactical_inventory/fx/evacuation_smoke.fx"
+    ],
+    "unchanged_production_classes": 349,
+    "descriptor_and_network_unchanged": true,
+    "smoke_resource_sha256": "ee03c09ee20bbfd292d9e98cc4746a9259bdc4668e51782da0ee25d4666c3691"
+  }
+}

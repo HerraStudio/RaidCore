@@ -1,0 +1,3 @@
+[20:01:31] [Render thread/INFO] [RaidCoreLootSmoke/]: RAIDCORE_LOOT_MANAGEMENT_PASS: real editors and packets, base chance times coefficient, names, F opens existing search UI, right-click blocked, offhand preserved, ordinary blocks, save/load, shared inventory, no reroll, zero coefficient, permission and revision gates
+[20:01:31] [Render thread/INFO] [RaidCoreLootSmoke/]: RAIDCORE_LOOT_PICKUP_PRIORITY_PASS: real ground gun and chest on the same ray, only pickup prompt/action owns F
+[20:01:31] [Render thread/INFO] [RaidCoreLootSmoke/]: RAIDCORE_MODDED_BLOCK_LOOT_PASS: doomsday_decoration:acrate_2, no native inventory, real editor/search, custom name/coefficient, F prompt, original search menu, shared saved inventory and no refill

@@ -220,8 +220,9 @@
   "draginventory.map.match_timer_over": "Match over",
   "draginventory.map.cmd.timer": "Match timer: %s (default %s)",
   "draginventory.map.cmd.timer_set": "Match timer set to %s, counting down",
-  "draginventory.map.cmd.timer_default_set": "Default match duration set to %s (auto-starts on world entry)",
+  "draginventory.map.cmd.timer_default_set": "Default manual timer set to %s (used by /map timer reset; Raid duration is configured by the server)",
   "draginventory.map.cmd.timer_reset": "Match timer reset to default %s",
   "draginventory.map.cmd.timer_off": "Match timer disabled (hidden below minimap)",
-  "draginventory.map.cmd.timer_bad_duration": "Cannot parse duration: %s (try 25:00, 1:30:00, 30m, 1h30m, 90s; plain numbers are minutes)"
+  "draginventory.map.cmd.timer_bad_duration": "Cannot parse duration: %s (try 25:00, 1:30:00, 30m, 1h30m, 90s; plain numbers are minutes)",
+  "draginventory.map.cmd.timer_server_controlled": "The current match timer is controlled by the match system and cannot be changed with manual timer commands."
 }

@@ -8,11 +8,11 @@
 - Creator: https://sketchfab.com/avhatar
 - License: https://creativecommons.org/licenses/by/4.0/
 
-Adaptations for Tactical Inventory: scaled the supplied GLB twice the initial 0.96-block fit and oriented its front north. In Blender 5.2.2, reposed the door closed, parented the door/handle/lock to the original hinge, and authored a 60-degree opening animation which holds open. Exported closed OBJ parts, an editable Blender project, an animated GLB and actual Blender curve samples. The original base-color PNG is included without repainting or resizing. Minecraft supplies standard lighting; GLB PBR metallic/roughness and normal-map shading are not reproduced by the vanilla renderer.
+Adaptations for Tactical Inventory: scaled the supplied GLB twice the initial 0.96-block fit and oriented its front north. In Blender 5.2.2, reposed the door closed, parented the door/handle/lock to the original hinge, and authored a 60-degree opening animation which holds open. Exported closed OBJ parts, an editable Blender project, an animated GLB and actual Blender curve samples. The original base-color PNG is included without repainting or resizing. Original normal and metallic/roughness maps are converted to Iris LabPBR sibling textures without resampling, retaining the source metal and worn nonmetal regions. Minecraft supplies standard lighting without shaders.
 
-Covered assets: `assets/tactical_inventory/models/block/safe*.obj`, `safe.mtl`, `safe_import.json`, `safe_credits.txt`, `safe_door_animation.json`, `assets/tactical_inventory/textures/block/safe_color.png`, and model/texture content in `model-source/safe/`.
+Covered assets: `assets/tactical_inventory/models/block/safe*.obj`, `safe.mtl`, `safe_import.json`, `safe_credits.txt`, `safe_door_animation.json`, `assets/tactical_inventory/textures/block/safe_color*.png`, and model/texture content in `model-source/safe/`.
 
-The model and texture retain CC BY 4.0 licensing. The project's MIT license applies to its own code and does not replace this asset license. No endorsement by the original creator is implied.
+The model and texture retain CC BY 4.0 licensing. The project's GNU AGPL v3 license applies to its own code and does not replace this asset license. No endorsement by the original creator is implied.
 
 ## Fine Gold Bar
 

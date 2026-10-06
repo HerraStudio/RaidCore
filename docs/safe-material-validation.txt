@@ -1,0 +1,12 @@
+RaidCore safe material native verification — 2026-10-05 (Asia/Shanghai)
+Minecraft 1.21.1 / NeoForge 21.1.251 / Iris 1.8.14-beta.1 / Sodium 0.8.12 / Sundial-Lite-main.zip
+Isolated run-safe-smoke instance; shader configuration copied from the existing game instance.
+[11:47:24] [modloading-worker-0/INFO] [RaidCore/]: RaidCore 1.0.3 initialized: Tactical Inventory 1.0.20, Drag Inventory 2.6.1, Tactical Actions 1.1.0
+[11:47:43] [Render thread/INFO] [SafeModelSmoke/]: SAFE_IRIS_NORMAL_PASS: safe sprite, 2048x2048, every uploaded GPU atlas pixel matches the authored LabPBR map
+[11:47:44] [Render thread/INFO] [SafeModelSmoke/]: SAFE_IRIS_SPECULAR_PASS: safe sprite, 2048x2048, every uploaded GPU atlas pixel matches the authored LabPBR map
+[11:47:44] [Render thread/INFO] [SafeModelSmoke/]: SAFE_IRIS_PBR_PASS: active shader pack, original material loaded for body, animated door, handle and lock
+[11:47:44] [Render thread/INFO] [SafeModelSmoke/]: SAFE_MODEL_GEOMETRY_PASS: original 5461 triangles, authored PNG, all four orientations, actual item mesh, doubled world size and fitted shape, 27-slot persistence
+[11:47:48] [Render thread/INFO] [SafeModelSmoke/]: SAFE_MODEL_LOOT_UI_PASS: real modeled safe opens existing LDLib loot UI over new world model
+[11:47:49] [Render thread/INFO] [SafeModelSmoke/]: SAFE_DOOR_ANIMATION_PASS: default closed, post-decryption opening, Blender curve intermediate frames, delayed loot, stays open, save/reload and subsequent viewer
+[11:47:50] [Render thread/INFO] [SafeModelSmoke/]: SAFE_MODEL_SMOKE_PASS: original asset rendered in world/item, four facing states, persistence, loot UI, break drops
+BUILD SUCCESSFUL in 41s

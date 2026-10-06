@@ -39,7 +39,14 @@ public final class ProfileService {
             if(item==Items.AIR || !BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(key.item())))
                 throw new IllegalArgumentException("找不到这个物品。");
             if(!key.content().isEmpty() && !key.item().startsWith("gwo:")) throw new IllegalArgumentException("只有 GWO 物品可指定型号。");
-            var profile=edit.reset()?null:new ItemProfile(key,edit.width(),edit.height(),Rarity.parse(edit.rarity()));
+            if(edit.lootable() && key.content().isEmpty() && (item instanceof com.sgr792.gwo.item.ContentGunItem
+                    || item instanceof com.sgr792.gwo.item.ContentMeleeItem))
+                throw new IllegalArgumentException("请先选择具体 GWO 型号，再加入掉落池。");
+            if(!key.content().isEmpty() && edit.lootable()
+                    && com.sgr792.gwo.content.WeaponContentRegistry.get(ResourceLocation.parse(key.content()))==null)
+                throw new IllegalArgumentException("找不到这个 GWO 型号，不能加入掉落池。");
+            var profile=edit.reset()?null:new ItemProfile(key,edit.width(),edit.height(),Rarity.parse(edit.rarity()),
+                    edit.lootable(),edit.baseDropChance());
             if(store.change(key,profile)) {
                 ItemProfiles.server(store.snapshot());
                 for(var online:player.getServer().getPlayerList().getPlayers()) {

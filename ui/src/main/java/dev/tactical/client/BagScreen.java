@@ -176,7 +176,7 @@ public final class BagScreen extends AbstractContainerScreen<BagMenu> {
         if(loot!=null) renderLoot(g);
         drawItemName(g);
         g.fill(509,18,553,33,EMPHASIS); border(g,509,18,44,15,SLOT_BORDER);
-        text(g,ProfileClient.editable()?"物品配置":"物品预览",512,22,TEXT);
+        text(g,ProfileClient.editable()?"搜刮管理":"搜刮预览",512,22,TEXT);
         if(selected!=-1) {
             drawSourceMask(g);
             drawPlacementPreview(g,placementPreview());
@@ -674,7 +674,7 @@ public final class BagScreen extends AbstractContainerScreen<BagMenu> {
         if(closingAt!=0) return true;
         double localX=(mx-offsetX)/scale,localY=(my-offsetY)/scale;
         if(button==0 && localX>=509 && localX<553 && localY>=18 && localY<33) {
-            profilesChanged(); ProfileClient.requestOpen(); return true;
+            profilesChanged(); dev.tactical.loot.client.LootClient.requestOpen(); return true;
         }
         if(button!=0 && button!=1) return false;
         var target=hit(mx,my);

@@ -17,6 +17,7 @@ public final class RaidCore {
         Tactical.register(eventBus);
         DragInventory.register(eventBus, container);
         TacticalActions.register(eventBus, container);
+        eventBus.addListener(dev.herrastudio.raidcore.network.ImpactDecalNetwork::register);
         LoggerFactory.getLogger("RaidCore").info(
                 "RaidCore {} initialized: Tactical Inventory 1.0.20, Drag Inventory 2.6.1, Tactical Actions 1.1.0",
                 container.getModInfo().getVersion());

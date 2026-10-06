@@ -22,16 +22,16 @@ RaidCore/
 
 | 模块 | 职责 | Java 文件 | 测试类 | 资源文件 |
 |---|---|---:|---:|---:|
-| ui | 背包界面、HUD、地图、方位条、口袋轮盘、渲染与语言资源 | 92 | 14 | 19 |
+| ui | 背包界面、HUD、地图、方位条、口袋轮盘、入射角弹孔、Raid 计时显示、渲染与语言资源 | 104 | 16 | 19 |
 | inventory | 库存持久化、占格与放置事务、槽位、物品配置 | 19 | 4 | 9 |
-| loot | 容器搜刮、保险箱、破译状态、金条、模型与材质 | 13 | 4 | 25 |
+| loot | 容器搜刮、保险箱、破译状态、金条、模型与材质 | 21 | 5 | 27 |
 | action | 玩家姿态、切枪时间轴、输入和破译期间的操作限制 | 35 | 7 | 1 |
 | player | 100 基础生命值、体力、同步附件及对应 Mixin | 5 | 1 | 0 |
-| network | 背包、物品配置、破译、对局、探头 Payload，选槽同步 | 6 | 0 | 0 |
+| network | 背包、物品配置、破译、对局、探头、入射方向 Payload，选槽同步 | 9 | 0 | 0 |
 | api | 地图/方位条门面、标点类型、监听器、提供者接口 | 7 | 1 | 0 |
-| raid | 对局配置、进入、撤离、死亡、结算、倒计时、Photon 特效 | 11 | 2 | 1 |
+| raid | 共享对局、成员生命周期、配置、撤离、死亡、结算、倒计时、Photon 特效 | 12 | 3 | 1 |
 
-根入口另有 1 个 Java 文件，共 189 个生产 Java 文件、33 个单元测试类。文件位置索引和调整前 hash 在 [module-layout.json](module-layout.json)，原项目来源在 [MERGE_SOURCES.json](MERGE_SOURCES.json)。
+根入口另有 1 个 Java 文件，共 213 个生产 Java 文件、37 个单元测试类。文件位置索引和调整前 hash 在 [module-layout.json](module-layout.json)，原项目来源在 [MERGE_SOURCES.json](MERGE_SOURCES.json)。
 
 ## 兼容与协作
 
@@ -40,6 +40,8 @@ Java 包名保留，使现有 API、反射、包内访问和 Mixin 类路径继�
 界面调用领域服务，网络包把请求交给对应功能的服务端校验；`api` 存放现有对外联动面。代码之间仍可使用原类型直接引用，跨模块原生检查统一放在 `src/integration`。保留的地图/方位条 API 属于客户端功能，调用线程约定见接口原有文档。
 
 物品、方块、菜单注册由 `inventory` 中的 `Tactical.register` 汇总；HUD 与配置由 `ui` 中的 `DragInventory.register` 汇总；姿态网络与配置由 `action` 中的 `TacticalActions.register` 汇总。根 `RaidCore` 是唯一模组入口，并依次调用三者。
+
+GWO 弹孔的服务端命中桥接与方向编解码在 `network/src/main/java/dev/herrastudio/raidcore/`，客户端几何和原生 GWO 渲染适配在 `ui/src/main/java/dev/herrastudio/raidcore/`。双端 Mixin 配置仍集中在根 `src/main/resources/raidcore_gwo_decals.mixins.json`。
 
 ## 开发与检查
 

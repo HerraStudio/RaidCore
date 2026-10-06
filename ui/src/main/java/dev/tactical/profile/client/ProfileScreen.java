@@ -22,7 +22,7 @@ import org.lwjgl.glfw.GLFW;
 
 /** LDLib2 visual tree, text inputs, and live footprint/weapon previews. Drafts stay local. */
 public final class ProfileScreen extends ModularUIScreen {
-    private static final int W=680,H=410,ROWS=8;
+    private static final int W=680,H=446,ROWS=8;
     private static final class Panel extends UIElement {
         ProfileScreen host;
         @Override public void drawBackgroundAdditional(GUIContext context) { if(host!=null) host.draw(context.graphics); }
@@ -32,9 +32,9 @@ public final class ProfileScreen extends ModularUIScreen {
     private final List<Control> controls=new ArrayList<>();
     private List<ProfileCatalog.Entry> catalog,filtered=List.of();
     private ProfileCatalog.Entry chosen;
-    public TextField search,widthField,heightField;
+    public TextField search,widthField,heightField,chanceField;
     private Rarity rarity=Rarity.COMMON;
-    private boolean editable,configuredOnly,previewRotated,dirty,pending;
+    private boolean editable,configuredOnly,previewRotated,dirty,pending,lootable,lootOnly;
     private int page,request,pendingRequest=-1,baseRevision;
     private float unit,left,top;
     private String notice="",query="";
@@ -48,7 +48,8 @@ public final class ProfileScreen extends ModularUIScreen {
         loadDraft(); locateChosen();
     }
     @Override public void init() {
-        String draftWidth=widthField==null?null:widthField.getText(),draftHeight=heightField==null?null:heightField.getText();
+        String draftWidth=widthField==null?null:widthField.getText(),draftHeight=heightField==null?null:heightField.getText(),
+                draftChance=chanceField==null?null:chanceField.getText();
         super.init();
         unit=Math.min(1.2f,Math.min((width-24f)/W,(height-24f)/H));
         left=(width-W*unit)/2; top=(height-H*unit)/2;
@@ -57,8 +58,9 @@ public final class ProfileScreen extends ModularUIScreen {
         search.textFieldStyle(s->s.placeholder(Component.literal("搜索名称 / 物品 ID / 枪械型号")));
         widthField=field("width",318,162,48,24).setNumbersOnlyInt(1,ItemProfile.MAX_SIZE).setTextResponder(value->dirty=true);
         heightField=field("height",460,162,48,24).setNumbersOnlyInt(1,ItemProfile.MAX_SIZE).setTextResponder(value->dirty=true);
+        chanceField=field("chance",347,197,85,24).setNumbersOnlyDouble(0,100).setTextResponder(value->dirty=true);
         syncFields();
-        if(draftWidth!=null) { widthField.setText(draftWidth,false); heightField.setText(draftHeight,false); }
+        if(draftWidth!=null) { widthField.setText(draftWidth,false); heightField.setText(draftHeight,false); chanceField.setText(draftChance,false); }
     }
     private TextField field(String id,int x,int y,int w,int h) {
         var field=new TextField(); field.setId(id);
@@ -70,6 +72,8 @@ public final class ProfileScreen extends ModularUIScreen {
     private void filter() {
         String text=query.toLowerCase(Locale.ROOT).trim();
         filtered=catalog.stream().filter(e->!configuredOnly || ItemProfile.resolve(ItemProfiles.client().entries(),e.key())!=null)
+                .filter(e->!lootOnly || ItemProfile.resolve(ItemProfiles.client().entries(),e.key())!=null
+                        && ItemProfile.resolve(ItemProfiles.client().entries(),e.key()).lootable())
                 .filter(e->text.isEmpty() || (e.name()+" "+e.key().encoded()).toLowerCase(Locale.ROOT).contains(text)).toList();
         page=Math.max(0,Math.min(page,Math.max(0,(filtered.size()-1)/ROWS)));
     }
@@ -77,6 +81,7 @@ public final class ProfileScreen extends ModularUIScreen {
         if(chosen==null) return;
         var profile=ItemProfile.resolve(ItemProfiles.client().entries(),chosen.key());
         rarity=profile==null?ItemProfiles.defaultRarity(chosen.stack()):profile.rarity();
+        lootable=profile!=null && profile.lootable();
         baseRevision=ItemProfiles.client().revision(); dirty=false; previewRotated=false; syncFields();
     }
     private void syncFields() {
@@ -84,6 +89,7 @@ public final class ProfileScreen extends ModularUIScreen {
         var profile=ItemProfile.resolve(ItemProfiles.client().entries(),chosen.key()); var size=Rules.defaultSize(chosen.stack());
         widthField.setText(Integer.toString(profile==null?size.w():profile.width()),false);
         heightField.setText(Integer.toString(profile==null?size.h():profile.height()),false);
+        if(chanceField!=null) chanceField.setText(java.math.BigDecimal.valueOf(profile==null?0:profile.baseDropChance()*100).stripTrailingZeros().toPlainString(),false);
     }
     public void select(ItemProfile.Key key) {
         if(pending) return;
@@ -96,14 +102,16 @@ public final class ProfileScreen extends ModularUIScreen {
     public ItemProfile.Key selectedKey() { return chosen==null?null:chosen.key(); }
     public Rarity draftRarity() { return rarity; }
     public void setRarity(Rarity value) { rarity=value; dirty=true; }
+    public void setLootable(boolean value) { lootable=value;dirty=true; }
     public void saveDraft(boolean reset) {
         if(!editable || pending || chosen==null) return;
         try {
             int w=reset?1:Integer.parseInt(widthField.getText()),h=reset?1:Integer.parseInt(heightField.getText());
-            new ItemProfile(chosen.key(),w,h,rarity);
+            double chance=reset?0:Double.parseDouble(chanceField.getText())/100;
+            new ItemProfile(chosen.key(),w,h,rarity,lootable,chance);
             pendingRequest=++request; pending=true; notice="正在保存…";
-            PacketDistributor.sendToServer(new ProfilePackets.Edit(pendingRequest,baseRevision,chosen.key().item(),chosen.key().content(),w,h,rarity.name(),reset));
-        } catch(IllegalArgumentException invalid) { notice="请输入 1–6 的整数宽高。"; }
+            PacketDistributor.sendToServer(new ProfilePackets.Edit(pendingRequest,baseRevision,chosen.key().item(),chosen.key().content(),w,h,rarity.name(),reset,lootable,chance));
+        } catch(IllegalArgumentException invalid) { notice="宽高需为 1–6 的整数，基础爆率需为 0–100%。"; }
     }
     public void accept(ProfilePackets.State packet) {
         editable=packet.editable(); catalog=ProfileCatalog.build(); filter();
@@ -122,7 +130,8 @@ public final class ProfileScreen extends ModularUIScreen {
         g.fill(0,0,W,H,0xEE142638); ItemVisuals.border(g,0,0,W,H,0xFF5B8DB8);
         g.fillGradient(1,1,W-1,52,0x902D5071,0x002D5071);
         label(g,"物品配置",22,19,1.5f,0xFFFFFFFF,true);
-        label(g,editable?"管理员 · 修改后同步所有玩家":"只读预览 · 管理员统一配置",260,23,.85f,0xFFB2C6D9,false);
+        button(g,"containers","容器管理",260,14,99,26,0xFF86ADCC,()->{if(!pending)dev.tactical.loot.client.LootClient.requestOpen();});
+        label(g,"物品 · 稀有度 / 大小 / 爆率",375,23,.8f,0xFFB2C6D9,false);
         button(g,"close","×",644,14,23,23,0xFF94B6D5,this::onClose);
         g.fill(241,59,242,359,0x665B8DB8);
         for(int row=0;row<ROWS;row++) {
@@ -135,7 +144,8 @@ public final class ProfileScreen extends ModularUIScreen {
             ItemVisuals.icon(g,entry.stack(),28,y+3,21,21,false);
             label(g,trim(entry.name(),170),57,y+4,.8f,r.color(255),false);
             var rule=ItemProfile.resolve(ItemProfiles.client().entries(),entry.key()); var footprint=rule==null?Rules.defaultSize(entry.stack()):new Rules.Size(rule.width(),rule.height());
-            label(g,r.label+"  "+footprint.w()+"×"+footprint.h(),57,y+16,.65f,0xFF9EB2C6,false);
+            label(g,r.label+" "+footprint.w()+"×"+footprint.h()+(rule!=null && rule.lootable()?" · 爆率 "+
+                    java.math.BigDecimal.valueOf(rule.baseDropChance()*100).stripTrailingZeros().toPlainString()+"%":""),57,y+16,.65f,0xFF9EB2C6,false);
             controls.add(new Control("row"+row,22,y,202,27,()->{if(!pending) {chosen=entry;notice="";loadDraft();}}));
         }
         if(filtered.isEmpty()) label(g,"未找到匹配物品",41,159,.9f,0xFFADBECF,false);
@@ -143,6 +153,7 @@ public final class ProfileScreen extends ModularUIScreen {
         button(g,"next","›",198,338,26,22,0xFF8FAECB,()->{page=Math.min(Math.max(0,(filtered.size()-1)/ROWS),page+1);});
         label(g,(page+1)+" / "+Math.max(1,(filtered.size()+ROWS-1)/ROWS)+"  ·  "+filtered.size()+" 件",63,345,.75f,0xFFB9CBDE,false);
         button(g,"filter",configuredOnly?"显示全部":"只看已配置",22,366,202,25,0xFF6C9BC1,()->{configuredOnly=!configuredOnly;page=0;filter();});
+        button(g,"lootFilter",lootOnly?"显示全部物品":"只看搜刽物品池",22,402,202,25,0xFF6C9BC1,()->{lootOnly=!lootOnly;page=0;filter();});
         if(chosen!=null) {
             label(g,trim(chosen.name(),318),260,62,1.1f,rarity.color(255),true);
             label(g,trim(chosen.key().encoded(),490),260,81,.65f,0xFF91A9C0,false);
@@ -161,8 +172,10 @@ public final class ProfileScreen extends ModularUIScreen {
             button(g,"heightPlus","+",511,162,23,24,0xFF5B8DB8,()->{heightField.setText(Integer.toString(Math.min(6,size(heightField)+1)));});
             button(g,"rotate",previewRotated?"预览 90°":"旋转预览",546,162,108,24,0xFF5B8DB8,()->previewRotated=!previewRotated);
             int w=size(widthField),h=size(heightField),pw=previewRotated?h:w,ph=previewRotated?w:h;
-            label(g,"占格预览",260,204,.8f,0xFFC4D7E9,false);
-            int gx=260,gy=220,cell=22;
+            label(g,"基础爆率 %",260,205,.8f,0xFFCFDCEA,false);
+            button(g,"lootable",lootable?"✓ 已加入搜刽物品池":"+ 加入搜刽物品池",447,197,207,24,lootable?0xFFB9E4CD:0xFF8CACC7,()->setLootable(!lootable));
+            label(g,"占格预览",260,240,.8f,0xFFC4D7E9,false);
+            int gx=260,gy=256,cell=22;
             for(int y=0;y<6;y++) for(int x=0;x<6;x++) {
                 g.fill(gx+x*cell,gy+y*cell,gx+(x+1)*cell,gy+(y+1)*cell,0xFF223A54);
                 ItemVisuals.border(g,gx+x*cell,gy+y*cell,cell,cell,0x996B818D);
@@ -170,14 +183,14 @@ public final class ProfileScreen extends ModularUIScreen {
             g.fill(gx,gy,gx+pw*cell,gy+ph*cell,0xFF223A54);
             ItemVisuals.surface(g,rarity,gx,gy,pw*cell,ph*cell,true);
             ItemVisuals.icon(g,chosen.stack(),gx+3,gy+3,pw*cell-6,ph*cell-6,previewRotated);
-            label(g,w+"×"+h+" 格 · 占用 "+w*h+" 格",260,353,.73f,0xFFCFDCEA,false);
-            g.fill(418,218,654,350,0xAA142536); ItemVisuals.surface(g,rarity,418,218,236,132,false);
-            ItemVisuals.icon(g,chosen.stack(),428,226,216,105,previewRotated);
-            label(g,trim(chosen.name(),320),428,337,.7f,rarity.color(255),false);
-            button(g,"reset","恢复默认",260,366,151,25,0xFF8CACC7,()->saveDraft(true));
-            button(g,"save",pending?"保存中…":editable?"保存并同步":"只读 · 无保存权限",418,366,236,25,rarity.color(255),()->saveDraft(false));
+            label(g,w+"×"+h+" 格 · 占用 "+w*h+" 格",260,389,.73f,0xFFCFDCEA,false);
+            g.fill(418,254,654,386,0xAA142536); ItemVisuals.surface(g,rarity,418,254,236,132,false);
+            ItemVisuals.icon(g,chosen.stack(),428,262,216,105,previewRotated);
+            label(g,trim(chosen.name(),320),428,373,.7f,rarity.color(255),false);
+            button(g,"reset","恢复默认",260,402,151,25,0xFF8CACC7,()->saveDraft(true));
+            button(g,"save",pending?"保存中…":editable?"保存并同步":"只读 · 无保存权限",418,402,236,25,rarity.color(255),()->saveDraft(false));
         }
-        if(!notice.isEmpty()) label(g,trim(notice,750),22,398,.67f,notice.contains("保存") || notice.contains("恢复")?0xFFB9E4CD:0xFFE7BE97,false);
+        if(!notice.isEmpty()) label(g,trim(notice,750),22,434,.67f,notice.contains("保存") || notice.contains("恢复")?0xFFB9E4CD:0xFFE7BE97,false);
         g.pose().popPose();
     }
     private String trim(String text,int width) { return Minecraft.getInstance().font.plainSubstrByWidth(text,width); }

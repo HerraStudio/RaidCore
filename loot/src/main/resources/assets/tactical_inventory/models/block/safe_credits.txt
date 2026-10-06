@@ -6,7 +6,10 @@ https://creativecommons.org/licenses/by/4.0/
 
 Adapted for Tactical Inventory: static GLB mesh/node transforms converted to OBJ,
 scaled twice the initial 0.96-block fit, front oriented north. Original PNG preserved.
-Minecraft provides standard lighting instead of the source GLB's PBR shading.
+Minecraft provides standard lighting without shaders. Iris-compatible LabPBR
+normal and specular sibling textures reproduce the source normal, roughness and
+metalness maps with shader packs that support LabPBR materials. The base-color
+PNG and UVs are unchanged; see tools/prepare_safe_pbr.py and safe_pbr.json.
 
 In Blender 5.2.2, reposed the door closed and authored a 60-degree hinge-opening
 action for door, handle and lock, holding open. Exported closed mesh parts and

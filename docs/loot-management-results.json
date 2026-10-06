@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "version": "1.1.0",
+  "unit_tests": {
+    "tests": 317,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "native": {
+    "client": [
+      "[20:01:31] [Render thread/INFO] [RaidCoreLootSmoke/]: RAIDCORE_LOOT_MANAGEMENT_PASS: real editors and packets, base chance times coefficient, names, F opens existing search UI, right-click blocked, offhand preserved, ordinary blocks, save/load, shared inventory, no reroll, zero coefficient, permission and revision gates",
+      "[20:01:31] [Render thread/INFO] [RaidCoreLootSmoke/]: RAIDCORE_LOOT_PICKUP_PRIORITY_PASS: real ground gun and chest on the same ray, only pickup prompt/action owns F",
+      "[20:01:31] [Render thread/INFO] [RaidCoreLootSmoke/]: RAIDCORE_MODDED_BLOCK_LOOT_PASS: doomsday_decoration:acrate_2, no native inventory, real editor/search, custom name/coefficient, F prompt, original search menu, shared saved inventory and no refill"
+    ],
+    "server": [
+      "[19:42:06] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_LOOT_SERVER_PASS: command, container/item NBT, probability math, dedicated server without client classes",
+      "[19:42:06] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_SERVER_SMOKE_PASS: dedicated startup, one mod, legacy registries, 100 health, stamina, original inventory NBT/components, commands and GWO impact direction mixin without client classes"
+    ]
+  },
+  "modded_block": "doomsday_decoration:acrate_2",
+  "original_search_ui_preserved": true,
+  "default_mod_block_catalog": true,
+  "client_and_server_update_required": true,
+  "artifacts": {
+    "raidcore-1.21.1-neoforge-1.1.0-loot-management.jar": "eb59ef89257521dc42afcde5f9601dc5a4a22cc679781397e180757c8252fa99",
+    "raidcore-1.21.1-neoforge-1.1.0-loot-management-sources.jar": "c6da2e1c0f8ac3663dc0333e53b71407e292434aa1d202fe572d6bf38fcd34fb"
+  }
+}

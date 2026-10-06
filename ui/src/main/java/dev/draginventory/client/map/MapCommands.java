@@ -41,7 +41,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
  *       1.62~9.0，即屏幕百分比 108%~600%；reset 回默认）；</li>
  *   <li>timer：无参反馈状态（剩余/默认）；timer &lt;时长&gt; 立刻开始倒计时
  *       （支持 25:00、1:30:00、30m、1h30m、90s、纯数字=分钟）；timer default &lt;时长&gt;
- *       设默认时长（进世界自动按此时长开始）；timer reset 重置为默认时长；timer off 关闭
+ *       设手动默认时长；timer reset 重置为默认时长；timer off 关闭手动计时
  *       （v2.5.5，小地图计时行）</li>
  *   <li>follow &lt;on|off&gt;：打开地图时居中玩家</li>
  *   <li>marker style &lt;tactical|minimal&gt;：标点风格（未知报错列合法值）；
@@ -242,17 +242,19 @@ public final class MapCommands {
                         // 无参：计时状态（剩余时间 / 默认时长）；off 状态显示字面 off。
                         .executes(ctx -> {
                             feedback(ctx, K + "timer",
-                                    Component.literal(MapMatchTimer.isRunning()
+                                    Component.literal(MapMatchTimer.hasProvider() || MapMatchTimer.isRunning()
                                             ? MapMatchTimer.format() : "off"),
                                     Component.literal(MapMatchTimer.formatSeconds(MapMatchTimer.defaultDuration())));
                             return 1;
                         })
                         .then(Commands.literal("off").executes(ctx -> {
+                            if (!manualTimerAvailable(ctx)) return 0;
                             MapMatchTimer.stop();
                             feedback(ctx, K + "timer_off");
                             return 1;
                         }))
                         .then(Commands.literal("reset").executes(ctx -> {
+                            if (!manualTimerAvailable(ctx)) return 0;
                             MapMatchTimer.restartDefault();
                             feedback(ctx, K + "timer_reset", Component.literal(MapMatchTimer.format()));
                             return 1;
@@ -336,7 +338,7 @@ public final class MapCommands {
                     Component markers = Component.literal(MapConfig.MARKERS_VISIBLE.get() ? "on" : "off")
                             .append(" · ").append(pingTypeName());
                     // 对局计时（v2.5.5）：剩余时间或 off 字面。
-                    Component timer = Component.literal(MapMatchTimer.isRunning()
+                    Component timer = Component.literal(MapMatchTimer.hasProvider() || MapMatchTimer.isRunning()
                             ? MapMatchTimer.format() : "off");
                     // 占位符与实参严格一一对应：本键 10 个 %s，下方恰好传 10 个参数（v1.5.4 教训）。
                     feedback(ctx, K + "info",
@@ -359,6 +361,7 @@ public final class MapCommands {
      * 解析失败时反馈带示例的错误（不静默回退）；写入默认时长同时同步内存与配置。
      */
     private static int setTimerDuration(CommandContext<CommandSourceStack> ctx, boolean asDefault) {
+        if (!asDefault && !manualTimerAvailable(ctx)) return 0;
         String raw = StringArgumentType.getString(ctx, "duration");
         long seconds;
         try {
@@ -378,6 +381,12 @@ public final class MapCommands {
             feedback(ctx, K + "timer_set", Component.literal(formatted));
         }
         return 1;
+    }
+
+    private static boolean manualTimerAvailable(CommandContext<CommandSourceStack> ctx) {
+        if (!MapMatchTimer.hasProvider()) return true;
+        ctx.getSource().sendFailure(Component.translatable(K + "timer_server_controlled"));
+        return false;
     }
 
     private static int setEnabled(CommandContext<CommandSourceStack> ctx, boolean value) {

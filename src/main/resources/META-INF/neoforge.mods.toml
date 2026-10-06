@@ -1,13 +1,13 @@
 modLoader="javafml"
 loaderVersion="[4,)"
-license="MIT (code); CC-BY-4.0 (3D models)"
+license="GNU AGPL v3; CC-BY-4.0 (3D models)"
 
 [[mods]]
 modId="raidcore"
 version="@VERSION@"
 displayName="RaidCore"
 authors="HerraStudio"
-description='''Unified tactical inventory, extraction raids, safe cracking, loot inspection, tactical HUD and maps, stamina, fast weapon switching, peeking and prone actions.'''
+description='''Unified tactical inventory, extraction raids, safe cracking, loot inspection, tactical HUD and maps, stamina, fast weapon switching, peeking, prone actions and angle-projected GWO bullet decals.'''
 
 [[mixins]]
 config="tactical_inventory.mixins.json"
@@ -15,6 +15,8 @@ config="tactical_inventory.mixins.json"
 config="draginventory.mixins.json"
 [[mixins]]
 config="tacticalactions.mixins.json"
+[[mixins]]
+config="raidcore_gwo_decals.mixins.json"
 
 [[dependencies.raidcore]]
 modId="neoforge"

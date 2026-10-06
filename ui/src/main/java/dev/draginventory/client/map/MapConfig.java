@@ -68,8 +68,8 @@ public final class MapConfig {
      */
     public static final ModConfigSpec.BooleanValue MIGRATED;
     /**
-     * 对局默认时长（秒，v2.5.5）：进入世界时小地图计时行自动按此时长开始倒计时；
-     * /map timer default <时长> 写此值。10 分钟与旧版占位显示一致。
+     * 手动计时默认时长（秒）：/map timer default <时长> 写此值，/map timer reset 使用。
+     * 默认30分钟；Raid 对局计时由服务端提供，不受此客户端配置影响。
      */
     public static final ModConfigSpec.IntValue MATCH_TIMER_DURATION;
 
@@ -161,7 +161,7 @@ public final class MapConfig {
         LAYER_SPAN = reg(b.defineInRange("layer_span", 4, 1, 16));
         CLEAN_ON_OPEN = reg(b.define("clean_on_open", false));
         MIGRATED = reg(b.define("migrated", false));
-        MATCH_TIMER_DURATION = reg(b.defineInRange("match_timer_seconds", 600, 1, 86400));
+        MATCH_TIMER_DURATION = reg(b.defineInRange("match_timer_seconds", (int) MapMatchTimer.DEFAULT_DURATION_SECONDS, 1, 86400));
         b.pop();
 
         b.comment("图层开关：控制各语义图层是否参与绘制。",

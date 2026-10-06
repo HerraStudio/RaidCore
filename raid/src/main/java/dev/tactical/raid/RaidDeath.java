@@ -15,7 +15,7 @@ public final class RaidDeath {
     private static final String HANDLED = "tactical_inventory:raid_death_dropped";
     public static boolean applies(ServerPlayer player) {
         var raid = RaidManager.current(player);
-        return raid != null && (raid.session.active()
+        return raid != null && (raid.session.inRaid()
                 || raid.returnPending && raid.session.outcome() == RaidSession.Outcome.DEAD);
     }
     public static void dropEquipment(ServerPlayer player) {

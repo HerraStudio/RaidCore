@@ -97,7 +97,7 @@ public final class TacticalMapApi {
 
     /**
      * 注册对局系统 Provider（最高优先级）：注册后小地图/大地图倒计时恒取其剩余秒数，
-     * 渲染层零改动；传 null 注销回到手动模式。见 {@link MapMatchTimer.Provider}。
+     * 渲染层零改动；传 null 注销回到内置 Raid 或手动模式。见 {@link MapMatchTimer.Provider}。
      */
     public static void registerTimerProvider(MapMatchTimer.Provider provider) {
         MapMatchTimer.register(provider);
@@ -113,12 +113,12 @@ public final class TacticalMapApi {
         MapMatchTimer.addSeconds(seconds);
     }
 
-    /** 停止倒计时（小地图计时行整行隐藏；与 /map timer off 同口径）。 */
+    /** 停止手动倒计时（无 Provider 时隐藏；不会改变 Raid 或外部系统的对局时钟）。 */
     public static void stopCountdown() {
         MapMatchTimer.stop();
     }
 
-    /** 剩余秒数（Provider &gt; 手动；-1 = 未运行且无 Provider，展示层据此隐藏）。 */
+    /** 剩余秒数（外部 Provider &gt; Raid &gt; 手动；-1 = 未运行且无 Provider）。 */
     public static long remainingSeconds() {
         return MapMatchTimer.remainingSeconds();
     }

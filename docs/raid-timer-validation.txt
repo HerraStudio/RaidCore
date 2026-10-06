@@ -1,0 +1,23 @@
+RaidCore 1.0.4 Raid countdown verification — 2026-10-05 (Asia/Shanghai)
+300 tests / 35 suites / 0 failures / 0 errors / 0 skipped
+Final command: gradlew.bat clean build
+Native commands: gradlew.bat runServer -PraidCoreSmoke; gradlew.bat runClient -PraidCoreSmoke
+Default duration: 1800 seconds / 36000 server ticks
+Native timeout fixture: 2 seconds / exactly 40 elapsed server ticks
+Gameplay tests: actual snapshot and minimap, future-only duration update, abort/ack, timeout/lobby/settlement, rejoin/logout cleanup
+
+Native PASS markers:
+[17:27:20] [modloading-worker-0/INFO] [DragInventory/]: RaidCore HUD initialized: version=1.0.4 (source=Drag Inventory 2.6.1, dist=DEDICATED_SERVER, java=21.0.12.1+1-LTS)
+[17:27:20] [modloading-worker-0/INFO] [RaidCore/]: RaidCore 1.0.4 initialized: Tactical Inventory 1.0.20, Drag Inventory 2.6.1, Tactical Actions 1.1.0
+[17:27:23] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_RAID_TIMER_SERVER_PASS: duration command, 30-minute legacy defaults, config/session NBT persistence and timeout outcome
+[17:27:23] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_SERVER_SMOKE_PASS: dedicated startup, one mod, legacy registries, 100 health, stamina, original inventory NBT/components, commands and GWO impact direction mixin without client classes
+[17:28:50] [modloading-worker-0/INFO] [DragInventory/]: RaidCore HUD initialized: version=1.0.4 (source=Drag Inventory 2.6.1, dist=CLIENT, java=21.0.12.1+1-LTS)
+[17:28:50] [modloading-worker-0/INFO] [RaidCore/]: RaidCore 1.0.4 initialized: Tactical Inventory 1.0.20, Drag Inventory 2.6.1, Tactical Actions 1.1.0
+[17:29:16] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_BOOTSTRAP_PASS: one mod, legacy registries, all four configs, keys, three Mixin families, health/stamina, payloads and PAL factories
+[17:29:30] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_PEEK_SYNC_PASS: actual key input, left/right/both, legacy payloads, fixed player position
+[17:29:31] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_MAP_PASS: original M binding opened and rendered the v2.6.1 map
+[17:29:37] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_RAID_TIMER_CLIENT_PASS: real snapshots, thirty-minute minimap timer, future-only duration change, abort/ack, timed expiry/lobby/settlement, rejoin and logout cleanup
+[17:29:37] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_CLIENT_SMOKE_PASS
+
+Release JAR SHA256: 64acb77f4c11ed4a67a4ea94af131baa82ce38a89e0c6f9bd778a0940535a171
+Sources JAR SHA256: 5e956e97c5427a5f825b7b1b0cc3216ebb0a4c66f33e7ff755270f2a9af5d225

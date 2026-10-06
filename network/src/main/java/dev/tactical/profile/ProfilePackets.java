@@ -17,12 +17,17 @@ public final class ProfilePackets {
         public static final StreamCodec<RegistryFriendlyByteBuf,Request> CODEC=StreamCodec.of((b,p)->b.writeBoolean(p.open),b->new Request(b.readBoolean()));
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
-    public record Edit(int request,int revision,String item,String content,int width,int height,String rarity,boolean reset) implements CustomPacketPayload {
+    public record Edit(int request,int revision,String item,String content,int width,int height,String rarity,boolean reset,
+                       boolean lootable,double baseDropChance) implements CustomPacketPayload {
+        public Edit(int request,int revision,String item,String content,int width,int height,String rarity,boolean reset) {
+            this(request,revision,item,content,width,height,rarity,reset,false,0);
+        }
         public static final Type<Edit> TYPE=new Type<>(id("profiles_edit"));
         public static final StreamCodec<RegistryFriendlyByteBuf,Edit> CODEC=StreamCodec.of((b,p)->{
             b.writeInt(p.request); b.writeInt(p.revision); b.writeUtf(p.item,256); b.writeUtf(p.content,256);
             b.writeInt(p.width); b.writeInt(p.height); b.writeUtf(p.rarity,32); b.writeBoolean(p.reset);
-        },b->new Edit(b.readInt(),b.readInt(),b.readUtf(256),b.readUtf(256),b.readInt(),b.readInt(),b.readUtf(32),b.readBoolean()));
+            b.writeBoolean(p.lootable); b.writeDouble(p.baseDropChance);
+        },b->new Edit(b.readInt(),b.readInt(),b.readUtf(256),b.readUtf(256),b.readInt(),b.readInt(),b.readUtf(32),b.readBoolean(),b.readBoolean(),b.readDouble()));
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
     public record State(CompoundTag data,boolean open,boolean editable,int request,boolean accepted,String notice) implements CustomPacketPayload {
@@ -34,7 +39,7 @@ public final class ProfilePackets {
         @Override public Type<? extends CustomPacketPayload> type() { return TYPE; }
     }
     public static void register(RegisterPayloadHandlersEvent event) {
-        var registrar=event.registrar("1");
+        var registrar=event.registrar("2");
         registrar.playToServer(Request.TYPE,Request.CODEC,(p,ctx)->{
             if(ctx.player() instanceof ServerPlayer player) ProfileService.send(player,p.open,-1,true,"");
         });

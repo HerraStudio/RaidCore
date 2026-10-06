@@ -47,6 +47,9 @@ public final class GoldSmoke {
         image=null;
     }
     @SubscribeEvent public static void tick(ClientTickEvent.Post event) throws Exception {
+        if (Boolean.getBoolean("raidcore.decalSmoke") || Boolean.getBoolean("raidcore.safeSmoke")
+                || Boolean.getBoolean("raidcore.evacuationSmoke") || Boolean.getBoolean("raidcore.sharedSmoke")
+                || Boolean.getBoolean("raidcore.lootSmoke")) return;
         var mc=Minecraft.getInstance();
         if(!started && mc.screen instanceof TitleScreen && mc.getOverlay()==null) {
             started=true; mc.getWindow().setWindowed(1440,900); mc.options.guiScale().set(2);

@@ -26,7 +26,13 @@ public final class LootContainers {
         });
     }
 
-    public static OptionalInt openSafe(ServerPlayer player,SafeBlockEntity safe) { return open(player,safe); }
+    public static OptionalInt openSafe(ServerPlayer player,SafeBlockEntity safe) {
+        if(!LootSettings.searchable(safe.getBlockState())) return OptionalInt.empty();
+        return open(player,new MenuProvider() {
+            @Override public Component getDisplayName() { return LootService.title(safe); }
+            @Override public AbstractContainerMenu createMenu(int id,Inventory inventory,Player owner) { return safe.createMenu(id,inventory,owner); }
+        });
+    }
 
     private LootContainers() {}
 }

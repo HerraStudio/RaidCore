@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-03",
+  "timezone": "Asia/Shanghai",
+  "version": "1.0.2",
+  "environment": "Windows, Java 21, Minecraft 1.21.1, NeoForge 21.1.251",
+  "unit_tests": {
+    "groups": {
+      "Drag Inventory": {
+        "tests": 181,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "Tactical Actions": {
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "Tactical Inventory": {
+        "tests": 69,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "RaidCore": {
+        "tests": 15,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "total": {
+      "tests": 287,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "suites": 34
+  },
+  "client_native_pass": true,
+  "dedicated_server_native_pass": true,
+  "gwo_decal_native_pass": true,
+  "source_parity_baseline_version": "1.0.0",
+  "gwo_decal_overlap_native_pass": true,
+  "source_parity": {
+    "original_files_unchanged": 391,
+    "runtime_resources_byte_identical": 58,
+    "single_mod_entry": "src/main/java/dev/herrastudio/raidcore/RaidCore.java",
+    "unselected_projects_imported": 0,
+    "passed": true
+  },
+  "jar_sha256": "cef30227879075090bd4cec676e307ef6cc0d7c2c5b3c5ca73a5bde39eeab823",
+  "sources_jar_sha256": "434a1e991d508af1ad60a12277d1a8192fa5c0dbab74a3f984ed75e50d0e0702",
+  "module_layout": {
+    "passed": true,
+    "modules": [
+      "ui",
+      "inventory",
+      "loot",
+      "action",
+      "player",
+      "network",
+      "api",
+      "raid"
+    ],
+    "main_java_files": 199,
+    "runtime_resource_files": 60,
+    "single_mod_entry": "src/main/java/dev/herrastudio/raidcore/RaidCore.java",
+    "duplicate_resource_paths": 0,
+    "java_package_paths_preserved": true,
+    "legacy_relocated_runtime_files_unchanged": 243,
+    "version": "1.0.2",
+    "current_jar_sha256": "cef30227879075090bd4cec676e307ef6cc0d7c2c5b3c5ca73a5bde39eeab823",
+    "legacy_jar": {
+      "baseline_sha256": "4f1b70d55bd2e9947e24a40e58081cd38359441ddab139c62d848071d1c86c73",
+      "unchanged_entries": 399,
+      "changed_entries": [
+        "LICENSE",
+        "META-INF/neoforge.mods.toml",
+        "dev/herrastudio/raidcore/RaidCore.class"
+      ],
+      "new_entries": [
+        "dev/herrastudio/raidcore/mixin/GwoBlockImpactMixin.class",
+        "dev/herrastudio/raidcore/mixin/GwoDecalMeshMixin.class",
+        "dev/herrastudio/raidcore/mixin/GwoDecalOrderMixin.class",
+        "dev/herrastudio/raidcore/mixin/GwoDecalSurfaceMixin.class",
+        "dev/herrastudio/raidcore/mixin/GwoDecalVerticesMixin.class",
+        "dev/herrastudio/raidcore/network/ImpactDecalNetwork$ProjectedImpact.class",
+        "dev/herrastudio/raidcore/network/ImpactDecalNetwork.class",
+        "dev/herrastudio/raidcore/ui/decal/GwoImpactMesh.class",
+        "dev/herrastudio/raidcore/ui/decal/GwoProjectedDecals$Context.class",
+        "dev/herrastudio/raidcore/ui/decal/GwoProjectedDecals.class",
+        "dev/herrastudio/raidcore/ui/decal/ImpactProjection$Mesh.class",
+        "dev/herrastudio/raidcore/ui/decal/ImpactProjection.class",
+        "dev/herrastudio/raidcore/ui/decal/ProjectedDecal.class",
+        "raidcore_gwo_decals.mixins.json"
+      ]
+    }
+  }
+}

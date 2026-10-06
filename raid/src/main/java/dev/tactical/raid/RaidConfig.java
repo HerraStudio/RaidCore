@@ -9,6 +9,9 @@ import net.minecraft.nbt.Tag;
 public final class RaidConfig {
     public static final String DEFAULT_FX = "tactical_inventory:evacuation_smoke";
     public String mapName = "战术行动";
+    /** Captured by each new session; changing this does not restart an ongoing raid. */
+    public int matchDurationSeconds = RaidSession.DEFAULT_MATCH_DURATION_SECONDS;
+    public int minimumPlayers = 2;
     public Location lobby;
     public final Map<String, Location> spawns = new LinkedHashMap<>();
     public final Map<String, Extraction> extractions = new LinkedHashMap<>();
@@ -60,6 +63,8 @@ public final class RaidConfig {
     public CompoundTag write() {
         var tag = new CompoundTag();
         tag.putString("name", mapName); tag.putInt("nextSpawn", nextSpawn);
+        tag.putInt("matchDurationSeconds", matchDurationSeconds);
+        tag.putInt("minimumPlayers", minimumPlayers);
         if (lobby != null) tag.put("lobby", lobby.write());
         var spawnTags = new ListTag();
         spawns.forEach((id, location) -> { var item = location.write(); item.putString("id", id); spawnTags.add(item); });
@@ -72,6 +77,10 @@ public final class RaidConfig {
     public static RaidConfig read(CompoundTag tag) {
         var config = new RaidConfig();
         if (!tag.getString("name").isBlank()) config.mapName = tag.getString("name");
+        int seconds = tag.getInt("matchDurationSeconds");
+        if (seconds > 0) config.matchDurationSeconds = Math.min(RaidSession.MAX_MATCH_DURATION_SECONDS, seconds);
+        int minimum = tag.getInt("minimumPlayers");
+        if (minimum > 0) config.minimumPlayers = Math.min(64, minimum);
         config.nextSpawn = Math.max(0, tag.getInt("nextSpawn"));
         if (tag.contains("lobby", Tag.TAG_COMPOUND)) {
             try { config.lobby = Location.read(tag.getCompound("lobby")); } catch (IllegalArgumentException ignored) { }

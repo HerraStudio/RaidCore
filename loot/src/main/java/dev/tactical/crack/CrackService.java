@@ -50,7 +50,8 @@ public final class CrackService {
         if(!player.isAlive() || player.isSpectator() || player.isPassenger() || locked(player)
                 || player.containerMenu!=player.inventoryMenu || player.distanceToSqr(Vec3.atCenterOf(pos))>RANGE_SQUARED
                 || !player.serverLevel().hasChunkAt(pos)
-                || !(player.serverLevel().getBlockEntity(pos) instanceof SafeBlockEntity safe)) return false;
+                  || !dev.tactical.loot.LootSettings.searchable(player.serverLevel().getBlockState(pos))
+                  || !(player.serverLevel().getBlockEntity(pos) instanceof SafeBlockEntity safe)) return false;
         if(safe.getBlockState().getValue(SafeBlock.OPEN) || safe.rewardGenerated()) { safe.requestOpen(player); return false; }
         if(ACTIVE.values().stream().anyMatch(session->session.safe==safe)) { tell(player,"保险箱正在被其他玩家破译"); return false; }
         if(now<safe.retryAfter()) { tell(player,"保险箱设备冷却中"); return false; }
@@ -157,6 +158,7 @@ public final class CrackService {
         var safe=session.safe;
         if(safe.rewardGenerated()) return;
         safe.markRewardGenerated();
+        if(dev.tactical.loot.LootService.safeReward(session.player,safe)) return;
         var key=ResourceKey.create(Registries.LOOT_TABLE,ResourceLocation.fromNamespaceAndPath("tactical_inventory","chests/safe_decrypted"));
         var table=session.player.server.reloadableRegistries().getLootTable(key);
         var params=new LootParams.Builder(session.player.serverLevel())

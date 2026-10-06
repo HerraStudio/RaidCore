@@ -1,0 +1,2 @@
+[19:42:06] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_LOOT_SERVER_PASS: command, container/item NBT, probability math, dedicated server without client classes
+[19:42:06] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_SERVER_SMOKE_PASS: dedicated startup, one mod, legacy registries, 100 health, stamina, original inventory NBT/components, commands and GWO impact direction mixin without client classes

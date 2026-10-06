@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-05",
+  "version": "1.0.3",
+  "unit_tests": {
+    "tests": 287,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "native_shader_material_pass": true,
+  "native_door_animation_and_loot_pass": true,
+  "production_classes_byte_identical_to_1_0_2": 348,
+  "added_jar_resources": [
+    "assets/tactical_inventory/textures/block/safe_color_n.png",
+    "assets/tactical_inventory/textures/block/safe_color_s.png"
+  ],
+  "changed_jar_resources": [
+    "ASSET_LICENSES.md",
+    "META-INF/neoforge.mods.toml",
+    "assets/tactical_inventory/models/block/safe_credits.txt"
+  ],
+  "jar_sha256": "1c69a46337f47e359178cb071a46f95d1b9f5a3cc6e06b6f65897ae7e4806249",
+  "material_conversion": {
+    "passed": true,
+    "original_albedo_unchanged": true,
+    "all_pixels_checked": 4194304,
+    "source_normal_xy_preserved_with_Y_conversion": true,
+    "source_roughness_preserved": true,
+    "source_metal_regions_preserved": true,
+    "metal_pixels": 3621675,
+    "nonmetal_pixels": 572629,
+    "smoothness_range": [
+      45,
+      255
+    ],
+    "source_model_sha256": "c14d8a3bf0b2c1f855c745bf150c835302ee65d700dcf634f8022f48477b6a11"
+  }
+}

@@ -23,8 +23,15 @@ public final class RaidHud {
     private float transitionTo;
     private long pulseAt;
     private int displayedSeconds = -1;
+    private boolean waiting;
+    private int waitingPlayers, minimumPlayers;
+    private String waitingMap = "";
 
     public void accept(CompoundTag snapshot) {
+        waiting = "WAITING".equals(snapshot.getString("status"));
+        waitingPlayers = snapshot.getInt("matchPlayers");
+        minimumPlayers = Math.max(1, snapshot.getInt("minimumPlayers"));
+        waitingMap = snapshot.getString("map");
         long now = Util.getMillis();
         boolean nextExtracting = "EXTRACTING".equals(snapshot.getString("status"));
         UUID nextSession = snapshot.hasUUID("session") ? snapshot.getUUID("session") : null;
@@ -57,6 +64,9 @@ public final class RaidHud {
     }
 
     public void clear() {
+        waiting = false;
+        waitingPlayers = minimumPlayers = 0;
+        waitingMap = "";
         session = null;
         zone = "";
         extracting = false;
@@ -70,6 +80,11 @@ public final class RaidHud {
     public void render(GuiGraphics graphics, float partialTick) {
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.player == null || minecraft.options.hideGui) return;
+        if (waiting) {
+            int center = minecraft.getWindow().getGuiScaledWidth() / 2;
+            graphics.drawCenteredString(minecraft.font, waitingMap + " · 等待开局（" + waitingPlayers + "/"
+                    + minimumPlayers + "）", center, 43, GREEN);
+        }
         long now = Util.getMillis();
         float visible = visibility(now);
         if (visible <= 0.001f) return;

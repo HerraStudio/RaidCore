@@ -27,7 +27,7 @@ public final class CrackClient {
         BlockPos winner=null; double distance=Double.MAX_VALUE;
         var base=mc.player.blockPosition();
         for(BlockPos pos:BlockPos.betweenClosed(base.offset(-4,-2,-4),base.offset(4,2,4))) {
-            if(!mc.level.getBlockState(pos).is(Tactical.SAFE.get())) continue;
+            if(!mc.level.getBlockState(pos).is(Tactical.SAFE.get()) || !dev.tactical.loot.LootSettings.searchable(mc.level.getBlockState(pos))) continue;
             var hit=mc.level.getBlockState(pos).getShape(mc.level,pos).bounds().move(pos).clip(eye,end);
             if(hit.isPresent() && eye.distanceToSqr(hit.get())<distance && mc.player.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(pos))<=12.25) {
                 winner=pos.immutable(); distance=eye.distanceToSqr(hit.get());

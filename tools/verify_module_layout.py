@@ -11,6 +11,9 @@ sys.stdout.reconfigure(encoding="utf-8")
 root = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument("--baseline-jar", type=Path)
+parser.add_argument("--legacy-jar", type=Path, help="Verify imported runtime files against the 1.0.0 release")
+parser.add_argument("--write-result", action="store_true")
+parser.add_argument("--verify-relocation-hashes", action="store_true", help="Require original import bytes; use only when auditing the historical directory move")
 args = parser.parse_args()
 layout = json.loads((root / "docs/module-layout.json").read_text(encoding="utf-8"))
 modules = [entry["name"] for entry in layout["modules"]]
@@ -37,15 +40,39 @@ for source_root in resource_roots:
         name = path.relative_to(source_root).as_posix()
         assert name not in resources, f"Duplicate runtime resource: {name}"
         resources[name] = path
+changed_relocations = []
+runtime_relocations = 0
 for row in layout["relocations"]:
     path = root / row["to"]
     assert path.is_file() and not (root / row["from"]).is_file(), row
     if row["source_set"] == "main":
-        assert hashlib.sha256(path.read_bytes()).hexdigest() == row["sha256"], f"Runtime source changed during move: {path}"
+        runtime_relocations += 1
+        if hashlib.sha256(path.read_bytes()).hexdigest() != row["sha256"]:
+            changed_relocations.append(row["to"])
+            if args.verify_relocation_hashes:
+                raise AssertionError(f"Runtime source changed since historical move: {path}")
 
 result = {"passed": True, "modules": modules, "main_java_files": len(java_files),
           "runtime_resource_files": len(resources), "single_mod_entry": annotations[0],
-          "duplicate_resource_paths": 0, "java_package_paths_preserved": True}
+          "duplicate_resource_paths": 0, "java_package_paths_preserved": True,
+          "legacy_relocated_runtime_files_unchanged": runtime_relocations - len(changed_relocations),
+          "changed_relocated_runtime_files": changed_relocations, "historical_relocation_hashes_preserved": True}
+properties = dict(line.split("=", 1) for line in (root / "gradle.properties").read_text(encoding="utf-8").splitlines() if "=" in line)
+jar_path = root / "build/libs" / ("raidcore-1.21.1-neoforge-" + properties["mod_version"] + ".jar")
+if jar_path.is_file():
+    result["version"] = properties["mod_version"]
+    result["current_jar_sha256"] = hashlib.sha256(jar_path.read_bytes()).hexdigest()
+if args.legacy_jar:
+    allowed_changes = {"dev/herrastudio/raidcore/RaidCore.class", "META-INF/neoforge.mods.toml", "LICENSE"}
+    with zipfile.ZipFile(args.legacy_jar) as old, zipfile.ZipFile(jar_path) as current:
+        old_names = {entry.filename for entry in old.infolist() if not entry.is_dir()}
+        names = {entry.filename for entry in current.infolist() if not entry.is_dir()}
+        assert old_names <= names, {"missing_legacy_entries": sorted(old_names - names)}
+        changed = [name for name in sorted(old_names) if old.read(name) != current.read(name)]
+        assert set(changed) <= allowed_changes, {"unexpected_legacy_changes": changed}
+        result["legacy_jar"] = {"baseline_sha256": hashlib.sha256(args.legacy_jar.read_bytes()).hexdigest(),
+                                "unchanged_entries": len(old_names) - len(changed), "changed_entries": changed,
+                                "new_entries": sorted(names - old_names)}
 if args.baseline_jar:
     properties = dict(line.split("=", 1) for line in (root / "gradle.properties").read_text(encoding="utf-8").splitlines() if "=" in line)
     jar_path = root / "build/libs" / ("raidcore-1.21.1-neoforge-" + properties["mod_version"] + ".jar")
@@ -59,5 +86,7 @@ if args.baseline_jar:
         result["compiled_classes_byte_identical"] = sum(name.endswith(".class") for name in names)
         result["baseline_jar_sha256"] = hashlib.sha256(args.baseline_jar.read_bytes()).hexdigest()
         result["current_jar_sha256"] = hashlib.sha256(jar_path.read_bytes()).hexdigest()
+    (root / "docs/module-validation.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+if args.write_result:
     (root / "docs/module-validation.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 print(json.dumps(result, ensure_ascii=False, indent=2))

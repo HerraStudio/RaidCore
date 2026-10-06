@@ -7,15 +7,16 @@ import java.util.regex.Pattern;
 /**
  * 对局倒计时（v2.5.5 从静态占位升级为真实倒计时）。
  *
- * <p>三层优先级：</p>
+ * <p>计时来源优先级：</p>
  * <ol>
  *   <li><b>Provider</b>（最高）：对局系统（如 GWO 服务器下发真实剩余时间）实现
  *       {@link Provider} 并 {@link #register} 后，地图/小地图自动改用真实值，
  *       无需改任何渲染代码；</li>
+ *   <li><b>Raid 对局</b>：内置 Raid 的服务端剩余时间，入场接管、结算或断线后清除；</li>
  *   <li><b>手动倒计时</b>：{@code /map timer <时长>} 立刻开始倒计时（deadline 时间戳制，
- *       帧率无关、暂停菜单也不停表，符合对局计时的真实语义）；</li>
- *   <li><b>自动开始</b>：进入世界时按默认时长（{@code general.match_timer_seconds}，
- *       {@code /map timer default <时长>} 可改）自动开始——这是无 Provider 时的常态。</li>
+ *       帧率无关、暂停菜单也不停表，符合对局计时的真实语义）；
+ *       {@code /map timer reset} 使用客户端默认时长（{@code general.match_timer_seconds}，
+ *       {@code /map timer default <时长>} 可改）。进入世界不自动开始。</li>
  * </ol>
  *
  * <p>小地图 HUD（{@code FactoryMinimapHud}）每帧经 {@link #remainingSeconds} 读取：
@@ -35,8 +36,8 @@ public final class MapMatchTimer {
     /** 对局系统实现此接口提供剩余秒数；注册后地图/小地图自动改用真实值。 */
     public interface Provider { long remainingSeconds(); }
 
-    /** 默认对局时长（10 分钟）：进入世界自动按此时长开始倒计时；与旧版占位显示值一致。 */
-    public static final long DEFAULT_DURATION_SECONDS = 600L;
+    /** 手动计时默认时长（30 分钟）；Raid 对局时长由服务端单独配置。 */
+    public static final long DEFAULT_DURATION_SECONDS = 1800L;
     /** 时长上限（24 小时）：解析与配置范围共用的硬顶。 */
     public static final long MAX_DURATION_SECONDS = 86_400L;
 
@@ -44,6 +45,7 @@ public final class MapMatchTimer {
     private static final Pattern SUFFIX = Pattern.compile("^(?:(\\d+)h)?(?:(\\d+)m)?(?:(\\d+)s)?$");
 
     private static volatile Provider provider;
+    private static volatile Provider raidProvider;
     private static volatile long defaultDurationSeconds = DEFAULT_DURATION_SECONDS;
     /** 倒计时截止时刻（epoch 毫秒）；running=false 时不参与计算。 */
     private static volatile long deadlineMillis;
@@ -51,13 +53,16 @@ public final class MapMatchTimer {
 
     private MapMatchTimer() {}
 
-    /** 注册提供者（对局系统启动时调用一次；传 null 注销，回到手动倒计时模式）。 */
+    /** 注册外部提供者；传 null 注销，回到内置 Raid 或手动倒计时。 */
     public static void register(Provider p) { provider = p; }
+
+    /** 内置 Raid 的计时来源；外部 Provider 保持最高优先级。 */
+    public static void registerRaidProvider(Provider p) { raidProvider = p; }
 
     /** 当前默认对局时长（秒）。 */
     public static long defaultDuration() { return defaultDurationSeconds; }
 
-    /** 设置默认对局时长（秒，夹进 [1, 24h]）；进入世界时按此时长自动开始倒计时。 */
+    /** 设置手动计时默认时长（秒，夹进 [1, 24h]）；/map timer reset 使用此值。 */
     public static void setDefaultDuration(long seconds) {
         defaultDurationSeconds = Math.max(1L, Math.min(MAX_DURATION_SECONDS, seconds));
     }
@@ -69,10 +74,10 @@ public final class MapMatchTimer {
         running = true;
     }
 
-    /** 按默认时长重新开始倒计时（/map timer reset 与进入世界时调用）。 */
+    /** 按默认时长重新开始手动倒计时（/map timer reset）。 */
     public static void restartDefault() { start(defaultDurationSeconds); }
 
-    /** 停止倒计时（/map timer off 与退出世界时调用）：小地图计时行整行隐藏；
+    /** 停止手动倒计时（/map timer off 与退出世界时调用）：无 Provider 时计时行隐藏；
      * 归零时刻一并复位（隐藏不是结束，下次重新开始时重新走停留计时）。 */
     public static void stop() {
         running = false;
@@ -91,16 +96,16 @@ public final class MapMatchTimer {
      * 由 Provider 下发新值）。
      */
     public static void addSeconds(long seconds) {
-        if (!running || provider != null || seconds == 0) return;
+        if (!running || hasProvider() || seconds == 0) return;
         long shifted = deadlineMillis + seconds * 1000L;
         deadlineMillis = Math.max(System.currentTimeMillis(), shifted);
     }
 
     /** 手动倒计时的截止时刻（epoch 毫秒）；未运行或 Provider 模式为 0（供外部系统对表/显示）。 */
-    public static long deadlineMillis() { return running && provider == null ? deadlineMillis : 0L; }
+    public static long deadlineMillis() { return running && !hasProvider() ? deadlineMillis : 0L; }
 
     /** 是否已注册对局系统 Provider（外部系统自省用）。 */
-    public static boolean hasProvider() { return provider != null; }
+    public static boolean hasProvider() { return provider != null || raidProvider != null; }
 
     /**
      * "对局结束"回调（v2.5.7）：剩余时间从 &gt; 0 首次到达 0 时触发一次（手动与 Provider
@@ -141,12 +146,13 @@ public final class MapMatchTimer {
     public static long endedAtMillis() { return endedAtMillis; }
 
     /**
-     * 剩余秒数：已注册 Provider 时恒取其值并夹到 &ge;0（最高优先级）；
+     * 剩余秒数：外部 Provider 优先，其次内置 Raid Provider，均夹到 &ge;0；
      * 否则手动倒计时返回向上取整的剩余秒数（夹到 &ge;0，最后一秒完整走完才归零）；
      * 未开始 / 已停止返回 -1（调用方据此隐藏计时行）。
      */
     public static long remainingSeconds() {
         Provider p = provider;
+        if (p == null) p = raidProvider;
         if (p != null) return Math.max(0L, p.remainingSeconds());
         if (!running) return -1L;
         long ms = deadlineMillis - System.currentTimeMillis();

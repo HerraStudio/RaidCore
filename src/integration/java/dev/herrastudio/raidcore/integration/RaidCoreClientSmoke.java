@@ -7,10 +7,17 @@ import dev.draginventory.client.compass.CompassConfig;
 import dev.draginventory.client.map.FactoryMapKeyBindings;
 import dev.draginventory.client.map.FactoryMapScreen;
 import dev.draginventory.client.map.MapConfig;
+import dev.draginventory.client.map.MapMatchTimer;
 import dev.draginventory.client.wheel.WheelKeyBindings;
 import dev.herrastudio.raidcore.RaidCore;
 import dev.herrastudio.tacticalactions.*;
 import dev.tactical.Packets;
+import dev.tactical.raid.RaidConfig;
+import dev.tactical.raid.RaidManager;
+import dev.tactical.raid.RaidSavedData;
+import dev.tactical.raid.RaidSession;
+import dev.tactical.raid.client.RaidClient;
+import dev.tactical.raid.client.RaidSettlementScreen;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Screenshot;
@@ -102,6 +109,76 @@ public final class RaidCoreClientSmoke {
         } else if (phase == 5 && ticks >= 8) {
             mc.screen.onClose();
             log("RAIDCORE_MAP_PASS: original M binding opened and rendered the v2.6.1 map");
+            beginRaidClock();
+            phase = 6; ticks = 0;
+        } else if (phase == 6 && ticks >= 8) {
+            require(MapMatchTimer.hasProvider() && MapMatchTimer.remainingSeconds() >= 1798
+                    && MapMatchTimer.remainingSeconds() <= 1800, "Thirty-minute server Raid timer did not reach minimap");
+            capture = "raidcore-raid-timer.png";
+            value(p -> {
+                var session = RaidManager.current(p).session;
+                long elapsed = session.elapsedTicks();
+                try {
+                    require(p.server.getCommands().getDispatcher().execute("raid duration 1",
+                            p.createCommandSourceStack().withPermission(4)) == 1, "Duration command failed");
+                } catch (com.mojang.brigadier.exceptions.CommandSyntaxException error) {
+                    throw new IllegalStateException(error);
+                }
+                require(RaidSavedData.get(p.server).config.matchDurationSeconds == 60
+                        && session.matchDurationTicks() == 36_000 && session.elapsedTicks() == elapsed,
+                        "Changing default duration restarted an active Raid");
+                return true;
+            });
+            phase = 7; ticks = 0;
+        } else if (phase == 7 && ticks >= 8) {
+            require(value(p -> RaidManager.finish(p, RaidSession.Outcome.ABORTED, true)), "Raid abort failed");
+            phase = 8; ticks = 0;
+        } else if (phase == 8 && ticks >= 8) {
+            require(mc.screen instanceof RaidSettlementScreen, "Raid abort settlement not displayed");
+            require(MapMatchTimer.remainingSeconds() == -1 && !MapMatchTimer.hasProvider(), "Settled Raid left a stale map timer");
+            require(value(RaidCoreClientSmoke::inLobby), "Raid abort did not return to lobby");
+            mc.screen.onClose();
+            phase = 9; ticks = 0;
+        } else if (phase == 9 && ticks >= 8) {
+            require(value(p -> RaidManager.current(p) == null), "Settlement acknowledgement did not clear the server record");
+            value(p -> {
+                RaidSavedData.get(p.server).config.matchDurationSeconds = 2;
+                require(RaidManager.join(p), "Short timeout Raid could not start");
+                require(RaidManager.start(p.server), "Short timeout shared start failed");
+                return true;
+            });
+            phase = 10; ticks = 0;
+        } else if (phase == 10 && ticks >= 55) {
+            require(value(p -> {
+                var record = RaidManager.current(p);
+                return record.session.outcome() == RaidSession.Outcome.TIMED_OUT
+                        && record.session.elapsedTicks() == 40 && record.session.remainingMatchTicks() == 0
+                        && inLobby(p);
+            }), "Server timeout did not settle once at the configured tick and return to lobby");
+            require(mc.screen instanceof RaidSettlementScreen && MapMatchTimer.remainingSeconds() == -1,
+                    "Timeout did not clear client clock and display settlement");
+            capture = "raidcore-raid-timeout.png";
+            phase = 11; ticks = 0;
+        } else if (phase == 11 && ticks >= 8) {
+            mc.screen.onClose();
+            phase = 12; ticks = 0;
+        } else if (phase == 12 && ticks >= 8) {
+            value(p -> {
+                require(RaidManager.current(p) == null, "Timeout acknowledgement failed");
+                RaidSavedData.get(p.server).config.matchDurationSeconds = 1800;
+                require(RaidManager.join(p), "Could not join another Raid after timeout");
+                require(RaidManager.start(p.server), "Next shared Raid could not start");
+                require(RaidManager.current(p).session.remainingMatchTicks() == 36_000, "Next Raid inherited an expired clock");
+                return true;
+            });
+            phase = 13; ticks = 0;
+        } else if (phase == 13 && ticks >= 8) {
+            require(MapMatchTimer.remainingSeconds() >= 1798, "Next Raid did not start with a fresh client clock");
+            value(p -> { RaidManager.logout(p); return true; });
+            require(value(p -> RaidManager.current(p).session.outcome() == RaidSession.Outcome.ABORTED), "Logout did not settle Raid");
+            RaidClient.clear();
+            require(MapMatchTimer.remainingSeconds() == -1 && !MapMatchTimer.hasProvider(), "Disconnect did not clear Raid clock");
+            log("RAIDCORE_RAID_TIMER_CLIENT_PASS: real snapshots, thirty-minute minimap timer, future-only duration change, abort/ack, timed expiry/lobby/settlement, rejoin and logout cleanup");
             log("RAIDCORE_CLIENT_SMOKE_PASS");
             return true;
         }
@@ -124,4 +201,34 @@ public final class RaidCoreClientSmoke {
         return mc.getSingleplayerServer().submit(() -> action.apply(mc.getSingleplayerServer().getPlayerList().getPlayer(id))).join();
     }
     private static void log(String message) { LoggerFactory.getLogger("RaidCoreSmoke").info(message); }
+
+    private static void beginRaidClock() {
+        require(MapMatchTimer.remainingSeconds() == -1, "A lobby timer started without a Raid");
+        value(p -> {
+            var config = new RaidConfig();
+            config.minimumPlayers = 1; // Existing single-client smoke remains a deliberate debug fixture.
+            config.lobby = RaidManager.location(p);
+            var lobby = config.lobby;
+            config.spawns.put("timer", new RaidConfig.Location(lobby.dimension(), lobby.x() + 12,
+                    lobby.y(), lobby.z(), lobby.yaw(), lobby.pitch()));
+            config.extractions.put("timer-exit", new RaidConfig.Extraction("timer-exit",
+                    new RaidConfig.Location(lobby.dimension(), lobby.x() - 32, lobby.y(), lobby.z(), 0, 0),
+                    1, 20, RaidConfig.DEFAULT_FX));
+            var data = RaidSavedData.get(p.server);
+            data.config = config;
+            require(RaidManager.current(p) == null && RaidManager.join(p), "Initial Raid could not start");
+            require(RaidManager.start(p.server), "Initial shared Raid could not start");
+            var snapshot = RaidManager.snapshot(p);
+            require(snapshot.getLong("matchRemainingTicks") == 36_000 && snapshot.getLong("matchTotalTicks") == 36_000,
+                    "Initial server Raid snapshot is not thirty minutes");
+            return true;
+        });
+    }
+
+    private static boolean inLobby(ServerPlayer player) {
+        var record = RaidManager.current(player);
+        var lobby = RaidSavedData.get(player.server).config.lobby;
+        return !record.returnPending && player.level().dimension().location().toString().equals(lobby.dimension())
+                && Math.abs(player.getX() - lobby.x()) < .01 && Math.abs(player.getZ() - lobby.z()) < .01;
+    }
 }

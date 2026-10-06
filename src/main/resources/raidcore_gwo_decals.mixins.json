@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.herrastudio.raidcore.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": ["GwoBlockImpactMixin"],
+  "client": ["GwoDecalVerticesMixin", "GwoDecalSurfaceMixin", "GwoDecalMeshMixin", "GwoDecalOrderMixin"],
+  "injectors": {"defaultRequire": 1}
+}

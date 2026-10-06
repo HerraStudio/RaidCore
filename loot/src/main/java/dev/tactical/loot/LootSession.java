@@ -26,6 +26,7 @@ public final class LootSession {
         }
     }
     private final ChestMenu original;
+    private final java.util.function.Predicate<Player> validity;
     private final Container container;
     private final Component title;
     private final Map<Integer,Entry> entries=new LinkedHashMap<>();
@@ -37,19 +38,26 @@ public final class LootSession {
     public record Deposit(ItemStack stack,Grid.Rect rectangle,boolean rotated) {}
 
     public LootSession(ChestMenu original,Component title) {
-        this.original=original; this.container=original.getContainer(); this.title=title;
+        this(original,title,original::stillValid);
+    }
+    public LootSession(ChestMenu original,Component title,java.util.function.Predicate<Player> validity) {
+        this.original=original; this.container=original.getContainer(); this.title=title; this.validity=validity;
         refresh();
+    }
+    public LootSession(Container container,Component title,Player player,java.util.function.Predicate<Player> validity) {
+        this.original=null; this.container=container; this.title=title; this.validity=validity;
+        container.startOpen(player); refresh();
     }
 
     public static boolean isLootId(int id) { return id<=-2; }
     public static int id(int slot) { return -2-slot; }
     private static int slot(int id) { return -2-id; }
-    public boolean stillValid(Player player) { return !closed && original.stillValid(player); }
+    public boolean stillValid(Player player) { return !closed && validity.test(player); }
     public boolean contains(Container candidate) {
         return candidate==container || container instanceof CompoundContainer compound && compound.contains(candidate);
     }
     public void close(Player player) {
-        if(!closed) { closed=true; original.removed(player); }
+        if(!closed) { closed=true; if(original!=null) original.removed(player); else container.stopOpen(player); }
     }
     private List<Grid.Rect> rectangles(int ignore) {
         return entries.values().stream().filter(entry->entry.slot!=ignore).map(entry->entry.rectangle).toList();

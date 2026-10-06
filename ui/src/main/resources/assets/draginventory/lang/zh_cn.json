@@ -220,8 +220,9 @@
   "draginventory.map.match_timer_over": "对局已结束",
   "draginventory.map.cmd.timer": "对局计时：%s（默认 %s）",
   "draginventory.map.cmd.timer_set": "对局计时已设为 %s，开始倒计时",
-  "draginventory.map.cmd.timer_default_set": "默认对局时长已设为 %s（进入世界自动按此时长开始倒计时）",
+  "draginventory.map.cmd.timer_default_set": "手动计时默认时长已设为 %s（/map timer reset 使用；Raid 时长由服务端配置）",
   "draginventory.map.cmd.timer_reset": "对局计时已重置为默认时长 %s",
   "draginventory.map.cmd.timer_off": "对局计时已关闭（小地图下方不再显示）",
-  "draginventory.map.cmd.timer_bad_duration": "无法解析时长：%s（支持 25:00、1:30:00、30m、1h30m、90s 等写法，纯数字按分钟计）"
+  "draginventory.map.cmd.timer_bad_duration": "无法解析时长：%s（支持 25:00、1:30:00、30m、1h30m、90s 等写法，纯数字按分钟计）",
+  "draginventory.map.cmd.timer_server_controlled": "当前对局倒计时由对局系统控制，不能用手动计时指令修改。"
 }

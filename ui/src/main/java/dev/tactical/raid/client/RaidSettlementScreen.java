@@ -27,8 +27,14 @@ public final class RaidSettlementScreen extends Screen {
         this.result = result.copy();
         this.onAck = java.util.Objects.requireNonNull(onAck);
         extracted = "EXTRACTED".equals(result.getString("outcome"));
-        outcomeText = extracted ? "撤离成功" : "DEAD".equals(result.getString("outcome")) ? "行动失败" : "对局已中断";
-        accent = extracted ? 0xFF35C38B : "DEAD".equals(result.getString("outcome")) ? 0xFFDE776F : 0xFFB5C4C7;
+        boolean failed = "DEAD".equals(result.getString("outcome")) || "TIMED_OUT".equals(result.getString("outcome"));
+        outcomeText = switch (result.getString("outcome")) {
+            case "EXTRACTED" -> "撤离成功";
+            case "DEAD" -> "行动失败";
+            case "TIMED_OUT" -> "行动超时";
+            default -> "对局已中断";
+        };
+        accent = extracted ? 0xFF35C38B : failed ? 0xFFDE776F : 0xFFB5C4C7;
     }
 
     @Override protected void init() {

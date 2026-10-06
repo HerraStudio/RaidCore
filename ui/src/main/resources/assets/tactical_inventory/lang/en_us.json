@@ -6,5 +6,6 @@
   "item.tactical_inventory.headset": "Tactical Headset",
   "item.tactical_inventory.gold_bar": "Fine Gold Bar",
   "key.tactical_inventory.decrypt": "Decrypt safe",
+  "key.tactical_inventory.search": "Search container",
   "key.categories.tactical_inventory": "Tactical Inventory"
 }

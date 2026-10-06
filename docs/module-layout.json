@@ -2,9 +2,9 @@
   "modules": [
     {
       "name": "ui",
-      "description": "背包界面、HUD、地图、方位条、轮盘、标点显示与渲染",
-      "java": 92,
-      "tests": 14,
+      "description": "背包界面、HUD、地图、方位条、轮盘、标点显示与渲染、入射角弹孔与非线性破损网格",
+      "java": 104,
+      "tests": 16,
       "resources": 19
     },
     {
@@ -17,9 +17,9 @@
     {
       "name": "loot",
       "description": "搜刮容器、保险箱、破译、战利品、金条模型与素材",
-      "java": 13,
-      "tests": 4,
-      "resources": 25
+      "java": 21,
+      "tests": 5,
+      "resources": 27
     },
     {
       "name": "action",
@@ -38,7 +38,7 @@
     {
       "name": "network",
       "description": "Payload、网络编解码、收发和选槽同步桥接",
-      "java": 6,
+      "java": 9,
       "tests": 0,
       "resources": 0
     },
@@ -52,8 +52,8 @@
     {
       "name": "raid",
       "description": "对局配置、进入、撤离、死亡、结算、计时与撤离特效",
-      "java": 11,
-      "tests": 2,
+      "java": 12,
+      "tests": 3,
       "resources": 1
     }
   ],
@@ -2267,5 +2267,22 @@
       "kind": "resources",
       "sha256": "2ac50ec69128114a9ae1df3b20c4d96d17eda955099b77c10fc7151187604a88"
     }
+  ],
+  "added_in_1_0_1": [
+    "ui/src/main/java/dev/herrastudio/raidcore/mixin/GwoDecalMeshMixin.java",
+    "ui/src/main/java/dev/herrastudio/raidcore/mixin/GwoDecalSurfaceMixin.java",
+    "ui/src/main/java/dev/herrastudio/raidcore/mixin/GwoDecalVerticesMixin.java",
+    "ui/src/main/java/dev/herrastudio/raidcore/ui/decal/GwoImpactMesh.java",
+    "ui/src/main/java/dev/herrastudio/raidcore/ui/decal/GwoProjectedDecals.java",
+    "ui/src/main/java/dev/herrastudio/raidcore/ui/decal/ImpactProjection.java",
+    "ui/src/main/java/dev/herrastudio/raidcore/ui/decal/ProjectedDecal.java",
+    "network/src/main/java/dev/herrastudio/raidcore/mixin/GwoBlockImpactMixin.java",
+    "network/src/main/java/dev/herrastudio/raidcore/network/ImpactDecalNetwork.java",
+    "src/main/resources/raidcore_gwo_decals.mixins.json",
+    "ui/src/test/java/dev/herrastudio/raidcore/ui/decal/ImpactProjectionTest.java"
+  ],
+  "added_in_1_0_2": [
+    "ui/src/main/java/dev/herrastudio/raidcore/mixin/GwoDecalOrderMixin.java",
+    "src/integration/java/dev/herrastudio/raidcore/integration/RaidCoreDecalOverlapSmoke.java"
   ]
 }

@@ -1,48 +1,21 @@
 {
-  "date": "2026-10-03",
+  "date": "2026-10-06",
   "timezone": "Asia/Shanghai",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "environment": "Windows, Java 21, Minecraft 1.21.1, NeoForge 21.1.251",
+  "build_command": "gradlew.bat clean build",
+  "build_passed": true,
   "unit_tests": {
-    "groups": {
-      "Drag Inventory": {
-        "tests": 181,
-        "failures": 0,
-        "errors": 0,
-        "skipped": 0
-      },
-      "Tactical Actions": {
-        "tests": 22,
-        "failures": 0,
-        "errors": 0,
-        "skipped": 0
-      },
-      "Tactical Inventory": {
-        "tests": 69,
-        "failures": 0,
-        "errors": 0,
-        "skipped": 0
-      }
-    },
     "total": {
-      "tests": 272,
+      "tests": 317,
       "failures": 0,
       "errors": 0,
       "skipped": 0
     },
-    "suites": 33
+    "suites": 37
   },
-  "client_native_pass": true,
-  "dedicated_server_native_pass": true,
-  "source_parity": {
-    "original_files_unchanged": 391,
-    "runtime_resources_byte_identical": 58,
-    "single_mod_entry": "src/main/java/dev/herrastudio/raidcore/RaidCore.java",
-    "unselected_projects_imported": 0,
-    "passed": true
-  },
-  "jar_sha256": "4f1b70d55bd2e9947e24a40e58081cd38359441ddab139c62d848071d1c86c73",
-  "sources_jar_sha256": "a05986ad7a2efa1aa85c9f20874350d8d8720f7911840c47c399ad3c29e08b26",
+  "jar_sha256": "9e17ed75c7a731706429b31107191bbf4cab138f25f6f04c7fed85bb4a3db1bc",
+  "sources_jar_sha256": "f90bf261539917aad54bf6fc02b79330d72f499aec91575225f572e670df282f",
   "module_layout": {
     "passed": true,
     "modules": [
@@ -55,14 +28,61 @@
       "api",
       "raid"
     ],
-    "main_java_files": 189,
-    "runtime_resource_files": 59,
+    "main_java_files": 213,
+    "runtime_resource_files": 62,
     "single_mod_entry": "src/main/java/dev/herrastudio/raidcore/RaidCore.java",
     "duplicate_resource_paths": 0,
     "java_package_paths_preserved": true,
-    "runtime_jar_entry_payloads_byte_identical": 402,
-    "compiled_classes_byte_identical": 335,
-    "baseline_jar_sha256": "4f1b70d55bd2e9947e24a40e58081cd38359441ddab139c62d848071d1c86c73",
-    "current_jar_sha256": "4f1b70d55bd2e9947e24a40e58081cd38359441ddab139c62d848071d1c86c73"
-  }
+    "legacy_relocated_runtime_files_unchanged": 211,
+    "changed_relocated_runtime_files": [
+      "ui/src/main/java/dev/draginventory/client/map/MapClientEvents.java",
+      "ui/src/main/java/dev/draginventory/client/map/MapCommands.java",
+      "ui/src/main/java/dev/draginventory/client/map/MapConfig.java",
+      "raid/src/main/java/dev/draginventory/client/map/MapMatchTimer.java",
+      "api/src/main/java/dev/draginventory/client/map/TacticalMapApi.java",
+      "ui/src/main/java/dev/tactical/client/BagScreen.java",
+      "ui/src/main/java/dev/tactical/crack/client/CrackClient.java",
+      "loot/src/main/java/dev/tactical/crack/CrackService.java",
+      "loot/src/main/java/dev/tactical/loot/LootContainers.java",
+      "loot/src/main/java/dev/tactical/loot/LootSession.java",
+      "loot/src/main/java/dev/tactical/mixin/LootContainerMixin.java",
+      "ui/src/main/java/dev/tactical/profile/client/ProfileScreen.java",
+      "inventory/src/main/java/dev/tactical/profile/ItemProfile.java",
+      "network/src/main/java/dev/tactical/profile/ProfilePackets.java",
+      "inventory/src/main/java/dev/tactical/profile/ProfileSavedData.java",
+      "inventory/src/main/java/dev/tactical/profile/ProfileService.java",
+      "ui/src/main/java/dev/tactical/raid/client/RaidClient.java",
+      "ui/src/main/java/dev/tactical/raid/client/RaidHud.java",
+      "ui/src/main/java/dev/tactical/raid/client/RaidSettlementScreen.java",
+      "raid/src/main/java/dev/tactical/raid/RaidCommands.java",
+      "raid/src/main/java/dev/tactical/raid/RaidConfig.java",
+      "raid/src/main/java/dev/tactical/raid/RaidDeath.java",
+      "raid/src/main/java/dev/tactical/raid/RaidManager.java",
+      "raid/src/main/java/dev/tactical/raid/RaidSavedData.java",
+      "raid/src/main/java/dev/tactical/raid/RaidSession.java",
+      "inventory/src/main/java/dev/tactical/Tactical.java",
+      "ui/src/main/resources/assets/draginventory/lang/en_us.json",
+      "ui/src/main/resources/assets/draginventory/lang/zh_cn.json",
+      "raid/src/main/resources/assets/tactical_inventory/fx/evacuation_smoke.fx",
+      "ui/src/main/resources/assets/tactical_inventory/lang/en_us.json",
+      "ui/src/main/resources/assets/tactical_inventory/lang/zh_cn.json",
+      "loot/src/main/resources/assets/tactical_inventory/models/block/safe_credits.txt"
+    ],
+    "historical_relocation_hashes_preserved": true,
+    "version": "1.1.0",
+    "current_jar_sha256": "9e17ed75c7a731706429b31107191bbf4cab138f25f6f04c7fed85bb4a3db1bc"
+  },
+  "native_validation_records": [
+    "LOOT_MANAGEMENT.md",
+    "loot-management-results.json",
+    "EVACUATION_SMOKE.md",
+    "evacuation-smoke-results.json",
+    "CORE_LOOP_M1.md",
+    "shared-raid-results.json",
+    "RAID_TIMER.md",
+    "safe-material-results.json",
+    "GWO_DECALS.md"
+  ],
+  "native_validation_dates": "2026-10-03 through 2026-10-05; historical scope retained in individual records",
+  "historical_validation": "history/validation-results-1.0.2.json"
 }

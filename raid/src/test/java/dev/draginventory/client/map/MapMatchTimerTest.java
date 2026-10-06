@@ -18,6 +18,7 @@ class MapMatchTimerTest {
     @BeforeEach
     void resetStaticState() {
         MapMatchTimer.register(null);
+        MapMatchTimer.registerRaidProvider(null);
         MapMatchTimer.stop();
         MapMatchTimer.setDefaultDuration(MapMatchTimer.DEFAULT_DURATION_SECONDS);
     }
@@ -121,6 +122,34 @@ class MapMatchTimerTest {
     }
 
     // ==================== Provider 优先级 ====================
+
+    @Test
+    void raidProviderOverridesManualTimerAndPreservesExternalProviderPriority() {
+        MapMatchTimer.start(60);
+        MapMatchTimer.registerRaidProvider(() -> 1800);
+        assertTrue(MapMatchTimer.hasProvider());
+        assertEquals(1800, MapMatchTimer.remainingSeconds());
+        MapMatchTimer.register(() -> 42);
+        assertEquals(42, MapMatchTimer.remainingSeconds());
+        MapMatchTimer.register(null);
+        assertEquals(1800, MapMatchTimer.remainingSeconds());
+        MapMatchTimer.stop();
+        assertEquals(1800, MapMatchTimer.remainingSeconds());
+        MapMatchTimer.registerRaidProvider(null);
+        assertEquals(-1, MapMatchTimer.remainingSeconds());
+        assertFalse(MapMatchTimer.hasProvider());
+    }
+
+    @Test
+    void manualAddAndDeadlineDoNotAffectRaidClock() {
+        MapMatchTimer.start(60);
+        MapMatchTimer.registerRaidProvider(() -> 1800);
+        MapMatchTimer.addSeconds(-100_000);
+        assertEquals(1800, MapMatchTimer.remainingSeconds());
+        assertEquals(0, MapMatchTimer.deadlineMillis());
+        MapMatchTimer.registerRaidProvider(null);
+        assertTrue(MapMatchTimer.remainingSeconds() >= 59);
+    }
 
     @Test
     void providerOverridesEverything() {

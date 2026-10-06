@@ -5,12 +5,15 @@ import java.util.Objects;
 import java.util.regex.Pattern;
 
 /** Plain data also used by the config editor; never changes the item's components. */
-public record ItemProfile(Key key,int width,int height,Rarity rarity) {
+public record ItemProfile(Key key,int width,int height,Rarity rarity,boolean lootable,double baseDropChance) {
     public static final int MAX_SIZE=6, MAX_RULES=2048;
     public ItemProfile {
         Objects.requireNonNull(key); Objects.requireNonNull(rarity);
         if(width<1 || height<1 || width>MAX_SIZE || height>MAX_SIZE) throw new IllegalArgumentException("占格宽高必须为 1–6");
+        if(!Double.isFinite(baseDropChance) || baseDropChance<0 || baseDropChance>1)
+            throw new IllegalArgumentException("基础爆率必须为 0–100%");
     }
+    public ItemProfile(Key key,int width,int height,Rarity rarity) { this(key,width,height,rarity,false,0); }
     public record Key(String item,String content) {
         private static final Pattern ID=Pattern.compile("[a-z0-9_.-]+:[a-z0-9/._-]+");
         public Key {

@@ -1,0 +1,2 @@
+wall: legacy-vs-fixed changed pixels=57587, fixed-frame changed pixels=0
+floor: legacy-vs-fixed changed pixels=449, fixed-frame changed pixels=0

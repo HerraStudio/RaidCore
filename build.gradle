@@ -15,7 +15,13 @@ repositories {
     maven { name = 'RedlanceMinecraft'; url = uri('https://repo.redlance.org/public') }
 }
 
-def smokeEnabled = providers.gradleProperty('raidCoreSmoke').isPresent()
+def overlapSmokeEnabled = providers.gradleProperty('raidCoreDecalOverlapSmoke').isPresent()
+def sharedSmokeEnabled = providers.gradleProperty('raidCoreSharedSmoke').isPresent()
+def safeSmokeEnabled = providers.gradleProperty('raidCoreSafeSmoke').isPresent()
+def evacuationSmokeEnabled = providers.gradleProperty('raidCoreEvacuationSmoke').isPresent()
+def lootSmokeEnabled = providers.gradleProperty('raidCoreLootSmoke').isPresent()
+def decalSmokeEnabled = providers.gradleProperty('raidCoreDecalSmoke').isPresent() || overlapSmokeEnabled
+def smokeEnabled = providers.gradleProperty('raidCoreSmoke').isPresent() || decalSmokeEnabled || safeSmokeEnabled || evacuationSmokeEnabled || sharedSmokeEnabled || lootSmokeEnabled
 def featureModules = ['ui', 'inventory', 'loot', 'action', 'player', 'network', 'api', 'raid']
 sourceSets {
     main {
@@ -29,19 +35,68 @@ sourceSets {
     integration {
         compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
         runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+        if (evacuationSmokeEnabled && providers.gradleProperty('evacuationTranslucentWall').isPresent()) {
+            resources.srcDir('src/evacuationSmoke/resources')
+        }
     }
 }
 
 neoForge {
     version = providers.gradleProperty('neo_version').get()
     runs {
+        if (sharedSmokeEnabled) {
+            sharedServer {
+                server()
+                sourceSet = sourceSets.integration
+                gameDirectory = file('run-shared-server-smoke')
+                programArgument '--nogui'
+                jvmArgument '-Xmx2G'
+                systemProperty 'raidcore.smoke', 'true'
+                systemProperty 'raidcore.sharedSmoke', 'true'
+                systemProperty 'raidcore.smoke.directory', gameDirectory.get().asFile.canonicalPath
+            }
+            sharedAlpha {
+                client()
+                sourceSet = sourceSets.integration
+                gameDirectory = file('run-shared-alpha-smoke')
+                programArgument '--username'
+                programArgument 'RaidAlpha'
+                jvmArgument '-Xmx2G'
+                systemProperty 'raidcore.smoke', 'true'
+                systemProperty 'raidcore.sharedSmoke', 'true'
+                systemProperty 'raidcore.sharedSmoke.role', 'alpha'
+                systemProperty 'raidcore.smoke.directory', gameDirectory.get().asFile.canonicalPath
+            }
+            sharedBeta {
+                client()
+                sourceSet = sourceSets.integration
+                gameDirectory = file('run-shared-beta-smoke')
+                programArgument '--username'
+                programArgument 'RaidBeta'
+                jvmArgument '-Xmx2G'
+                systemProperty 'raidcore.smoke', 'true'
+                systemProperty 'raidcore.sharedSmoke', 'true'
+                systemProperty 'raidcore.sharedSmoke.role', 'beta'
+                systemProperty 'raidcore.smoke.directory', gameDirectory.get().asFile.canonicalPath
+            }
+        }
         client {
             client()
-            gameDirectory = file(smokeEnabled ? 'run-client-smoke' : 'run')
+            gameDirectory = file(lootSmokeEnabled ? 'run-loot-smoke' : evacuationSmokeEnabled ? 'run-evacuation-smoke' : safeSmokeEnabled ? 'run-safe-smoke' : overlapSmokeEnabled ? 'run-decal-overlap-smoke' : decalSmokeEnabled ? 'run-decal-smoke' : smokeEnabled ? 'run-client-smoke' : 'run')
             if (smokeEnabled) {
                 sourceSet = sourceSets.integration
                 systemProperty 'raidcore.smoke', 'true'
-                systemProperty 'raidcore.smoke.directory', file('run-client-smoke').canonicalPath
+                systemProperty 'raidcore.smoke.directory', gameDirectory.get().asFile.canonicalPath
+                if (safeSmokeEnabled) systemProperty 'raidcore.safeSmoke', 'true'
+                if (lootSmokeEnabled) systemProperty 'raidcore.lootSmoke', 'true'
+                if (decalSmokeEnabled) systemProperty 'raidcore.decalSmoke', 'true'
+                if (overlapSmokeEnabled) systemProperty 'raidcore.decalOverlapSmoke', 'true'
+                if (evacuationSmokeEnabled) {
+                    systemProperty 'raidcore.evacuationSmoke', 'true'
+                    systemProperty 'raidcore.evacuationSmoke.strict', providers.gradleProperty('evacuationStrict').getOrElse('false')
+                    systemProperty 'raidcore.evacuationSmoke.label', providers.gradleProperty('evacuationLabel').getOrElse('baseline')
+                    systemProperty 'raidcore.evacuationSmoke.shaders', providers.gradleProperty('evacuationShaders').getOrElse('false')
+                }
             }
         }
         server {
@@ -110,10 +165,13 @@ tasks.register('verifyReleaseJar') {
             }
             def required = [
                 'dev/herrastudio/raidcore/RaidCore.class', 'dev/tactical/Tactical.class',
+                'dev/tactical/raid/RaidMatch.class',
                 'dev/draginventory/DragInventory.class', 'dev/herrastudio/tacticalactions/TacticalActions.class',
                 'assets/tactical_inventory/models/loot/gold_bar.glb',
                 'assets/tactical_inventory/textures/item/gold_bar_color_n.png',
                 'assets/tactical_inventory/textures/item/gold_bar_color_s.png',
+                'assets/tactical_inventory/textures/block/safe_color_n.png',
+                'assets/tactical_inventory/textures/block/safe_color_s.png',
                 'assets/tactical_inventory/fx/evacuation_smoke.fx',
                 'data/tactical_inventory/loot_table/chests/safe_decrypted.json',
                 'assets/tacticalactions/player_animations/tactical_prone.json',
@@ -123,7 +181,7 @@ tasks.register('verifyReleaseJar') {
             required.each { path ->
                 if (!names.contains(path)) throw new GradleException('Missing merged release resource: ' + path)
             }
-            ['draginventory.mixins.json', 'tacticalactions.mixins.json', 'tactical_inventory.mixins.json'].each { path ->
+            ['draginventory.mixins.json', 'tacticalactions.mixins.json', 'tactical_inventory.mixins.json', 'raidcore_gwo_decals.mixins.json'].each { path ->
                 def config = new groovy.json.JsonSlurper().parseText(zip.getInputStream(zip.getEntry(path)).getText('UTF-8'))
                 ((config.mixins ?: []) + (config.client ?: []) + (config.server ?: [])).each { name ->
                     def classPath = (config.package + '.' + name).replace('.', '/') + '.class'

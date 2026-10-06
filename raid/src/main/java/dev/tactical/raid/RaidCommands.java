@@ -19,7 +19,40 @@ public final class RaidCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         var command = Commands.literal("raid").executes(ctx -> help(ctx.getSource()));
         command.then(Commands.literal("join").executes(ctx -> RaidManager.join(ctx.getSource().getPlayerOrException()) ? 1 : 0));
+        command.then(Commands.literal("leave").executes(ctx -> {
+            var player = ctx.getSource().getPlayerOrException();
+            if (!RaidManager.leave(player)) return error(ctx.getSource(), "当前没有可退出的等待或对局。");
+            reply(ctx.getSource(), "已离开等待名单或终止参与本局。", false); return 1;
+        }));
+        command.then(Commands.literal("stop").requires(source -> source.hasPermission(2)).executes(ctx -> {
+            if (!RaidManager.abortMatch(ctx.getSource().getServer())) return error(ctx.getSource(), "当前没有对局。");
+            reply(ctx.getSource(), "已停止整局，未完成成员按行动终止处理。", true); return 1;
+        }));
+        command.then(Commands.literal("minplayers").requires(source -> source.hasPermission(2))
+                .executes(ctx -> {
+                    reply(ctx.getSource(), "最低开局人数：" + RaidSavedData.get(ctx.getSource().getServer()).config.minimumPlayers, false);
+                    return 1;
+                })
+                .then(Commands.argument("count", IntegerArgumentType.integer(1, 64)).executes(ctx -> {
+                    int count = IntegerArgumentType.getInteger(ctx, "count");
+                    RaidSavedData.get(ctx.getSource().getServer()).config.minimumPlayers = count;
+                    RaidManager.configurationChanged(ctx.getSource().getServer());
+                    reply(ctx.getSource(), "最低开局人数已设为 " + count + "（默认2，设为1可单人调试）。", true); return 1;
+                })));
         command.then(Commands.literal("status").executes(ctx -> status(ctx.getSource())));
+        command.then(Commands.literal("duration").requires(source -> source.hasPermission(2))
+                .executes(ctx -> {
+                    var config = RaidSavedData.get(ctx.getSource().getServer()).config;
+                    reply(ctx.getSource(), "Raid 默认对局时长：" + config.matchDurationSeconds / 60 + " 分钟。", false);
+                    return 1;
+                })
+                .then(Commands.argument("minutes", IntegerArgumentType.integer(1, 1440)).executes(ctx -> {
+                    int minutes = IntegerArgumentType.getInteger(ctx, "minutes");
+                    RaidSavedData.get(ctx.getSource().getServer()).config.matchDurationSeconds = minutes * 60;
+                    RaidManager.configurationChanged(ctx.getSource().getServer());
+                    reply(ctx.getSource(), "Raid 默认对局时长已设为 " + minutes + " 分钟，下次入场生效。", true);
+                    return 1;
+                })));
         command.then(Commands.literal("result").executes(ctx -> {
             var player = ctx.getSource().getPlayerOrException(); var record = RaidManager.current(player);
             if (record == null || record.session.active()) return error(ctx.getSource(), "当前没有待确认的结算。");
@@ -70,10 +103,17 @@ public final class RaidCommands {
                 .then(Commands.literal("list").executes(ctx -> list(ctx.getSource()))));
         command.then(Commands.literal("list").requires(source -> source.hasPermission(2)).executes(ctx -> list(ctx.getSource())));
         command.then(Commands.literal("start").requires(source -> source.hasPermission(2))
+                .executes(ctx -> start(ctx.getSource()))
                 .then(Commands.argument("players", EntityArgument.players()).executes(ctx -> {
-                    int joined = 0;
-                    for (var player : EntityArgument.getPlayers(ctx, "players")) if (RaidManager.join(player)) joined++;
-                    reply(ctx.getSource(), "已安排 " + joined + " 名玩家进入对局。", true); return joined;
+                    var server = ctx.getSource().getServer();
+                    var match = RaidSavedData.get(server).match;
+                    if (match != null && match.phase() != RaidMatch.Phase.WAITING)
+                        return error(ctx.getSource(), "当前对局已开局，不能追加参与者。");
+                    for (var player : EntityArgument.getPlayers(ctx, "players")) {
+                        match = RaidSavedData.get(server).match;
+                        if (match == null || !match.contains(player.getUUID())) RaidManager.join(player);
+                    }
+                    return start(ctx.getSource());
                 })));
         command.then(Commands.literal("abort").requires(source -> source.hasPermission(2))
                 .executes(ctx -> abort(ctx.getSource(), ctx.getSource().getPlayerOrException()))
@@ -82,6 +122,11 @@ public final class RaidCommands {
                     for (var player : EntityArgument.getPlayers(ctx, "players")) aborted += abort(ctx.getSource(), player);
                     return aborted;
                 })));
+        // Vanilla's development /raid root requires permission 3. Brigadier merges
+        // same-name nodes while retaining the old predicate, hiding join from non-ops.
+        // Remove the old children entry before registration so both lookup maps receive
+        // this mod's complete root, with permissions scoped to the admin subcommands.
+        dispatcher.getRoot().getChildren().removeIf(node -> node.getName().equals("raid"));
         dispatcher.register(command);
     }
 
@@ -114,20 +159,38 @@ public final class RaidCommands {
     }
 
     private static int status(CommandSourceStack source) throws CommandSyntaxException {
+        var match = RaidSavedData.get(source.getServer()).match;
+        if (match != null) {
+            reply(source, "Raid ID：" + match.id + " | 阶段：" + match.phase() + " | 维度：" + match.dimension
+                    + " | 成员：" + match.participants().size() + " | 行动中：" + match.activePlayers()
+                    + " | 整局剩余：" + (match.remainingTicks() + 19) / 20 + " 秒", false);
+            for (var entry : match.participants().entrySet()) {
+                var online = source.getServer().getPlayerList().getPlayer(entry.getKey());
+                var member = entry.getValue();
+                reply(source, (online == null ? entry.getKey().toString() : online.getGameProfile().getName())
+                        + " | " + member.session().status() + " | 出生点：" + member.spawnId(), false);
+            }
+        } else reply(source, "当前没有共享对局。", false);
+        if (!(source.getEntity() instanceof ServerPlayer)) return 1;
         var player = source.getPlayerOrException(); var record = RaidManager.current(player);
         if (record == null) { reply(source, "当前未在对局中。使用 /raid join 入场。", false); return 1; }
         var session = record.session;
         String text = "地图：" + session.map + " | 状态：" + switch (session.status()) {
+            case WAITING -> "等待统一开局";
             case ACTIVE -> "行动中";
             case EXTRACTING -> "撤离中（" + session.zone() + "，剩余 " + Math.ceil(session.remainingTicks() / 20.0) + " 秒）";
-            case SETTLED -> switch (session.outcome()) { case EXTRACTED -> "撤离成功"; case DEAD -> "阵亡"; case ABORTED -> "行动终止"; };
-        } + " | 行动时间：" + (session.elapsedTicks() / 20) + " 秒 | 击杀：" + session.kills();
+            case SETTLED -> switch (session.outcome()) {
+                case EXTRACTED -> "撤离成功"; case DEAD -> "阵亡"; case ABORTED -> "行动终止"; case TIMED_OUT -> "行动超时";
+            };
+        } + (session.inRaid() && match != null ? " | 对局剩余：" + (match.remainingTicks() + 19) / 20 + " 秒" : "")
+                + " | 行动时间：" + (session.elapsedTicks() / 20) + " 秒 | 击杀：" + session.kills();
         reply(source, text, false); RaidManager.sendSnapshot(player); return 1;
     }
 
     private static int list(CommandSourceStack source) {
         var config = RaidSavedData.get(source.getServer()).config;
-        reply(source, "地图：" + config.mapName + " | 大厅：" + (config.lobby == null ? "未设置" : coordinates(config.lobby)), false);
+        reply(source, "地图：" + config.mapName + " | 最低人数：" + config.minimumPlayers + " | 对局时长：" + config.matchDurationSeconds / 60 + " 分钟 | 大厅："
+                + (config.lobby == null ? "未设置" : coordinates(config.lobby)), false);
         config.spawns.forEach((id, location) -> reply(source, "出生点 " + id + "：" + coordinates(location), false));
         config.extractions.forEach((id, zone) -> reply(source, "撤离点 " + id + "：" + coordinates(zone.location()) + " | 半径 "
                 + zone.radius() + " | " + zone.seconds() + " 秒 | " + zone.fx(), false));
@@ -141,16 +204,26 @@ public final class RaidCommands {
     }
 
     private static int help(CommandSourceStack source) {
-        reply(source, "/raid join 入场；/raid status 查看；/raid result 查看待确认的结算。", false);
+        reply(source, "/raid join 加入等待；/raid leave 退出；/raid status 查看整局；/raid result 查看待确认的结算。", false);
         if (source.hasPermission(2)) {
             reply(source, "管理员：当前位置 /raid lobby；/raid spawn add <名称>；/raid extract add <名称> <半径> [秒数，默认20]。", false);
             reply(source, "/raid list 查看配置；/raid name <地图名称>；/raid start <玩家>；/raid abort [玩家]。", false);
+            reply(source, "/raid duration [分钟] 查看或设置默认对局时长（默认30分钟，下次入场生效）。", false);
+            reply(source, "/raid start 统一开局；/raid start <玩家> 登记并开局；/raid stop 停止整局；/raid minplayers [人数] 设置开局人数。", false);
         }
         return 1;
     }
 
     private static void reply(CommandSourceStack source, String message, boolean broadcast) {
         source.sendSuccess(() -> Component.literal(message), broadcast);
+    }
+    private static int start(CommandSourceStack source) {
+        String error = RaidManager.startError(source.getServer());
+        if (error != null) return error(source, error);
+        if (!RaidManager.start(source.getServer())) return error(source, "开局失败，等待名单已保留，请检查服务端日志。");
+        var match = RaidSavedData.get(source.getServer()).match;
+        reply(source, "共享对局已开始：" + match.id + "，成员 " + match.participants().size() + " 人。", true);
+        return match.participants().size();
     }
     private static int error(CommandSourceStack source, String message) { source.sendFailure(Component.literal(message)); return 0; }
 }

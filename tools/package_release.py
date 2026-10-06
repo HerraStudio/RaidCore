@@ -23,7 +23,8 @@ def sha256(path):
 
 
 def native_log(kind, marker):
-    paths = [ROOT / ".audit" / f"{kind}-smoke.log", ROOT / f"run-{kind}-smoke/logs/latest.log"]
+    runtime = {"decal-client": "run-decal-smoke", "overlap-client": "run-decal-overlap-smoke"}.get(kind, f"run-{kind}-smoke")
+    paths = [ROOT / ".audit" / f"{kind}-smoke.log", ROOT / runtime / "logs/latest.log"]
     path = next((path for path in paths if path.is_file()), None)
     if path is None:
         raise RuntimeError(f"Missing {kind} smoke log; run the isolated native check first.")
@@ -38,12 +39,13 @@ def native_log(kind, marker):
 reports = sorted((ROOT / "build/test-results/test").glob("TEST-*.xml"))
 assert reports, "Build and run the unit tests first."
 groups = {name: {"tests": 0, "failures": 0, "errors": 0, "skipped": 0}
-          for name in ("Drag Inventory", "Tactical Actions", "Tactical Inventory")}
+          for name in ("Drag Inventory", "Tactical Actions", "Tactical Inventory", "RaidCore")}
 for report in reports:
     suite = ET.parse(report).getroot()
     name = suite.attrib["name"]
     group = "Drag Inventory" if name.startswith("dev.draginventory.") else (
-        "Tactical Actions" if name.startswith("dev.herrastudio.tacticalactions.") else "Tactical Inventory")
+        "Tactical Actions" if name.startswith("dev.herrastudio.tacticalactions.") else (
+            "RaidCore" if name.startswith("dev.herrastudio.raidcore.") else "Tactical Inventory"))
     for key in groups[group]:
         groups[group][key] += int(suite.attrib.get(key, 0))
 total = {key: sum(group[key] for group in groups.values()) for key in next(iter(groups.values()))}
@@ -51,6 +53,8 @@ assert total["tests"] > 0 and total["failures"] == total["errors"] == total["ski
 
 client_log = native_log("client", "RAIDCORE_CLIENT_SMOKE_PASS")
 server_log = native_log("server", "RAIDCORE_SERVER_SMOKE_PASS")
+decal_log = native_log("decal-client", "RAIDCORE_DECAL_CLIENT_PASS")
+overlap_log = native_log("overlap-client", "RAIDCORE_DECAL_OVERLAP_PASS")
 jar = ROOT / "build/libs" / (STEM + ".jar")
 source_jar = ROOT / "build/libs" / (STEM + "-sources.jar")
 assert jar.is_file() and source_jar.is_file()
@@ -67,6 +71,8 @@ summary = {"date": "2026-10-03", "timezone": "Asia/Shanghai", "version": VERSION
            "environment": "Windows, Java 21, Minecraft 1.21.1, NeoForge 21.1.251",
            "unit_tests": {"groups": groups, "total": total, "suites": len(reports)},
            "client_native_pass": True, "dedicated_server_native_pass": True,
+           "gwo_decal_native_pass": True, "source_parity_baseline_version": "1.0.0",
+           "gwo_decal_overlap_native_pass": True,
            "source_parity": {key: value for key, value in parity.items() if key != "permitted_bootstrap_and_event_owner_edits"},
            "jar_sha256": sha256(jar), "sources_jar_sha256": sha256(source_jar)}
 module_validation = ROOT / 'docs/module-validation.json'
@@ -76,7 +82,7 @@ if module_validation.is_file():
     summary['module_layout'] = module_result
 (ROOT / "docs/validation-results.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 evidence = ["RaidCore native integration — 2026-10-03 (Asia/Shanghai)"]
-for label, text in (("CLIENT", client_log), ("DEDICATED SERVER", server_log)):
+for label, text in (("CLIENT", client_log), ("DEDICATED SERVER", server_log), ("GWO DECALS", decal_log), ("GWO OVERLAP", overlap_log)):
     evidence.append("\n" + label)
     evidence.extend(line for line in text.splitlines() if "_PASS" in line or "GOLD_RENDER_COUNTS:" in line)
 (ROOT / "docs/runtime-validation.txt").write_text("\n".join(evidence) + "\n", encoding="utf-8")
@@ -88,6 +94,15 @@ for old, new in (("gold-inventory.png", "raidcore-inventory.png"), ("raidcore-hu
     source = ROOT / "run-client-smoke" / old
     if source.is_file():
         shutil.copy2(source, images / new)
+for name in ("decal-wall.png", "decal-wall-detail.png", "decal-floor.png"):
+    source = ROOT / "run-decal-smoke" / name
+    assert source.is_file(), source
+    shutil.copy2(source, images / name)
+shutil.copy2(ROOT / "run-decal-smoke/decal-geometry.tsv", ROOT / "docs/decal-geometry.tsv")
+for name in ("decal-overlap-wall-before.png", "decal-overlap-wall-after.png", "decal-overlap-floor-before.png",
+             "decal-overlap-floor-after.png", "decal-overlap-wall-oblique.png"):
+    shutil.copy2(ROOT / "run-decal-overlap-smoke" / name, images / name)
+shutil.copy2(ROOT / "run-decal-overlap-smoke/decal-overlap-results.txt", ROOT / "docs/decal-overlap-results.txt")
 
 OUTPUT.mkdir(parents=True, exist_ok=True)
 shutil.copy2(jar, OUTPUT / jar.name)
@@ -132,6 +147,8 @@ notice = f"""RaidCore {VERSION} — 2026-10-03
 旧物品 ID、存档数据键、配置文件和按键名称保留。
 
 验证：{total['tests']} 项单元测试全部通过；独立客户端与服务端原生检查通过。
+1.0.2 修复弹孔重叠的网格混排，并将崩边和划痕改为沿子弹在表面上的前进方向延伸。
+客户端升级到 1.0.2；服务端 1.0.1 或更新即可提供入射方向，旧于 1.0.1 时回退到圆形弹孔。
 完整源码包包含源码、文档、测试、模型工程和 Gradle Wrapper，不含第三方模组、缓存或游戏存档。
 """
 (OUTPUT / "安装说明.txt").write_text(notice, encoding="utf-8")

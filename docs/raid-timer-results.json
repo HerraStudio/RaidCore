@@ -1,0 +1,28 @@
+{
+  "version": "1.0.4",
+  "date": "2026-10-05",
+  "timezone": "Asia/Shanghai",
+  "environment": "Windows / Java 21 / Minecraft 1.21.1 / NeoForge 21.1.251",
+  "unit_tests": {
+    "suites": 35,
+    "tests": 300,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "default_match_seconds": 1800,
+  "default_match_ticks": 36000,
+  "native_timeout_fixture_seconds": 2,
+  "native_timeout_fixture_elapsed_ticks": 40,
+  "native_client_pass": true,
+  "native_server_pass": true,
+  "release_jar_verified": true,
+  "release_jar_sha256": "64acb77f4c11ed4a67a4ea94af131baa82ce38a89e0c6f9bd778a0940535a171",
+  "sources_jar_sha256": "5e956e97c5427a5f825b7b1b0cc3216ebb0a4c66f33e7ff755270f2a9af5d225",
+  "evidence": [
+    "RAID_TIMER.md",
+    "images/raidcore-raid-timer.png",
+    "images/raidcore-raid-timeout.png",
+    "raid-timer-validation.txt"
+  ]
+}

@@ -1,6 +1,8 @@
 package dev.tactical.raid.client;
 
+import dev.draginventory.client.map.MapMatchTimer;
 import dev.tactical.raid.RaidPackets;
+import dev.tactical.raid.RaidSession;
 import java.util.ArrayList;
 import java.util.UUID;
 import net.minecraft.client.Minecraft;
@@ -20,12 +22,25 @@ import net.neoforged.neoforge.network.PacketDistributor;
 @EventBusSubscriber(modid = dev.herrastudio.raidcore.RaidCore.MOD_ID, value = Dist.CLIENT)
 public final class RaidClient {
     private static final RaidHud HUD = new RaidHud();
+    private static final RaidMatchTimer MATCH_TIMER = new RaidMatchTimer();
     private static CompoundTag pendingResult;
     private static UUID awaitingAcknowledgement;
     private static RaidSettlementScreen displayedScreen;
 
     public static void acceptSnapshot(CompoundTag data) {
         HUD.accept(data);
+        String status = data.getString("status");
+        if (data.hasUUID("session") && ("ACTIVE".equals(status) || "EXTRACTING".equals(status))) {
+            if (!MATCH_TIMER.isActive()) MapMatchTimer.stop();
+            long remaining = data.contains("matchRemainingTicks") ? data.getLong("matchRemainingTicks")
+                    : RaidSession.DEFAULT_MATCH_DURATION_SECONDS * 20L - Math.max(0, data.getLong("elapsedTicks"));
+            MATCH_TIMER.sync(remaining);
+            MapMatchTimer.registerRaidProvider(MATCH_TIMER);
+        } else if (MATCH_TIMER.isActive()) {
+            MATCH_TIMER.clear();
+            MapMatchTimer.registerRaidProvider(null);
+            MapMatchTimer.stop();
+        }
         if (data.hasUUID("ackRejectedSession")
                 && data.getUUID("ackRejectedSession").equals(awaitingAcknowledgement)) awaitingAcknowledgement = null;
         if ("SETTLED".equals(data.getString("status")) && data.hasUUID("session")) {
@@ -71,6 +86,9 @@ public final class RaidClient {
     @SubscribeEvent public static void logout(ClientPlayerNetworkEvent.LoggingOut event) { clear(); }
     public static void clear() {
         HUD.clear();
+        MATCH_TIMER.clear();
+        MapMatchTimer.registerRaidProvider(null);
+        MapMatchTimer.stop();
         RaidEffects.clear();
         pendingResult = null;
         awaitingAcknowledgement = null;

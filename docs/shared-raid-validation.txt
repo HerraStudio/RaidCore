@@ -1,0 +1,37 @@
+RaidCore 1.1.0 Core Loop M1 — 2026-10-05 (Asia/Shanghai)
+Tests: 317 in 37 suites; failures/errors/skipped all zero
+Final build: gradlew.bat clean build
+Dedicated server and two separate Minecraft client processes; four scripted rounds
+Two real client connections, not a final human PVP acceptance test
+M2 extracted-items commit and M3 world/container reset remain pending
+
+Shared runtime markers:
+[19:13:21] [modloading-worker-0/INFO] [RaidCore/]: RaidCore 1.1.0 initialized: Tactical Inventory 1.0.20, Drag Inventory 2.6.1, Tactical Actions 1.1.0
+[19:14:56] [Server thread/INFO] [Herra/Raid/]: Session created: raidId=723b265a-8e57-4635-adc6-2b740e22c689 playerUuid=null phase=WAITING reason=waiting
+[19:15:02] [Server thread/INFO] [SharedRaidSmoke/]: SHARED_RAID_CLOCK_PASS: two real player connections, common ID/time, frozen waiting, distinct spawns, one tick and schema recovery
+[19:15:05] [Server thread/INFO] [Herra/Raid/]: Session cleaned: raidId=723b265a-8e57-4635-adc6-2b740e22c689 playerUuid=null phase=FINISHED reason=results retained; round slot released
+[19:15:05] [Server thread/INFO] [Herra/Raid/]: Session created: raidId=8d35e418-a56b-4002-9b1c-dbb0d11322eb playerUuid=null phase=WAITING reason=waiting
+[19:15:05] [Server thread/INFO] [SharedRaidSmoke/]: SHARED_RAID_EXTRACTION_DEATH_PASS: real extraction and death/respawn/ack, remaining participant, reentry rejection, lobby return and new batch round
+[19:15:07] [Server thread/INFO] [Herra/Raid/]: Session cleaned: raidId=8d35e418-a56b-4002-9b1c-dbb0d11322eb playerUuid=null phase=FINISHED reason=results retained; round slot released
+[19:15:08] [Server thread/INFO] [Herra/Raid/]: Session created: raidId=a8d176eb-0d2d-4020-97a4-f0119559759e playerUuid=null phase=WAITING reason=waiting
+[19:15:10] [Server thread/INFO] [Herra/Raid/]: Session cleaned: raidId=a8d176eb-0d2d-4020-97a4-f0119559759e playerUuid=null phase=FINISHED reason=results retained; round slot released
+[19:15:11] [Server thread/INFO] [Herra/Raid/]: Session created: raidId=11221cea-12da-4a3a-b0e4-62a56489dc2a playerUuid=null phase=WAITING reason=waiting
+[19:15:11] [Server thread/INFO] [SharedRaidSmoke/]: SHARED_RAID_TIMEOUT_PASS: both real clients expired at tick 40, acknowledged once, no stale duration in next round
+[19:15:12] [Server thread/INFO] [Herra/Raid/]: Session cleaned: raidId=11221cea-12da-4a3a-b0e4-62a56489dc2a playerUuid=null phase=FINISHED reason=results retained; round slot released
+[19:15:12] [Server thread/INFO] [SharedRaidSmoke/]: SHARED_RAID_DEDICATED_PASS: four rounds, two real multiplayer clients, common clock, schema/legacy safety, extraction/death, stop, timeout, reentry and disconnect cleanup
+[19:14:48] [modloading-worker-0/INFO] [RaidCore/]: RaidCore 1.1.0 initialized: Tactical Inventory 1.0.20, Drag Inventory 2.6.1, Tactical Actions 1.1.0
+[19:15:12] [Render thread/INFO] [SharedRaidSmoke/]: SHARED_RAID_CLIENT_ALPHA_PASS: real multiplayer snapshots, common IDs, waiting, four rounds, results/ack and active-round reentry request
+[19:14:45] [modloading-worker-0/INFO] [RaidCore/]: RaidCore 1.1.0 initialized: Tactical Inventory 1.0.20, Drag Inventory 2.6.1, Tactical Actions 1.1.0
+[19:15:12] [Render thread/INFO] [SharedRaidSmoke/]: SHARED_RAID_CLIENT_BETA_PASS: real multiplayer snapshots, common IDs, waiting, four rounds, settlement/respawn and disconnect cleanup
+
+Legacy regression markers:
+[19:20:00] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_BOOTSTRAP_PASS: one mod, legacy registries, all four configs, keys, three Mixin families, health/stamina, payloads and PAL factories
+[19:20:14] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_PEEK_SYNC_PASS: actual key input, left/right/both, legacy payloads, fixed player position
+[19:20:15] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_MAP_PASS: original M binding opened and rendered the v2.6.1 map
+[19:20:21] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_RAID_TIMER_CLIENT_PASS: real snapshots, thirty-minute minimap timer, future-only duration change, abort/ack, timed expiry/lobby/settlement, rejoin and logout cleanup
+[19:20:21] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_CLIENT_SMOKE_PASS
+[19:17:16] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_RAID_TIMER_SERVER_PASS: duration command, 30-minute legacy defaults, config/session NBT persistence and timeout outcome
+[19:17:16] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_SERVER_SMOKE_PASS: dedicated startup, one mod, legacy registries, 100 health, stamina, original inventory NBT/components, commands and GWO impact direction mixin without client classes
+
+JAR SHA256: 09d7e3ea738d7c773900ee27ee7a2929754e0a391725c520c8c27046e702b7cb
+Sources SHA256: 282680b037a73a8322aec66fe37e5a0df986da4fe704a26ee5f99ad1ed363654

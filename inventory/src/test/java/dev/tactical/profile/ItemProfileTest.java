@@ -5,6 +5,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemProfileTest {
+    @Test void oldProfilesAreNotSilentlyAddedToTheLootPool() {
+        var key=new ItemProfile.Key("minecraft:diamond","");
+        var old=new ItemProfile(key,1,1,Rarity.RARE);
+        assertFalse(old.lootable());assertEquals(0,old.baseDropChance());
+        for(double chance:new double[]{-1,1.01,Double.NaN,Double.POSITIVE_INFINITY})
+            assertThrows(IllegalArgumentException.class,()->new ItemProfile(key,1,1,Rarity.RARE,true,chance));
+    }
     @Test void fiveTiersUseExactRequestedColors() {
         assertArrayEquals(new int[]{0xFFFFFF,0x4CAF50,0x2196F3,0x9C27B0,0xFFC107},
                 java.util.Arrays.stream(Rarity.values()).mapToInt(r->r.rgb).toArray());

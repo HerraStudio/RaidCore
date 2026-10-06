@@ -1,15 +1,26 @@
 RaidCore native integration — 2026-10-03 (Asia/Shanghai)
 
 CLIENT
-[11:52:02] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_BOOTSTRAP_PASS: one mod, legacy registries, all four configs, keys, three Mixin families, health/stamina, payloads and PAL factories
-[11:52:08] [Render thread/INFO] [GoldSmoke/]: GOLD_GWO_ANIMATION_PASS: real cache, Blender embedded draw/idle/inspect, actual GWO key + right-click, model matrix changes, held loot intact
-[11:52:11] [Render thread/INFO] [GoldSmoke/]: GOLD_RARITY_GUI_PASS: default gold quality, inventory + LDLib preview model, override/reset and multi-cell migration without count loss
-[11:52:11] [Render thread/INFO] [GoldSmoke/]: GOLD_RENDER_COUNTS: gpu=1241, fallback=0, hand_frames=383
-[11:52:13] [Render thread/INFO] [GoldSmoke/]: GOLD_LEFT_HAND_PASS: actual left-arm rendering and mirrored animation transforms without mirroring texture
-[11:52:13] [Render thread/INFO] [GoldSmoke/]: GOLD_NATIVE_SMOKE_PASS
-[11:52:16] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_PEEK_SYNC_PASS: actual key input, left/right/both, legacy payloads, fixed player position
-[11:52:17] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_MAP_PASS: original M binding opened and rendered the v2.6.1 map
-[11:52:17] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_CLIENT_SMOKE_PASS
+[18:05:38] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_BOOTSTRAP_PASS: one mod, legacy registries, all four configs, keys, three Mixin families, health/stamina, payloads and PAL factories
+[18:05:43] [Render thread/INFO] [GoldSmoke/]: GOLD_GWO_ANIMATION_PASS: real cache, Blender embedded draw/idle/inspect, actual GWO key + right-click, model matrix changes, held loot intact
+[18:05:47] [Render thread/INFO] [GoldSmoke/]: GOLD_RARITY_GUI_PASS: default gold quality, inventory + LDLib preview model, override/reset and multi-cell migration without count loss
+[18:05:47] [Render thread/INFO] [GoldSmoke/]: GOLD_RENDER_COUNTS: gpu=2414, fallback=0, hand_frames=752
+[18:05:49] [Render thread/INFO] [GoldSmoke/]: GOLD_LEFT_HAND_PASS: actual left-arm rendering and mirrored animation transforms without mirroring texture
+[18:05:49] [Render thread/INFO] [GoldSmoke/]: GOLD_NATIVE_SMOKE_PASS
+[18:05:52] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_PEEK_SYNC_PASS: actual key input, left/right/both, legacy payloads, fixed player position
+[18:05:53] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_MAP_PASS: original M binding opened and rendered the v2.6.1 map
+[18:05:53] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_CLIENT_SMOKE_PASS
 
 DEDICATED SERVER
-[11:46:59] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_SERVER_SMOKE_PASS: dedicated startup, one mod, legacy registries, 100 health, stamina, original inventory NBT/components and commands
+[17:56:28] [Server thread/INFO] [RaidCoreSmoke/]: RAIDCORE_SERVER_SMOKE_PASS: dedicated startup, one mod, legacy registries, 100 health, stamina, original inventory NBT/components, commands and GWO impact direction mixin without client classes
+
+GWO DECALS
+[18:02:25] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_BOOTSTRAP_PASS: one mod, legacy registries, all four configs, keys, three Mixin families, health/stamina, payloads and PAL factories
+[18:02:25] [Render thread/INFO] [RaidCoreDecalSmoke/]: RAIDCORE_DECAL_CODEC_PASS: original impact fields preserved, signed direction round trip, six bytes overhead
+[18:02:29] [Render thread/INFO] [RaidCoreDecalSmoke/]: RAIDCORE_DECAL_GEOMETRY_PASS: 21 real decals; UV hole center fixed to true hit, asymmetric forward damage along incoming velocity, face coplanarity, finite mesh vertices and voxel bounds
+[18:02:32] [Render thread/INFO] [RaidCoreDecalSmoke/]: RAIDCORE_DECAL_LIFECYCLE_PASS: block validation, six per face and original expiry
+[18:02:32] [Render thread/INFO] [RaidCoreDecalSmoke/]: RAIDCORE_DECAL_CLIENT_PASS: real GWO projectile collision, direction packet, anchored hole, asymmetric forward rim/splat, six faces, 0/30/45/60/75/89 degrees, slab/edge fit, legacy round fallback, native texture/render, block removal and caps
+
+GWO OVERLAP
+[17:56:43] [Render thread/INFO] [RaidCoreSmoke/]: RAIDCORE_BOOTSTRAP_PASS: one mod, legacy registries, all four configs, keys, three Mixin families, health/stamina, payloads and PAL factories
+[17:56:55] [Render thread/INFO] [RaidCoreOverlapSmoke/]: RAIDCORE_DECAL_OVERLAP_PASS: 12 real impacts, mixed round/mesh overlap, wall/floor native legacy-vs-fixed frames, fixed-frame stability, changed viewpoint, original muzzle sorting retained; wall: legacy-vs-fixed changed pixels=57587, fixed-frame changed pixels=0

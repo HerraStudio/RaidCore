@@ -41,6 +41,7 @@ public final class Tactical {
         bus.addListener(dev.tactical.raid.RaidPackets::register);
         bus.addListener(dev.tactical.crack.CrackPackets::register);
         bus.addListener(dev.tactical.profile.ProfilePackets::register);
+        bus.addListener(dev.tactical.loot.LootPackets::register);
         bus.addListener((BuildCreativeModeTabContentsEvent event)-> {
             if(event.getTabKey()==CreativeModeTabs.TOOLS_AND_UTILITIES) { event.accept(BACKPACK); event.accept(RIG); event.accept(HEADSET); event.accept(SAFE_ITEM); event.accept(GOLD_BAR); }
         });
